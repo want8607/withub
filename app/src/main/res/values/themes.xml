@@ -13,4 +13,9 @@
         <item name="fontFamily">@font/nanum_square_round_regular</item>
         <item name="android:textColor">@color/nav_text_color</item>
     </style>
+
+    <style name="editText" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/point_color</item>
+        <item name="colorControlNormal">@color/gray</item>
+    </style>
 </resources>

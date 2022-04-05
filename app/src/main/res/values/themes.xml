@@ -13,4 +13,5 @@
         <item name="fontFamily">@font/nanum_square_round_regular</item>
         <item name="android:textColor">@color/nav_text_color</item>
     </style>
+
 </resources>

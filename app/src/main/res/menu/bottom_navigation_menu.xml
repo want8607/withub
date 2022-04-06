@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tap_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/tap_ranking"
+        android:enabled="true"
+        android:icon="@drawable/ic_ranking_stand"
+        android:title="@string/ranking"/>
+    <item
+        android:id="@+id/tap_commit"
+        android:enabled="true"
+        android:icon="@drawable/ic_commit"
+        android:title="@string/commit"/>
+    <item
+        android:id="@+id/tap_my_info"
+        android:enabled="true"
+        android:icon="@drawable/ic_my_info"
+        android:title="@string/my_info"/>
+</menu>

@@ -11,7 +11,7 @@
     <style name="Theme.NavigationDrawer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/point_color</item>
         <item name="fontFamily">@font/nanum_square_round_regular</item>
-        <item name="android:textColor">@color/nav_text_color</item>
+        <item name="android:textColor">@color/toolbar_text_color</item>
     </style>
 
     <style name="editText" parent="Theme.AppCompat.Light.NoActionBar">

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    xmlns:float="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        float:layout_constraintEnd_toEndOf="parent"
+        float:layout_constraintStart_toStartOf="parent"
+        float:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:id="@+id/floatLabeledEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        float:fletPadding="5dp"
+                        tools:ignore="MissingClass,MissingConstraints">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:hint="아이디"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp"
+                            android:theme="@style/editText" />
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <Button
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/stroke_btn"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:text="중복체크" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5~15자 영문(소문자), 숫자만 사용하세요."
+                    android:textColor="@color/timer"
+                    android:textSize="12sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        float:fletPadding="5dp"
+                        tools:ignore="MissingClass,MissingConstraints">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:hint="비밀번호"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp"
+                            android:theme="@style/editText" />
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="bottom"
+                        android:text="안전"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/correct_color"
+                        android:textSize="15sp" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="8~20자 영문, 숫자, 특수문자를 사용하세요."
+                    android:textColor="@color/timer"
+                    android:textSize="12sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        float:fletPadding="5dp"
+                        tools:ignore="MissingClass,MissingConstraints">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:hint="비밀번호 확인"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp"
+                            android:theme="@style/editText" />
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="right|bottom"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:gravity="bottom"
+                        android:text="일치"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/correct_color"
+                        android:textSize="15sp" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:background="@drawable/login_btn"
+        android:fontFamily="@font/nanum_square_round_regular"
+        android:text="다음"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        float:layout_constraintBottom_toBottomOf="parent"
+        float:layout_constraintEnd_toEndOf="parent"
+        float:layout_constraintStart_toStartOf="parent"
+        float:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

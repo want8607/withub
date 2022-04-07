@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background_color"
     android:weightSum="1">
 
     <FrameLayout
-        android:background="@color/background_color"
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,15 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="비밀번호 찾기"
-            android:textAlignment="center"
             android:fontFamily="@font/nanum_square_round_regular"
+            android:text="회원가입"
+            android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="27sp" />
     </FrameLayout>
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentArea"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.88">

@@ -16,6 +16,10 @@
     <color name="main_view_color">#EDEDED</color>
     <color name="border_color">#EDEDED</color>
     <color name="gray">#D9D9D9</color>
+    <color name="correct_color">#0070C0</color>
+    <color name="not_received_email_color">#F2F2F2</color>
+    <color name="thick_gray">#A6A6A6</color>
 
     <color name="nav_color">@color/white</color>
+
 </resources>

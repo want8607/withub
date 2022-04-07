@@ -2,13 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:float="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_color"
     android:orientation="vertical"
     android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.88"
+        android:layout_weight="0.85"
         android:weightSum="1"
         android:orientation="vertical">
 
@@ -17,119 +20,172 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.4"
-            android:weightSum="1"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:orientation="vertical"
-                android:gravity="bottom"
-                android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <FrameLayout
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"/>
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginBottom="17dp"
-                        android:text=" 이메일"
-                        android:textColor="@color/black" />
-
-                    <EditText
-                        android:layout_width="360dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="3dp"
-                        android:backgroundTint="@color/gray" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:orientation="horizontal">
-
-                        <Spinner
-                            android:layout_width="130dp"
-                            android:layout_height="30dp"
-                            android:dropDownWidth="100dp"
-                            android:spinnerMode="dropdown"
-                            android:backgroundTint="@color/point_color"
-                            android:popupBackground="@color/gray"/>  //스피너 팝업 컬러
-
-                        <Button
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="right"
-                            android:text="인증하기"
-                            android:background="@drawable/stroke_btn"/>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:orientation="vertical"
-                android:gravity="bottom"
-                android:layout_gravity="center">
-
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:layout_marginBottom="17dp"
-                        android:text=" 인증번호"
-                        android:textColor="@color/black" />
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        float:fletPadding="5dp"
+                        tools:ignore="MissingClass,MissingConstraints">
 
-                    <EditText
-                        android:layout_width="360dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="3dp"
-                        android:backgroundTint="@color/gray" />
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:theme="@style/editText"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:hint="아이디" />
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:orientation="horizontal">
-                        <TextView
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                            android:id="@+id/floatLabeledEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            float:fletPadding="5dp"
+                            tools:ignore="MissingClass,MissingConstraints">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:theme="@style/editText"
+                                android:textColorHint="@color/black"
+                                android:textSize="15sp"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:hint="이메일" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:textAlignment="gravity"
-                            android:layout_gravity="bottom"
-                            android:text="5 : 00"
-                            android:textSize="20sp"
-                            android:textColor="@color/timer"
-                            android:layout_marginRight="10dp"/>
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="horizontal">
 
-                        <Button
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="right"
-                            android:text="확인"
-                            android:background="@drawable/stroke_btn"/>
-                    </LinearLayout>
+                            <Spinner
+                                android:layout_width="130dp"
+                                android:layout_height="30dp"
+                                android:dropDownWidth="100dp"
+                                android:spinnerMode="dropdown"
+                                android:backgroundTint="@color/point_color"
+                                android:popupBackground="@color/gray"/>  //스피너 팝업 컬러
 
+                            <Button
+                                android:layout_width="80dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="right"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:text="인증하기"
+                                android:background="@drawable/stroke_btn"/>
 
-                </FrameLayout>
+                        </LinearLayout>
 
+                    </FrameLayout>
 
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-            </RelativeLayout>
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            float:fletPadding="5dp"
+                            tools:ignore="MissingClass,MissingConstraints">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:theme="@style/editText"
+                                android:textColorHint="@color/black"
+                                android:textSize="15sp"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:hint="인증번호" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginBottom="15dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:textAlignment="gravity"
+                                android:layout_gravity="bottom"
+                                android:text="5 : 00"
+                                android:textSize="20sp"
+                                android:textColor="@color/timer"
+                                android:layout_marginRight="10dp"/>
+
+                            <Button
+                                android:layout_width="80dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="right"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:text="확인"
+                                android:background="@drawable/stroke_btn"/>
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center"
+            android:background="@drawable/login_btn"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:text="다음"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
 </LinearLayout>

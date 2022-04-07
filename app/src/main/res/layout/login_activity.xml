@@ -9,6 +9,7 @@
     android:weightSum="1"
     android:background="@color/background_color">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -30,12 +31,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="WITHUB"
+            android:fontFamily="@font/nanum_square_round_bold"
             android:textColor="@color/black"
             android:textSize="35sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
 
     </LinearLayout>
 
@@ -46,44 +47,88 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <!-- add some padding -->
-        <com.wrapp.floatlabelededittext.FloatLabeledEditText
-            android:id="@+id/floatLabeledEditText"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            float:fletPadding="5dp"
-            float:layout_constraintBottom_toTopOf="@+id/floatLabeledEditText3"
-            tools:ignore="MissingClass,MissingConstraints">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:layout_width="360dp"
-                android:layout_height="50dp"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:theme="@style/editText"
-                android:hint="아이디" />
-        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"/>
 
-        <com.wrapp.floatlabelededittext.FloatLabeledEditText
-            android:layout_width="wrap_content"
+            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                android:id="@+id/floatLabeledEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                float:fletPadding="5dp"
+                float:layout_constraintBottom_toTopOf="@+id/floatLabeledEditText3"
+                tools:ignore="MissingClass,MissingConstraints">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="아이디"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:theme="@style/editText" />
+            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            float:fletPadding="5dp"
-            float:layout_constraintBottom_toTopOf="@+id/floatLabeledEditText3"
-            tools:ignore="MissingClass,MissingConstraints">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-            <EditText
-                android:layout_width="360dp"
-                android:layout_height="50dp"
-                android:singleLine="true"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:theme="@style/editText"
-                android:hint="비밀번호" />
-        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"/>
+
+            <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                float:fletPadding="5dp"
+                float:layout_constraintBottom_toTopOf="@+id/floatLabeledEditText3"
+                tools:ignore="MissingClass,MissingConstraints">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:theme="@style/editText"
+                    android:textColorHint="@color/black"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:hint="비밀번호" />
+            </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
@@ -91,54 +136,87 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
-            <TextView
-                android:layout_width="90dp"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="아이디 찾기"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="25dp"
-                android:background="@color/gray" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.17"
+                    android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:text="비밀번호 찾기"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizePresetSizes="@array/autosize_text_sizes"
+                    android:text="아이디 찾기"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="25dp"
-                android:background="@color/gray" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="0.005"
+                    android:layout_height="25dp"
+                    android:background="@color/gray" />
 
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:text="회원가입"
-                android:textAlignment="center"
-                android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.25"
+                    android:layout_height="wrap_content"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizePresetSizes="@array/autosize_text_sizes"
+                    android:text="비밀번호 찾기"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="0.005"
+                    android:layout_height="25dp"
+                    android:background="@color/gray" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizePresetSizes="@array/autosize_text_sizes"
+                    android:text="회원가입"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.17"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.15"
+        android:layout_weight="0.2"
         android:gravity="center">
 
         <Button
             android:layout_width="300dp"
             android:layout_height="55dp"
-
             android:background="@drawable/login_btn"
             android:text="로그인"
+            android:fontFamily="@font/nanum_square_round_regular"
             android:textColor="@color/white"
             android:textSize="20sp"/>
     </LinearLayout>
-
 </LinearLayout>

@@ -52,4 +52,10 @@ dependencies {
 
     //ViewPager2
     implementation 'androidx.viewpager2:viewpager2:1.1.0-beta01'
+
+    //DotsIndicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+
+    //RollingText
+    implementation 'com.github.YvesCheung:RollingText:1.2.0'
 }

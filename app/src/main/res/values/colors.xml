@@ -24,5 +24,6 @@
     <color name="nav_color">@color/white</color>
     <color name="tap_selected_color">@color/black</color>
     <color name="tap_unselected_color">#7f7f7f</color>
+    <color name="rankingTap_unselected_color">#dedede</color>
 
 </resources>

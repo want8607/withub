@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardView_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/cardView_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일간 커밋 횟수"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/friend_second_tropy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_tropy_second"
+                app:layout_constraintBottom_toBottomOf="@+id/friend_first_tropy"
+                app:layout_constraintEnd_toStartOf="@+id/friend_first_tropy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/friend_first_tropy" />
+
+            <ImageView
+                android:id="@+id/friend_first_tropy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_tropy_first"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView_title" />
+
+            <ImageView
+                android:id="@+id/friend_third_tropy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_tropy_third"
+                app:layout_constraintBottom_toBottomOf="@+id/friend_first_tropy"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/friend_first_tropy"
+                app:layout_constraintTop_toTopOf="@+id/friend_first_tropy" />
+
+            <TextView
+                android:id="@+id/friend_second_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="문승재"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/friend_second_tropy"
+                app:layout_constraintStart_toStartOf="@+id/friend_second_tropy"
+                app:layout_constraintTop_toBottomOf="@+id/friend_second_tropy" />
+
+            <TextView
+                android:id="@+id/friend_third_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="문승재"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/friend_third_tropy"
+                app:layout_constraintStart_toStartOf="@+id/friend_third_tropy"
+                app:layout_constraintTop_toBottomOf="@+id/friend_third_tropy" />
+
+            <TextView
+                android:id="@+id/friend_first_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="문승재"
+                android:layout_margin="5dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/friend_first_tropy"
+                app:layout_constraintStart_toStartOf="@+id/friend_first_tropy"
+                app:layout_constraintTop_toBottomOf="@+id/friend_first_tropy" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="2회"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/friend_second_text"
+                app:layout_constraintStart_toStartOf="@+id/friend_second_text"
+                app:layout_constraintTop_toBottomOf="@+id/friend_second_text" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="2회"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/friend_third_text"
+                app:layout_constraintStart_toStartOf="@+id/friend_third_text"
+                app:layout_constraintTop_toBottomOf="@+id/friend_third_text" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="2회"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@+id/friend_first_text"
+                app:layout_constraintStart_toStartOf="@+id/friend_first_text"
+                app:layout_constraintTop_toBottomOf="@+id/friend_first_text" />
+
+            <LinearLayout
+                android:id="@+id/expandable_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="@+id/cardView_title"
+                app:layout_constraintTop_toBottomOf="@+id/textView13">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="@string/rank_4" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="10dp"
+                        android:textSize="15sp"
+                        android:text="이정찬 1회"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="@string/rank_5" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="10dp"
+                        android:textSize="15sp"
+                        android:text="이정찬 1회"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="@string/rank_6" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="10dp"
+                        android:textSize="15sp"
+                        android:text="이정찬 1회"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="@string/rank_7" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="10dp"
+                        android:textSize="15sp"
+                        android:text="이정찬 1회"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="@string/rank_8" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="10dp"
+                        android:textSize="15sp"
+                        android:text="이정찬 1회"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="@string/rank_9" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="10dp"
+                        android:textSize="15sp"
+                        android:text="이정찬 1회"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="@string/rank_10" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textSize="15sp"
+                        android:text="이정찬 1회"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

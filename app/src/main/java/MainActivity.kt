@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     //홈에서 바 네비게이션 열기
-    @Override
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home ->{drawerLayout.openDrawer(GravityCompat.START)

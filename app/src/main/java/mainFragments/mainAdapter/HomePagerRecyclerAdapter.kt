@@ -1,4 +1,4 @@
-package com.example.withub.mainFragments
+package com.example.withub.mainFragments.mainAdapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.withub.R
 
-class PagerRecyclerAdapter(val textList : ArrayList<String>) :
-    RecyclerView.Adapter<PagerRecyclerAdapter.PagerViewHolder>() {
+class HomePagerRecyclerAdapter(val textList : ArrayList<String>) :
+    RecyclerView.Adapter<HomePagerRecyclerAdapter.PagerViewHolder>() {
 
     inner class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -19,17 +19,14 @@ class PagerRecyclerAdapter(val textList : ArrayList<String>) :
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): PagerRecyclerAdapter.PagerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.tip_view,parent,false
         )
         return PagerViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: PagerRecyclerAdapter.PagerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
         holder.bind(position)
     }
 

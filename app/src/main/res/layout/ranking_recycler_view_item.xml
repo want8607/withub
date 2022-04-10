@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintWidth_percent="0.9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +35,7 @@
                 android:text="일간 커밋 횟수"
                 android:textColor="@color/black"
                 android:textSize="15sp"
+                android:fontFamily="@font/nanum_square_round_regular"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +72,7 @@
                 app:layout_constraintTop_toTopOf="@+id/friend_first_tropy" />
 
             <TextView
-                android:id="@+id/friend_second_text"
+                android:id="@+id/friend_name_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_round_regular"
@@ -84,7 +85,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/friend_second_tropy" />
 
             <TextView
-                android:id="@+id/friend_third_text"
+                android:id="@+id/friend_name_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_round_regular"
@@ -97,7 +98,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/friend_third_tropy" />
 
             <TextView
-                android:id="@+id/friend_first_text"
+                android:id="@+id/friend_name_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_round_regular"
@@ -110,6 +111,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/friend_first_tropy" />
 
             <TextView
+                android:id="@+id/friend_commit_num_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -117,12 +119,12 @@
                 android:text="2회"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/friend_second_text"
-                app:layout_constraintStart_toStartOf="@+id/friend_second_text"
-                app:layout_constraintTop_toBottomOf="@+id/friend_second_text" />
+                app:layout_constraintEnd_toEndOf="@+id/friend_name_2"
+                app:layout_constraintStart_toStartOf="@+id/friend_name_2"
+                app:layout_constraintTop_toBottomOf="@+id/friend_name_2" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/friend_commit_num_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -130,12 +132,12 @@
                 android:text="2회"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/friend_third_text"
-                app:layout_constraintStart_toStartOf="@+id/friend_third_text"
-                app:layout_constraintTop_toBottomOf="@+id/friend_third_text" />
+                app:layout_constraintEnd_toEndOf="@+id/friend_name_3"
+                app:layout_constraintStart_toStartOf="@+id/friend_name_3"
+                app:layout_constraintTop_toBottomOf="@+id/friend_name_3" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/friend_commit_num_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -143,9 +145,9 @@
                 android:text="2회"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="@+id/friend_first_text"
-                app:layout_constraintStart_toStartOf="@+id/friend_first_text"
-                app:layout_constraintTop_toBottomOf="@+id/friend_first_text" />
+                app:layout_constraintEnd_toEndOf="@+id/friend_name_1"
+                app:layout_constraintStart_toStartOf="@+id/friend_name_1"
+                app:layout_constraintTop_toBottomOf="@+id/friend_name_1" />
 
             <LinearLayout
                 android:id="@+id/expandable_layout"
@@ -154,7 +156,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="@+id/cardView_title"
-                app:layout_constraintTop_toBottomOf="@+id/textView13">
+                app:layout_constraintTop_toBottomOf="@+id/friend_commit_num_1">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -168,13 +170,23 @@
                         android:textSize="15sp"
                         android:text="@string/rank_4" />
                     <TextView
+                        android:id="@+id/friend_name_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:layout_marginStart="10dp"
                         android:textSize="15sp"
-                        android:text="이정찬 1회"/>
+                        android:text="이정찬"/>
+                    <TextView
+                        android:id="@+id/friend_commit_num_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:text="1회"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -189,13 +201,23 @@
                         android:textSize="15sp"
                         android:text="@string/rank_5" />
                     <TextView
+                        android:id="@+id/friend_name_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:layout_marginStart="10dp"
                         android:textSize="15sp"
-                        android:text="이정찬 1회"/>
+                        android:text="이정찬"/>
+                    <TextView
+                        android:id="@+id/friend_commit_num_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:text="1회"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -210,13 +232,23 @@
                         android:textSize="15sp"
                         android:text="@string/rank_6" />
                     <TextView
+                        android:id="@+id/friend_name_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:layout_marginStart="10dp"
                         android:textSize="15sp"
-                        android:text="이정찬 1회"/>
+                        android:text="이정찬"/>
+                    <TextView
+                        android:id="@+id/friend_commit_num_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:text="1회"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -231,13 +263,23 @@
                         android:textSize="15sp"
                         android:text="@string/rank_7" />
                     <TextView
+                        android:id="@+id/friend_name_7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:layout_marginStart="10dp"
                         android:textSize="15sp"
-                        android:text="이정찬 1회"/>
+                        android:text="이정찬"/>
+                    <TextView
+                        android:id="@+id/friend_commit_num_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:text="1회"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -252,13 +294,23 @@
                         android:textSize="15sp"
                         android:text="@string/rank_8" />
                     <TextView
+                        android:id="@+id/friend_name_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:layout_marginStart="10dp"
                         android:textSize="15sp"
-                        android:text="이정찬 1회"/>
+                        android:text="이정찬"/>
+                    <TextView
+                        android:id="@+id/friend_commit_num_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:text="1회"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -273,13 +325,23 @@
                         android:textSize="15sp"
                         android:text="@string/rank_9" />
                     <TextView
+                        android:id="@+id/friend_name_9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:layout_marginStart="10dp"
                         android:textSize="15sp"
-                        android:text="이정찬 1회"/>
+                        android:text="이정찬"/>
+                    <TextView
+                        android:id="@+id/friend_commit_num_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:text="1회"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -294,17 +356,25 @@
                         android:textSize="15sp"
                         android:text="@string/rank_10" />
                     <TextView
+                        android:id="@+id/friend_name_10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="10dp"
                         android:textSize="15sp"
-                        android:text="이정찬 1회"/>
+                        android:text="이정찬"/>
+                    <TextView
+                        android:id="@+id/friend_commit_num_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:text="1회"/>
                 </LinearLayout>
             </LinearLayout>
-
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

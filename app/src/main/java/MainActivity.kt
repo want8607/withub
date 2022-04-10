@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.example.withub.mainFragments.CommitFragement
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.RankingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -54,7 +55,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.tap_ranking->{
                     supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,RankingFragment()).commit()
-
+                }
+                R.id.tap_commit->{
+                    supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,CommitFragement()).commit()
                 }
             }
             true

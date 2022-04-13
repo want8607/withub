@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.withub.MainActivity
@@ -33,6 +34,9 @@ class CommitFragement : Fragment() {
         val adapter  = CommitRVAdapter(mainActivity,list)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
+
+        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // 드로어레이아웃 swipe 잠금
+
         return view
     }
 

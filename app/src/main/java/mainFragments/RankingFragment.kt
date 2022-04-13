@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.withub.MainActivity
@@ -23,6 +24,9 @@ class RankingFragment : Fragment() {
         rankingTabLayout = view.findViewById(R.id.ranking_tapLayout)
         rankingViewPager = view.findViewById(R.id.ranking_view_pager)
         //팁 뷰페이저 어댑터 생성
+
+        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // 드로어레이아웃 swipe 잠금
+
         return view
     }
 

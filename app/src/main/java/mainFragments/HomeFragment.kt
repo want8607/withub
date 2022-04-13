@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.withub.MainActivity
@@ -23,7 +24,7 @@ class HomeFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.home_fragment,container,false)
         mainActivity = activity as MainActivity
-        
+
         //toolbar 설정
         var toolbar = view.findViewById<Toolbar>(R.id.toolbar)
         mainActivity.setSupportActionBar(toolbar)
@@ -38,6 +39,8 @@ class HomeFragment : Fragment(){
         rollingTextView.addCharOrder(CharOrder.Number)
         rollingTextView.animationInterpolator = AccelerateDecelerateInterpolator()
         rollingTextView.setText("8")
+
+        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) // 드로어레이아웃 swipe 잠금
 
         return view
     }

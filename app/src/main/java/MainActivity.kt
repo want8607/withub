@@ -3,7 +3,9 @@ package com.example.withub
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat
@@ -16,7 +18,7 @@ import com.google.android.material.navigation.NavigationView
 
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView : NavigationView
@@ -29,9 +31,8 @@ class MainActivity : AppCompatActivity() {
         navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
         // 바 네비게이션 설정
-        var headerView = navigationView.getHeaderView(0)
-        headerView.setBackgroundColor(resources.getColor(R.color.point_color,null))
-        var navHeaderImageView = headerView.findViewById<ImageView>(R.id.nav_header_img)
+        var navHeader = findViewById<View>(R.id.main_nav_header)
+        var navHeaderImageView = navHeader.findViewById<ImageView>(R.id.nav_header_img)
 
         Glide.with(this)
             .load("https://avatars.githubusercontent.com/u/84075111?v=4")
@@ -39,6 +40,9 @@ class MainActivity : AppCompatActivity() {
             .error(R.mipmap.nav_header_loading_img)//로딩 실패 이미지
             .circleCrop()//원형으로 깎기
             .into(navHeaderImageView)
+
+        //바 네비게이션 친구추가버튼 동적추가
+
 
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
@@ -83,6 +87,10 @@ class MainActivity : AppCompatActivity() {
         else {
             super.onBackPressed()
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        TODO("Not yet implemented")
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.withub.activityAdapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.withub.R
-import java.util.*
 import kotlin.collections.ArrayList
 
 class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) : RecyclerView.Adapter<NavFriendRVAdapter.Holder>(){
@@ -25,21 +23,12 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
         return items.size
     }
 
-    fun removeData(position: Int) {
-        items.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-
     inner class Holder(itemView: View?):RecyclerView.ViewHolder(itemView!!){
 
         val friendNameTextView = itemView?.findViewById<TextView>(R.id.nav_friend_name)
-        val removeView = itemView?.findViewById<TextView>(R.id.nav_remove_text_view)
         fun bind(position: Int){
             friendNameTextView?.text = items[position]
-            removeView?.setOnClickListener {
-                removeData(this.layoutPosition)
-            }
+
         }
     }
 

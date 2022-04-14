@@ -1,6 +1,6 @@
 package com.example.withub.com.example.withub
 
-import android.annotation.SuppressLint
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,14 +9,14 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.example.withub.R
 import com.example.withub.activityAdapters.NavFriendRVAdapter
 import com.example.withub.mainFragments.CommitFragement
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.RankingFragment
-import com.example.withub.mainFragments.mainAdapter.CommitRVAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -26,10 +26,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView : NavigationView
-    var itemTouchHelper : ItemTouchHelper? = null
-    lateinit var navFriendRVAdapter: NavFriendRVAdapter
-
-    @SuppressLint("ClickableViewAccessibility")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,25 +46,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .into(navHeaderImageView)
 
         //바 네비게이션 친구목록 리사이클러뷰 설정
+        val decoration = DividerItemDecoration(applicationContext, VERTICAL)
         val items = arrayListOf<String>("ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ")
         val recyclerView = navHeader.findViewById<RecyclerView>(R.id.nav_friend_recycler_View)
+        recyclerView.addItemDecoration(decoration)
         val navFriendRVAdapter  = NavFriendRVAdapter(this, items )
         recyclerView.adapter = navFriendRVAdapter
 
-        // 리사이클러뷰에 스와이프, 드래그 기능
-        val swipeHelperCallback = SwipeHelperCallback(navFriendRVAdapter).apply {
-            setClamp(resources.displayMetrics.widthPixels.toFloat()/4)
-        }
-        ItemTouchHelper(swipeHelperCallback).attachToRecyclerView(recyclerView)
-        recyclerView.setOnTouchListener { _, _ ->
-            swipeHelperCallback.removePreviousClamp(recyclerView)
-            false
-        }
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,HomeFragment()).commit()
         }
-
 
         //바텀 네비게이션 뷰
         var bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)

@@ -1,6 +1,5 @@
 package com.example.withub.mainFragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,7 @@ import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.withub.MainActivity
+import com.example.withub.com.example.withub.MainActivity
 import com.example.withub.R
 import com.example.withub.mainFragments.mainAdapter.CommitData
 import com.example.withub.mainFragments.mainAdapter.CommitRVAdapter

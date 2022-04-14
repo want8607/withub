@@ -1,15 +1,19 @@
-package com.example.withub
+package com.example.withub.com.example.withub
+
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import com.bumptech.glide.Glide
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.VERTICAL
+import com.example.withub.R
+import com.example.withub.activityAdapters.NavFriendRVAdapter
 import com.example.withub.mainFragments.CommitFragement
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.RankingFragment
@@ -41,26 +45,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .circleCrop()//원형으로 깎기
             .into(navHeaderImageView)
 
-        //바 네비게이션 친구추가버튼 동적추가
-
+        //바 네비게이션 친구목록 리사이클러뷰 설정
+        val decoration = DividerItemDecoration(applicationContext, VERTICAL)
+        val items = arrayListOf<String>("ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ")
+        val recyclerView = navHeader.findViewById<RecyclerView>(R.id.nav_friend_recycler_View)
+        recyclerView.addItemDecoration(decoration)
+        val navFriendRVAdapter  = NavFriendRVAdapter(this, items )
+        recyclerView.adapter = navFriendRVAdapter
 
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,HomeFragment()).commit()
         }
 
-
         //바텀 네비게이션 뷰
         var bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavigationView.setOnItemSelectedListener { item->
             when(item.itemId){
-                R.id.tap_home->{
+                R.id.tap_home ->{
                     supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,HomeFragment()).commit()
                 }
-                R.id.tap_ranking->{
+                R.id.tap_ranking ->{
                     supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,RankingFragment()).commit()
                 }
-                R.id.tap_commit->{
+                R.id.tap_commit ->{
                     supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,CommitFragement()).commit()
                 }
             }

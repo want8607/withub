@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.withub.MainActivity
+import com.example.withub.com.example.withub.MainActivity
 import com.example.withub.R
 import com.example.withub.mainFragments.mainAdapter.ExpandableRVAdapter
 import com.example.withub.mainFragments.mainAdapter.FriendRankingData

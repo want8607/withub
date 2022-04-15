@@ -59,6 +59,9 @@ dependencies {
     //RollingText
     implementation 'com.github.YvesCheung:RollingText:1.2.0'
 
-    //SwitchIcon
-    implementation 'com.github.zagum:Android-SwitchIcon:1.4.0'
+    //SwipeLayout
+    implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+
+    //SwipeRefresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }

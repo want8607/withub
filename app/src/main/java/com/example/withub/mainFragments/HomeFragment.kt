@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.withub.com.example.withub.MainActivity
 import com.example.withub.R
@@ -40,8 +42,15 @@ class HomeFragment : Fragment(){
         rollingTextView.animationInterpolator = AccelerateDecelerateInterpolator()
         rollingTextView.setText("8")
 
-        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) // 드로어레이아웃 swipe 잠금
+        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // 드로어레이아웃 swipe 잠금
 
+        //swipeRefreshLayout
+        var swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
+        swipeRefreshLayout.setOnRefreshListener {
+            rollingTextView.setText("2")
+            swipeRefreshLayout.isRefreshing = false
+            Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
+        }
         return view
     }
 

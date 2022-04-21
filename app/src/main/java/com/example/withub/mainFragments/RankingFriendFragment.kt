@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.withub.com.example.withub.MainActivity
@@ -20,7 +22,7 @@ class RankingFriendFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var recyclerView : RecyclerView
     lateinit var expandableAdapter : ExpandableRVAdapter
-
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
     val rankingDataList : ArrayList<ArrayList<FriendRankingData>> = arrayListOf(
         arrayListOf(
             FriendRankingData("문승재",3),
@@ -76,7 +78,7 @@ class RankingFriendFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         //리프레시 구현
-        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.ranking_friend_swipe_refresh_layout)
+        swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.ranking_friend_swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
             Toast.makeText(mainActivity,"업데이트 완료", Toast.LENGTH_SHORT).show()
@@ -87,7 +89,6 @@ class RankingFriendFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         expandableAdapter = ExpandableRVAdapter(rankingDataList)
         recyclerView = view.findViewById<RecyclerView>(R.id.ranking_friend_recycler_view)
         recyclerView.adapter = expandableAdapter

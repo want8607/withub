@@ -14,8 +14,8 @@ class HomePagerRecyclerAdapter(val textList : ArrayList<String>) :
 
         val pageText: TextView = itemView.findViewById(R.id.tip_text)
 
-        fun bind(position: Int) {
-            pageText.text = textList[position]
+        fun bind(dd: String) {
+            pageText.text = dd
         }
     }
 
@@ -27,11 +27,11 @@ class HomePagerRecyclerAdapter(val textList : ArrayList<String>) :
     }
 
     override fun onBindViewHolder(holder: PagerViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(textList[position%4])
     }
 
     override fun getItemCount(): Int {
-        return textList.size
+        return Int.MAX_VALUE
 
     }
 }

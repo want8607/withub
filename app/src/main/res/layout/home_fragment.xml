@@ -211,28 +211,47 @@
                 android:background="@drawable/main_round_view"
                 android:elevation="5dp"
                 android:orientation="horizontal"
-                android:overScrollMode="never"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.20"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
                 app:layout_constraintWidth_percent="0.8" />
 
-            <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
-                android:id="@+id/main_dot_indicator"
+            <LinearLayout
+                android:id="@+id/view_pager_number_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:dotsColor="@color/point_color"
-                app:dotsCornerRadius="8dp"
-                app:dotsSize="12dp"
-                app:dotsSpacing="4dp"
-                app:dotsStrokeColor="@color/main_view_color"
-                app:dotsWidthFactor="2.5"
-                app:layout_constraintEnd_toEndOf="@+id/main_view_pager"
-                app:layout_constraintStart_toStartOf="@+id/main_view_pager"
-                app:layout_constraintTop_toBottomOf="@+id/main_view_pager"
-                app:progressMode="true" />
+                android:orientation="horizontal"
+                android:elevation="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/main_view_pager"
+                app:layout_constraintEnd_toEndOf="@+id/main_view_pager">
+                <TextView
+                    android:id="@+id/current_banner_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="/"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color" />
+
+                <TextView
+                    android:id="@+id/total_banner_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_color" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,10 +9,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.withub.com.example.withub.MainActivity
+import com.example.withub.MainActivity
 import com.example.withub.R
-import com.example.withub.mainFragments.mainAdapter.CommitData
-import com.example.withub.mainFragments.mainAdapter.CommitRVAdapter
+import com.example.withub.mainFragments.mainFragmentAdapters.CommitData
+import com.example.withub.mainFragments.mainFragmentAdapters.CommitRVAdapter
 
 class CommitFragement : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -2,20 +2,17 @@ package com.example.withub.mainFragments
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.withub.com.example.withub.MainActivity
+import com.example.withub.MainActivity
 import com.example.withub.R
-import com.example.withub.mainFragments.mainAdapter.ExpandableRVAdapter
-import com.example.withub.mainFragments.mainAdapter.FriendRankingData
+import com.example.withub.mainFragments.mainFragmentAdapters.ExpandableRVAdapter
+import com.example.withub.mainFragments.mainFragmentAdapters.FriendRankingData
 
 
 class RankingFriendFragment : Fragment() {

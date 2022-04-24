@@ -17,13 +17,11 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
-import com.example.withub.com.example.withub.MainActivity
+import com.example.withub.MainActivity
 import com.example.withub.R
-import com.example.withub.mainFragments.mainAdapter.HomePagerRecyclerAdapter
-import com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+import com.example.withub.mainFragments.mainFragmentAdapters.HomePagerRecyclerAdapter
 import com.yy.mobile.rollingtextview.CharOrder
 import com.yy.mobile.rollingtextview.RollingTextView
 import com.yy.mobile.rollingtextview.strategy.Strategy

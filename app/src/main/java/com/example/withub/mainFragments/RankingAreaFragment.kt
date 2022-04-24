@@ -8,11 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.daimajia.swipe.SwipeLayout
 import com.example.withub.R
-import com.example.withub.com.example.withub.MainActivity
-import com.example.withub.mainFragments.mainAdapter.ExpandableRVAdapter
-import com.example.withub.mainFragments.mainAdapter.FriendRankingData
+import com.example.withub.MainActivity
+import com.example.withub.mainFragments.mainFragmentAdapters.ExpandableRVAdapter
+import com.example.withub.mainFragments.mainFragmentAdapters.FriendRankingData
 
 class RankingAreaFragment : Fragment() {
     lateinit var mainActivity: MainActivity

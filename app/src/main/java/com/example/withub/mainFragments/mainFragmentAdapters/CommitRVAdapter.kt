@@ -1,4 +1,4 @@
-package com.example.withub.mainFragments.mainAdapter
+package com.example.withub.mainFragments.mainFragmentAdapters
 
 import android.content.Context
 import android.content.Intent

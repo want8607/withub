@@ -14,6 +14,7 @@
         android:orientation="horizontal"
         android:gravity="end">
         <TextView
+            android:id="@+id/swipe_delete_button"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:gravity="center"

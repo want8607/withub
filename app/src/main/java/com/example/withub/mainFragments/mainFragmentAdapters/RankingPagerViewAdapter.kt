@@ -1,4 +1,4 @@
-package com.example.withub.mainFragments.mainAdapter
+package com.example.withub.mainFragments.mainFragmentAdapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

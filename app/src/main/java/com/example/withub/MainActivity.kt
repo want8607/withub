@@ -1,19 +1,24 @@
-package com.example.withub.com.example.withub
+package com.example.withub
 
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
-import com.example.withub.R
-import com.example.withub.activityAdapters.NavFriendRVAdapter
+import com.example.withub.mainActivityAdapters.NavFriendRVAdapter
 import com.example.withub.mainFragments.CommitFragement
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.RankingFragment
@@ -30,11 +35,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        //첫 프래그먼트 설정
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,HomeFragment()).commit()
+        }
 
         drawerLayout = findViewById<DrawerLayout>(R.id.main_drawer_layout)
         navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
-        // 바 네비게이션 설정
+        // 네비게이션 드로어 설정
         var navHeader = findViewById<View>(R.id.main_nav_header)
         var navHeaderImageView = navHeader.findViewById<ImageView>(R.id.nav_header_img)
 
@@ -45,7 +54,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .circleCrop()//원형으로 깎기
             .into(navHeaderImageView)
 
-        //바 네비게이션 친구목록 리사이클러뷰 설정
+        //네비게이션 드로어 친구목록 리사이클러뷰 설정
         val decoration = DividerItemDecoration(applicationContext, VERTICAL)
         val items = arrayListOf<String>("ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ","ㅎㅎ")
         val recyclerView = navHeader.findViewById<RecyclerView>(R.id.nav_friend_recycler_View)
@@ -53,9 +62,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navFriendRVAdapter  = NavFriendRVAdapter(this, items )
         recyclerView.adapter = navFriendRVAdapter
 
-        //첫 프래그먼트 설정
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,HomeFragment()).commit()
+        //네비게이션 드로어 친구추가 AlterDialog
+        navHeader.findViewById<ImageButton>(R.id.nav_add_friend_button).setOnClickListener {
+            val input = EditText(this)
+            input.hint = "닉네임"
+            input.setSingleLine()
+            val inputContainer = LinearLayout(this)
+            val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+            params.leftMargin = resources.getDimensionPixelSize(R.dimen.dialog_margin)
+            params.rightMargin = resources.getDimensionPixelSize(R.dimen.dialog_margin)
+            input.layoutParams = params
+            inputContainer.addView(input)
+            val dialog : AlertDialog.Builder = AlertDialog.Builder(this)
+            dialog.setTitle("친구추가")
+                .setMessage("친구의 닉네임을 입력해 주세요.")
+                .setView(inputContainer)
+                .setPositiveButton("추가"){ dialogInterface, i -> navFriendRVAdapter.addItem(input.text.toString()) }
+                .setNegativeButton("취소"){ dialogInterface, i ->  }
+                .show()
+        }
+
+
+        //네비게이션 드로어 닫기
+        navHeader.findViewById<ImageButton>(R.id.nav_exit_button).setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            navFriendRVAdapter.closeSwipeView()
         }
 
         //바텀 네비게이션 뷰
@@ -78,7 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    //홈에서 바 네비게이션 열기
+    //홈에서 네비게이션 드로어 열기
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home ->{drawerLayout.openDrawer(GravityCompat.START)
@@ -87,7 +118,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
-    // 뒤로가기 눌렀을 때 네비게이션 닫기
+    // 뒤로가기 눌렀을 때 네비게이션 드로어 닫기
     override fun onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -99,6 +130,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         TODO("Not yet implemented")
+    }
+
+    fun addFriendToList(){
+
     }
 
 }

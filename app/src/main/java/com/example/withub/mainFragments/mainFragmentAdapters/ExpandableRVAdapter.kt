@@ -1,4 +1,4 @@
-package com.example.withub.mainFragments.mainAdapter
+package com.example.withub.mainFragments.mainFragmentAdapters
 
 import android.util.Log
 import android.view.LayoutInflater

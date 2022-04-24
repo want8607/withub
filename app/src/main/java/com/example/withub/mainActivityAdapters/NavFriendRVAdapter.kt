@@ -18,7 +18,6 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NavFriendRVAdapter.Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.main_activity_nav_recycler_view_item, parent, false)
-        var swipeLayout = view.findViewById<SwipeLayout>(R.id.swipe_view)
 
         return Holder(view)
     }

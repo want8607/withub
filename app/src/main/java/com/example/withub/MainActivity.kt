@@ -1,9 +1,9 @@
 package com.example.withub
 
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.SparseArray
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +11,14 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -23,23 +27,24 @@ import com.example.withub.mainFragments.CommitFragement
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.RankingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView : NavigationView
+    lateinit var bottomNavigationView : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,HomeFragment()).commit()
+            setFragment(HomeFragment(),"Home")
         }
-
         drawerLayout = findViewById<DrawerLayout>(R.id.main_drawer_layout)
         navigationView = findViewById<NavigationView>(R.id.navigation_view)
 
@@ -82,7 +87,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 .show()
         }
 
-
         //네비게이션 드로어 닫기
         navHeader.findViewById<ImageButton>(R.id.nav_exit_button).setOnClickListener {
             drawerLayout.closeDrawer(GravityCompat.START)
@@ -90,23 +94,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
         //바텀 네비게이션 뷰
-        var bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
+        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)
         bottomNavigationView.setOnItemSelectedListener { item->
             when(item.itemId){
                 R.id.tap_home ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,HomeFragment()).commit()
+                    setFragment(HomeFragment(),"Home")
                 }
                 R.id.tap_ranking ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,RankingFragment()).commit()
+                    setFragment(RankingFragment(),"Ranking")
                 }
                 R.id.tap_commit ->{
-                    supportFragmentManager.beginTransaction().replace(R.id.main_frame_layout,CommitFragement()).commit()
+                    setFragment(CommitFragement(),"Commit")
                 }
             }
             true
         }
-        bottomNavigationView.menu.findItem(R.id.tap_home).isChecked = true
-
     }
 
     //홈에서 네비게이션 드로어 열기
@@ -124,16 +126,63 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             drawerLayout.closeDrawer(GravityCompat.START)
         }
         else {
+            supportFragmentManager.fragments.forEach { fragment ->
+                if (fragment != null && fragment.isVisible) {
+                    with(fragment.childFragmentManager) {
+                        if (backStackEntryCount > 0) {
+                            popBackStack()
+                            return
+                        }
+                    }
+                }
+            }
             super.onBackPressed()
         }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        TODO("Not yet implemented")
+    fun setFragment(fragment: Fragment,tag: String){
+        val manager: FragmentManager = supportFragmentManager
+        val ft: FragmentTransaction = manager.beginTransaction()
+
+        //트랜잭션에 tag로 전달된 fragment가 없을 경우 add
+        if(manager.findFragmentByTag(tag) == null){
+            ft.add(R.id.main_frame_layout, fragment, tag)
+        }
+
+        //작업이 수월하도록 manager에 add되어있는 fragment들을 변수로 할당해둠
+        val home = manager.findFragmentByTag("Home")
+        val ranking = manager.findFragmentByTag("Ranking")
+        val commit = manager.findFragmentByTag("Commit")
+
+        //모든 프래그먼트 hide
+        if(home!=null){
+            ft.hide(home)
+        }
+        if(ranking!=null){
+            ft.hide(ranking)
+        }
+        if(commit!=null){
+            ft.hide(commit)
+        }
+
+        //선택한 항목에 따라 그에 맞는 프래그먼트만 show
+        if(tag == "Home"){
+            if(home!=null){
+                ft.show(home)
+            }
+        }
+        else if(tag == "Ranking"){
+            if(ranking!=null){
+                ft.show(ranking)
+            }
+        }
+        else if(tag == "Commit"){
+            if(commit!=null){
+                ft.show(commit)
+            }
+        }
+        //마무리
+        ft.commitAllowingStateLoss()
+        //ft.commit()
     }
-
-    fun addFriendToList(){
-
-    }
-
 }

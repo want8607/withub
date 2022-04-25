@@ -4,4 +4,17 @@
     <string name="ranking">랭킹</string>
     <string name="commit">커밋</string>
     <string name="my_info">내정보</string>
+    <string name="rank_4">4위:</string>
+    <string name="rank_5">5위:</string>
+    <string name="rank_6">6위:</string>
+    <string name="rank_7">7위:</string>
+    <string name="rank_8">8위:</string>
+    <string name="rank_9">9위:</string>
+    <string name="rank_10">10위:</string>
+    <string-array name="ranking_title">
+        <item>일간 커밋 횟수</item>
+        <item>주간 커밋 횟수</item>
+        <item>월간 커밋 횟수</item>
+        <item>월간 연속 커밋 횟수</item>
+    </string-array>
 </resources>

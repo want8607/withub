@@ -19,4 +19,8 @@
         <item name="colorControlNormal">@color/gray</item>
     </style>
 
+    <style name="rankingTabTextSize" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/nanum_square_round_regular</item>
+    </style>
 </resources>

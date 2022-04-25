@@ -40,23 +40,42 @@
                     android:layout_weight="0.6"
                     android:orientation="vertical">
 
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        float:fletPadding="5dp"
-                        tools:ignore="MissingClass,MissingConstraints">
+                        android:layout_height="match_parent">
 
-                        <EditText
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:theme="@style/editText"
-                            android:textColorHint="@color/black"
+                            float:fletPadding="5dp"
+                            tools:ignore="MissingClass,MissingConstraints">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:theme="@style/editText"
+                                android:textColorHint="@color/black"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:textSize="15sp"
+                                android:hint="새 비밀번호" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:textAlignment="gravity"
+                            android:layout_gravity="right|bottom"
+                            android:gravity="bottom"
+                            android:text="안전"
                             android:fontFamily="@font/nanum_square_round_regular"
-                            android:textSize="15sp"
-                            android:hint="새 비밀번호" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                            android:layout_marginBottom="15dp"
+                            android:textSize="18sp"
+                            android:textColor="@color/correct_color"
+                            android:layout_marginRight="10dp"/>
+
+                    </FrameLayout>
 
                     <FrameLayout
                         android:layout_width="match_parent"

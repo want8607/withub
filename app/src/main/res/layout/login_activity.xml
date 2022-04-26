@@ -60,7 +60,7 @@
 
             <com.wrapp.floatlabelededittext.FloatLabeledEditText
                 android:id="@+id/floatLabeledEditText"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 float:fletPadding="5dp"
@@ -99,7 +99,7 @@
                 android:layout_weight="0.1"/>
 
             <com.wrapp.floatlabelededittext.FloatLabeledEditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.8"
                 float:fletPadding="5dp"
@@ -183,6 +183,7 @@
                     android:background="@color/gray" />
 
                 <TextView
+                    android:id="@+id/signup_btn"
                     android:layout_width="0dp"
                     android:layout_weight="0.2"
                     android:layout_height="wrap_content"

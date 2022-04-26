@@ -12,9 +12,9 @@
         android:background="@color/point_color"
         android:gravity="center"
         android:fontFamily="@font/nanum_square_round_regular"
-        android:text="커밋"
+        android:text="@string/commit"
         android:textColor="@color/white"
-        android:textSize="27sp"
+        android:textSize="@dimen/fragment_title_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

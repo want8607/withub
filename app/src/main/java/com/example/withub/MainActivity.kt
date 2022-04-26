@@ -80,8 +80,8 @@ class MainActivity : AppCompatActivity() {
             dialog.setTitle("친구추가")
                 .setMessage("친구의 닉네임을 입력해 주세요.")
                 .setView(inputContainer)
-                .setPositiveButton("추가"){ dialogInterface, i -> navFriendRVAdapter.addItem(input.text.toString()) }
-                .setNegativeButton("취소"){ dialogInterface, i ->  }
+                .setPositiveButton("추가"){ _, _ -> navFriendRVAdapter.addItem(input.text.toString()) }
+                .setNegativeButton("취소"){ _, _ ->  }
                 .show()
         }
 

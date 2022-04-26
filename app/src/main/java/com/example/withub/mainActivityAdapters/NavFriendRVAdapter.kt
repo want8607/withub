@@ -2,15 +2,19 @@ package com.example.withub.mainActivityAdapters
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SwipeLayout
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.daimajia.swipe.implments.SwipeItemMangerImpl
+import com.example.withub.FriendActivity
+import com.example.withub.MainActivity
 import com.example.withub.R
 import kotlin.collections.ArrayList
 
@@ -52,12 +56,21 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
     }
 
     inner class Holder(itemView: View?):RecyclerView.ViewHolder(itemView!!){
+
         val deleteBtn = itemView?.findViewById<TextView>(R.id.swipe_delete_button)
         val friendNameTextView = itemView?.findViewById<TextView>(R.id.nav_friend_name)
         val swipeView = itemView?.findViewById<SwipeLayout>(R.id.swipe_view)
+        val friendItem = itemView?.findViewById<ConstraintLayout>(R.id.nav_friend_recycler_item)
 
         fun bind(position: Int){
             friendNameTextView?.text = items[position]
+
+            friendItem?.setOnClickListener {
+                val intent = Intent(context,FriendActivity::class.java)
+                intent.putExtra("friendNickName",items[position])
+                context.startActivity(intent)
+            }
+
             deleteBtn?.setOnClickListener {
                 val name = friendNameTextView?.text.toString()
                 val dialog = AlertDialog.Builder(context)

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_round_regular"
             android:text="2022-03-25 19:49"
-            android:textSize="17sp"
+            android:textSize="@dimen/commit_text_size"
             android:textColor="@color/text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.1"
@@ -35,7 +35,7 @@
             android:layout_marginTop="5dp"
             android:text="want8607/ediya_kiosk"
             android:textColor="@color/text_color"
-            android:textSize="17sp"
+            android:textSize="@dimen/commit_text_size"
             app:layout_constraintStart_toStartOf="@+id/commit_date_text_view"
             app:layout_constraintTop_toBottomOf="@+id/commit_date_text_view" />
 
@@ -47,7 +47,7 @@
             android:layout_marginTop="10dp"
             android:text="UPADATE\n -다했다."
             android:textColor="@color/text_color"
-            android:textSize="15sp"
+            android:textSize="@dimen/commit_message_text_size"
             app:layout_constraintStart_toStartOf="@+id/commit_repository_name"
             app:layout_constraintTop_toBottomOf="@+id/commit_repository_name" />
 

@@ -6,23 +6,112 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/linearLayout19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_all_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.001"
+                        android:background="@drawable/custom_checkbox"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        app:layout_constraintHorizontal_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.849"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="전체 동의"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        app:layout_constraintHorizontal_weight="19" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_terms_of_use_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.001"
+                        android:background="@drawable/custom_checkbox"
+                        android:button="@android:color/transparent"
+                        android:checked="false" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.849"
+                        android:fontFamily="@font/nanum_square_round_bold"
+                        android:text="이용약관"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
@@ -31,34 +120,21 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.1" />
 
-                <CheckBox
+                <ScrollView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.001"
-                    android:background="@drawable/custom_checkbox"
-                    android:button="@android:color/transparent"
-                    android:checked="false"
-                    app:layout_constraintHorizontal_weight="1" />
+                    android:layout_height="150dp"
+                    android:layout_weight="0.8"
+                    android:background="@drawable/termsofuse_view" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.05" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.849"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:text="전체 동의"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintHorizontal_weight="19" />
-
+                    android:layout_weight="0.1" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -71,6 +147,7 @@
                     android:layout_weight="0.1" />
 
                 <CheckBox
+                    android:id="@+id/checkbox_terms_of_use_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.001"
@@ -96,112 +173,43 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:layout_weight="0.8"
-                android:background="@drawable/termsofuse_view" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <CheckBox
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.001"
-                android:background="@drawable/custom_checkbox"
-                android:button="@android:color/transparent"
-                android:checked="false" />
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.05" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
 
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="150dp"
+                    android:layout_weight="0.8"
+                    android:background="@drawable/termsofuse_view" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.849"
-                android:fontFamily="@font/nanum_square_round_bold"
-                android:text="이용약관"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
-
-
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:id="@+id/linearLayout6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
-                android:layout_weight="0.8"
-                android:background="@drawable/termsofuse_view" />
-
-        </LinearLayout>
-
-        <Button
-            android:layout_marginTop="50dp"
-            android:layout_width="300dp"
-            android:layout_height="55dp"
-            android:layout_gravity="center"
-            android:background="@drawable/login_btn"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:text="다음"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
-
-    </LinearLayout>
+    <Button
+        android:layout_marginBottom="50dp"
+        android:id="@+id/next_btn_terms_of_use"
+        android:layout_width="300dp"
+        android:layout_height="55dp"
+        android:layout_gravity="center"
+        android:background="@drawable/disabled_button"
+        android:fontFamily="@font/nanum_square_round_regular"
+        android:text="다음"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 

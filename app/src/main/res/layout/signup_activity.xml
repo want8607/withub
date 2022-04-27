@@ -13,6 +13,7 @@
         android:layout_weight="0.12">
 
         <Button
+            android:id="@+id/signup_back_btn"
             android:layout_width="12dp"
             android:layout_height="25dp"
             android:layout_marginLeft="20dp"
@@ -30,7 +31,16 @@
             android:textSize="27sp" />
     </FrameLayout>
 
+<!--    <androidx.viewpager2.widget.ViewPager2-->
+<!--        android:id="@+id/view_pager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+
+<!--    </androidx.viewpager2.widget.ViewPager2>-->
+
+
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentArea"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.88">

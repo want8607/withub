@@ -16,7 +16,7 @@
 
     <style name="editText" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorAccent">@color/point_color</item>
-        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlNormal">@color/black</item>
     </style>
 
     <style name="rankingTabTextSize" parent="TextAppearance.Design.Tab">

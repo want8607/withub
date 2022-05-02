@@ -89,7 +89,7 @@
                                 android:backgroundTint="@color/point_color"
                                 android:dropDownWidth="150dp"
                                 android:popupBackground="@color/white"
-                                android:background="@drawable/spinner_design2"
+                                android:background="@drawable/spinner_design"
                                 android:spinnerMode="dropdown"
                                 android:layout_gravity="bottom"/>
 
@@ -312,6 +312,7 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/next_btn_emailcertify"
         android:layout_marginBottom="50dp"
         android:layout_width="300dp"
         android:layout_height="55dp"

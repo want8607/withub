@@ -89,11 +89,9 @@
                             android:id="@+id/id_check_textview_signup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:textColor="@color/timer"
                             android:textSize="12sp" />
 
-                        <!--                        android:text="5~15자 영문(소문자), 숫자만 사용하세요."-->
 
                         <FrameLayout
                             android:layout_width="match_parent"

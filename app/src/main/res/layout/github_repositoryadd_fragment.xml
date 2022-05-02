@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:float="http://schemas.android.com/apk/res-auto">
+    xmlns:float="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <LinearLayout
@@ -31,50 +32,68 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.1" />
 
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
-                    android:orientation="vertical">
+                    android:weightSum="1"
+                    android:orientation="horizontal">
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_weight = "1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:hint="커밋하는 사람의 GitHub 닉네임"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textSize="15sp"
-                            android:theme="@style/editText" />
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:hint="커밋하는 사람의 GitHub 닉네임"
+                                android:maxLength="39"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="15sp"
+                                android:theme="@style/editText" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="ex) torvalds"
+                                android:textColor="@color/thick_gray"
+                                android:textSize="13sp" />
+
+                    </LinearLayout>
+
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_weight ="0.2"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
 
                         <Button
                             android:layout_width="50dp"
                             android:layout_height="30dp"
-                            android:layout_gravity="right|bottom"
+                            android:layout_gravity="right"
                             android:layout_marginBottom="10dp"
-                            android:background="@drawable/stroke_btn"
+                            android:textColor="@color/thick_gray"
+                            android:background="@drawable/stroke_disabled_btn"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:text="확인" />
-
-                    </FrameLayout>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="ex) torvalds"
-                        android:textColor="@color/thick_gray"
-                        android:textSize="13sp" />
+<!--                    </LinearLayout>-->
 
                 </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
 
             </LinearLayout>
 
@@ -90,12 +109,12 @@
             float:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:fontFamily="@font/nanum_square_round_regular"
@@ -104,7 +123,7 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1" />
         </LinearLayout>
@@ -118,12 +137,12 @@
             float:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.35"
                 android:fontFamily="@font/nanum_square_round_regular"
@@ -134,16 +153,17 @@
                 android:theme="@style/editText" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="0.05"
+                android:textSize="25sp"
                 android:text="/"
                 android:textAlignment="center" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.35"
+                android:layout_weight="0.4"
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:singleLine="true"
                 android:textColor="@color/black"
@@ -151,33 +171,21 @@
                 android:textSize="15sp"
                 android:theme="@style/editText" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.15"
-                android:orientation="horizontal"
-                android:weightSum="1">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5" />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity=""
+                android:textColor="@color/thick_gray"
+                android:background="@drawable/stroke_disabled_btn"
+                android:fontFamily="@font/nanum_square_round_regular"
+                android:text="추가" />
 
-                <Button
-                    android:layout_width="50dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/stroke_btn"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="추가" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5" />
-
-            </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1" />
 
         </LinearLayout>
 
@@ -188,12 +196,12 @@
             float:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:text="ex) torvalds / my-repository"
@@ -201,276 +209,43 @@
                 android:textSize="13sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1" />
 
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:id="@+id/linearLayout12"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="320dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical"
+        float:layout_constraintBottom_toTopOf="@+id/button"
         float:layout_constraintTop_toBottomOf="@+id/linearLayout11">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="3dp"
-                    android:backgroundTint="@color/gray"
-                    android:editable="false"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="1."
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center"
-                    android:text="want8607/withub"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:background="@drawable/ic_minus_button" />
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
+                float:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/signup_repository_recyclerview" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="3dp"
-                    android:backgroundTint="@color/gray"
-                    android:editable="false"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="2."
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center"
-                    android:text="want8607/withub"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:background="@drawable/ic_minus_button" />
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="3dp"
-                    android:backgroundTint="@color/gray"
-                    android:editable="false"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="3."
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center"
-                    android:text="want8607/withub"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:background="@drawable/ic_minus_button" />
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="3dp"
-                    android:backgroundTint="@color/gray"
-                    android:editable="false"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="4."
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center"
-                    android:text="want8607/withub"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:background="@drawable/ic_minus_button" />
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.8">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="3dp"
-                    android:backgroundTint="@color/gray"
-                    android:editable="false"
-                    android:fontFamily="@font/nanum_square_round_regular"
-                    android:text="5."
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="center"
-                    android:text="want8607/withub"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="right|center_vertical"
-                    android:background="@drawable/ic_minus_button" />
-
-            </FrameLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
     <Button
+        android:id="@+id/button"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
         android:background="@drawable/login_btn"
         android:fontFamily="@font/nanum_square_round_regular"
         android:text="회원가입"
@@ -478,8 +253,7 @@
         android:textSize="20sp"
         float:layout_constraintBottom_toBottomOf="parent"
         float:layout_constraintEnd_toEndOf="parent"
-        float:layout_constraintStart_toStartOf="parent"
-        float:layout_constraintTop_toBottomOf="@+id/linearLayout12" />
+        float:layout_constraintStart_toStartOf="parent" />
 
 
 

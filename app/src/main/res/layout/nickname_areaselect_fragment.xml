@@ -5,170 +5,181 @@
     xmlns:float="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/linearLayout7"
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        float:layout_constraintBottom_toBottomOf="parent"
-        float:layout_constraintEnd_toEndOf="parent"
-        float:layout_constraintStart_toStartOf="parent"
         float:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
-                        android:id="@+id/floatLabeledEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        float:fletPadding="5dp"
-                        tools:ignore="MissingClass,MissingConstraints">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:hint="닉네임"
-                            android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
-                            android:textSize="15sp"
-                            android:theme="@style/editText" />
-                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
-
-                    <Button
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right|bottom"
-                        android:layout_marginBottom="10dp"
-                        android:background="@drawable/stroke_btn"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="중복체크" />
-
-                </FrameLayout>
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2~10자 한글, 영어, 숫자만 사용하세요."
-                    android:textColor="@color/timer"
-                    android:textSize="12sp" />
+                    android:layout_weight="0.8"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.wrapp.floatlabelededittext.FloatLabeledEditText
+                            android:id="@+id/floatLabeledEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            float:fletPadding="5dp"
+                            tools:ignore="MissingClass,MissingConstraints">
+
+                            <EditText
+                                android:id="@+id/nickname_edittext_signup"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:fontFamily="@font/nanum_square_round_regular"
+                                android:hint="닉네임"
+                                android:singleLine="true"
+                                android:textColor="@color/black"
+                                android:textColorHint="@color/black"
+                                android:textSize="15sp"
+                                android:maxLength="10"
+                                android:theme="@style/editText" />
+                        </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+
+                        <Button
+                            android:id="@+id/nickname_duplicate_check_btn_signup"                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/stroke_disabled_btn"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="중복체크"
+                            android:textColor="@color/thick_gray"/>
+
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/nickname_check_textview_signup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2~10자 한글, 영어, 숫자만 사용하세요."
+                        android:textColor="@color/timer"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.25"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="center"
-                android:text="지역선택"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2" />
-
-            <Spinner
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="0.35"
-                android:backgroundTint="@color/point_color"
-                android:dropDownWidth="100dp"
-                android:popupBackground="@color/gray"
-                android:spinnerMode="dropdown" />
-            //스피너 팝업 컬러
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
-
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.8"
-                android:fontFamily="@font/nanum_square_round_bold"
-                android:text="커밋 랭킹을 표시할 지역을 선택해 주세요."
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:gravity="center"
+                    android:text="지역선택"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2" />
+
+                <Spinner
+                    android:id="@+id/area_spinner_signup"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.35"
+                    android:backgroundTint="@color/point_color"
+                    android:dropDownWidth="150dp"
+                    android:popupBackground="@color/white"
+                    android:background="@drawable/spinner_design"
+                    android:spinnerMode="dropdown"/>
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:fontFamily="@font/nanum_square_round_bold"
+                    android:text="커밋 랭킹을 표시할 지역을 선택해 주세요."
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
+    </ScrollView>
 
-
-    </LinearLayout>
 
 
     <Button
+        android:id="@+id/next_btn_nickname_area_select"
+        android:layout_marginBottom="50dp"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/disabled_button"
         android:fontFamily="@font/nanum_square_round_regular"
         android:text="다음"
         android:textColor="@color/white"
         android:textSize="20sp"
         float:layout_constraintBottom_toBottomOf="parent"
         float:layout_constraintEnd_toEndOf="parent"
-        float:layout_constraintStart_toStartOf="parent"
-        float:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+        float:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

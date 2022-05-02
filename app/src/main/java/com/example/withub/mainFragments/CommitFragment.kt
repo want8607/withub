@@ -14,8 +14,8 @@ import com.example.withub.R
 import com.example.withub.mainFragments.mainFragmentAdapters.CommitData
 import com.example.withub.mainFragments.mainFragmentAdapters.CommitRVAdapter
 
-class CommitFragement : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+class CommitFragment : Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.commit_fragment,container,false)
         val mainActivity = activity as MainActivity
         val list : ArrayList<CommitData> = arrayListOf(

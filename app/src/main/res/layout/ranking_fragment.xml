@@ -31,7 +31,7 @@
         app:tabRippleColor="@android:color/transparent"
         app:tabIndicatorColor="@color/white"
         app:tabIndicatorFullWidth="false"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="@color/toolbar_text_color"
         app:tabTextAppearance="@style/rankingTabTextSize"
         app:tabTextColor="@color/rankingTap_unselected_color"
         app:tabIndicatorHeight="3dp"/>

@@ -27,6 +27,7 @@
             android:text="난 오늘"
             android:textSize="@dimen/top_bar_text_size"
             android:textStyle="bold"
+            android:textColor="@color/toolbar_text_color"
             app:layout_constraintBottom_toBottomOf="@+id/rolling_commit"
             app:layout_constraintEnd_toStartOf="@+id/rolling_commit"
             app:layout_constraintTop_toTopOf="@+id/rolling_commit" />
@@ -53,6 +54,7 @@
             android:layout_marginStart="10dp"
             android:text="커밋했다"
             android:textSize="@dimen/top_bar_text_size"
+            android:textColor="@color/toolbar_text_color"
             android:fontFamily="@font/nanum_square_round_bold"
             app:layout_constraintBottom_toBottomOf="@+id/rolling_commit"
             app:layout_constraintStart_toEndOf="@+id/rolling_commit"
@@ -83,26 +85,45 @@
                 app:layout_constraintStart_toStartOf="@+id/user_chart"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.02" />
-
-            <com.github.mikephil.charting.charts.LineChart
+            <androidx.cardview.widget.CardView
                 android:id="@+id/user_chart"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                app:cardElevation="10dp"
+                app:cardCornerRadius="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/main_round_view"
-                android:elevation="5dp"
                 app:layout_constraintBottom_toTopOf="@+id/friend_commit_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.25"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/graph_text"
-                app:layout_constraintWidth_percent="0.8" />
-
+                app:layout_constraintWidth_percent="0.9">
+            <HorizontalScrollView
+                android:id="@+id/horizontal_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5dp"
+                android:elevation="5dp"
+                android:fillViewport="true"
+                 >
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toTopOf="@+id/friend_commit_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.25"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/graph_text"
+                    app:layout_constraintWidth_percent="0.9"
+                    />
+            </HorizontalScrollView>
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:id="@+id/friend_commit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/nanum_square_round_bold"
                 android:gravity="center"
                 android:text="@string/my_commit_average"
@@ -118,13 +139,13 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/main_round_view"
-                android:elevation="5dp"
+                android:elevation="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintHeight_percent="0.21"
+                app:layout_constraintHeight_percent="0.25"
                 app:layout_constraintStart_toStartOf="@id/user_chart"
                 app:layout_constraintTop_toBottomOf="@id/friend_commit_text"
-                app:layout_constraintWidth_percent="0.35">
+                app:layout_constraintWidth_percent="0.40">
 
                 <TextView
                     android:id="@+id/textView5"
@@ -133,7 +154,7 @@
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:gravity="center"
                     android:text="3.4"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="45sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/friend_commit_text" />
@@ -145,7 +166,7 @@
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="@string/count"
                     android:textAlignment="textStart"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@id/textView5"
                     app:layout_constraintStart_toEndOf="@id/textView5" />
@@ -155,7 +176,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/nanum_square_round_bold"
                 android:gravity="center"
                 android:text="@string/my_area_average"
@@ -171,12 +192,12 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/main_round_view"
-                android:elevation="5dp"
+                android:elevation="10dp"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="@id/user_chart"
-                app:layout_constraintHeight_percent="0.21"
+                app:layout_constraintHeight_percent="0.25"
                 app:layout_constraintTop_toBottomOf="@id/textView2"
-                app:layout_constraintWidth_percent="0.35">
+                app:layout_constraintWidth_percent="0.40">
 
                 <TextView
                     android:id="@+id/textView7"
@@ -184,7 +205,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="5.1"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="45sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView8"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -196,7 +217,7 @@
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="@string/count"
                     android:textAlignment="textStart"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView7"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -206,22 +227,22 @@
                 android:id="@+id/main_view_pager"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/main_round_view"
-                android:elevation="5dp"
+                android:elevation="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.20"
+                app:layout_constraintHeight_percent="0.25"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout9"
-                app:layout_constraintWidth_percent="0.8" />
+                app:layout_constraintWidth_percent="0.9" />
 
             <LinearLayout
                 android:id="@+id/view_pager_number_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:elevation="5dp"
+                android:elevation="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
                 android:padding="8dp"

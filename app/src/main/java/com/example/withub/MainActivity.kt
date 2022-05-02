@@ -3,7 +3,6 @@ package com.example.withub
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.SparseArray
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import androidx.core.view.GravityCompat
@@ -23,11 +21,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.example.withub.mainActivityAdapters.NavFriendRVAdapter
-import com.example.withub.mainFragments.CommitFragement
+import com.example.withub.mainFragments.CommitFragment
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.RankingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -102,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                     setFragment(RankingFragment(),"Ranking")
                 }
                 R.id.tap_commit ->{
-                    setFragment(CommitFragement(),"Commit")
+                    setFragment(CommitFragment(),"Commit")
                 }
             }
             true

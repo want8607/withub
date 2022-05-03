@@ -1,10 +1,13 @@
 package com.example.withub
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.yy.mobile.rollingtextview.CharOrder
 import com.yy.mobile.rollingtextview.RollingTextView
 import com.yy.mobile.rollingtextview.strategy.Strategy
@@ -45,5 +48,14 @@ class FriendActivity : AppCompatActivity() {
         rollingTextView.addCharOrder(CharOrder.Number)
         rollingTextView.animationInterpolator = AccelerateDecelerateInterpolator()
         rollingTextView.setText("8")
+
+        //친구 커밋 버튼
+        val recentCommitLayout = findViewById<ConstraintLayout>(R.id.friend_activity_commit_constraint_layout)
+        recentCommitLayout.setOnClickListener {
+            var intent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://github.com/want8607/stageus_withub_2/commit/00b8a6d4020e02844b528c2f29b250a507c30739"))
+            startActivity(intent)
+        }
     }
 }

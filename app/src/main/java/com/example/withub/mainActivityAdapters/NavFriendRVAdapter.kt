@@ -75,8 +75,8 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
                 val name = friendNameTextView?.text.toString()
                 val dialog = AlertDialog.Builder(context)
                 dialog.setMessage(name+"님을 친구목록에서 삭제하시겠습니까?")
-                    .setPositiveButton("삭제"){ dialogInterface, i -> deleteItem(position) }
-                    .setNegativeButton("취소"){ dialogInterface, i ->  }
+                    .setPositiveButton("삭제"){ _, _ -> deleteItem(position) }
+                    .setNegativeButton("취소"){ _, _ ->  }
                     .show()
             }
         }

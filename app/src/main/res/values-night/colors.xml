@@ -12,13 +12,14 @@
     <color name="point_color">#FFB703</color>
     <color name="toolbar_text_color">#FEFEFE</color>
     <color name="background_color">#141414</color>
-    <color name="graph_color">#323232</color>
-    <color name="main_view_color">#141414</color>
+    <color name="graph_color">#2E2E2E</color>
+    <color name="main_view_color">#2E2E2E</color>
     <color name="border_color">#EEEEEE</color>
     <color name="gray">#D9D9D9</color>
     <color name="text_color">#FEFEFE</color>
 
-    <color name="nav_color">#111111</color>
-    <color name="tap_selected_color">#EEEEEE</color>
+    <color name="nav_color">@color/white</color>
+    <color name="tap_selected_color">@color/black</color>
     <color name="tap_unselected_color">#7f7f7f</color>
+    <color name="rankingTap_unselected_color">#dedede</color>
 </resources>

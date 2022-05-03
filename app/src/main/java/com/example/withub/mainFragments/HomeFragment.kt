@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,14 +14,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.widget.HorizontalScrollView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.example.withub.DrawerActivity
+import com.example.withub.FriendActivity
 import com.example.withub.dataclasses.ChartData
 import com.example.withub.MainActivity
 import com.example.withub.R
@@ -60,22 +62,22 @@ class HomeFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //toolbar 설정
-        val toolbar = view.findViewById<Toolbar>(R.id.toolbar)
-        mainActivity.setSupportActionBar(toolbar)
-        mainActivity.supportActionBar!!.setDisplayShowCustomEnabled(true)
-        mainActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        mainActivity.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_nav)
-        mainActivity.supportActionBar!!.setDisplayShowTitleEnabled(false) // 기본 타이틀 미사용
+        //nav버튼
+        val navButton = view.findViewById<ImageButton>(R.id.nav_button)
+        navButton.setOnClickListener {
+            val intent = Intent(mainActivity, DrawerActivity::class.java)
+            startActivity(intent)
+            mainActivity.overridePendingTransition(R.anim.lefttoright_animation, R.anim.hold)
 
+        }
+
+        //topView 설정
         val rollingTextView = view.findViewById<RollingTextView>(R.id.rolling_commit)
         rollingTextView.animationDuration = 1000L
         rollingTextView.charStrategy = Strategy.NormalAnimation()
         rollingTextView.addCharOrder(CharOrder.Number)
         rollingTextView.animationInterpolator = AccelerateDecelerateInterpolator()
         rollingTextView.setText("8")
-
-        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // 드로어레이아웃 swipe 잠금
 
         //swipeRefreshLayout
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)

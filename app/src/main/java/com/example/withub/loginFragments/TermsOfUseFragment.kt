@@ -1,17 +1,18 @@
-package com.example.withub
+package com.example.withub.loginFragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.CompoundButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.withub.LoginActivity
 import com.example.withub.R
-import com.example.withub.mainFragments.mainFragmentAdapters.IdPwInputFragment
+import com.example.withub.SignupActivity
 
 class TermsOfUseFragment: Fragment() {
     override fun onCreateView(
@@ -19,15 +20,23 @@ class TermsOfUseFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        var view: View = inflater.inflate(R.layout.termsofuse_fragment, container, false)
-        var signupActivity = activity as SignupActivity
-        var signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
-
-        var checkBoxAllCheck = view.findViewById<CheckBox>(R.id.checkbox_all_check)
-        var checkBox1 = view.findViewById<CheckBox>(R.id.checkbox_terms_of_use_1)
-        var checkBox2 = view.findViewById<CheckBox>(R.id.checkbox_terms_of_use_2)
-
-        var nextBtn = view.findViewById<Button>(R.id.next_btn_terms_of_use)
+        val view: View = inflater.inflate(R.layout.termsofuse_fragment, container, false)
+        val signupActivity = activity as SignupActivity
+        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+        val checkBoxAllCheck = view.findViewById<CheckBox>(R.id.checkbox_all_check)
+        val checkBox1 = view.findViewById<CheckBox>(R.id.checkbox_terms_of_use_1)
+        val checkBox2 = view.findViewById<CheckBox>(R.id.checkbox_terms_of_use_2)
+        val nextBtn = view.findViewById<Button>(R.id.next_btn_terms_of_use)
+        val signupText = signupActivity.findViewById<TextView>(R.id.signup_text)
+        val warningInform1 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_1)
+        val warningInform2 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_2)
+        val warningInform3 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_3)
+        val warningInform4 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_4)
+        signupText.visibility = View.VISIBLE
+        warningInform1.visibility = View.GONE
+        warningInform2.visibility = View.GONE
+        warningInform3.visibility = View.GONE
+        warningInform4.visibility = View.GONE
 
         signupBackBtn.setOnClickListener{
             val intent = Intent(signupActivity, LoginActivity::class.java)

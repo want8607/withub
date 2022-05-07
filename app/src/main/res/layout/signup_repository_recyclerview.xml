@@ -29,7 +29,6 @@
                 android:layout_marginLeft="3dp"
                 android:gravity="center_vertical"
                 android:layout_gravity="start"
-                android:text="1."
                 android:textColor="@color/black" />
 
             <EditText
@@ -47,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="want8607/withub"
                 android:textColor="@color/black" />
 
             <Button

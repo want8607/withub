@@ -26,12 +26,12 @@
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.1" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.8"
                     android:orientation="vertical">
@@ -53,23 +53,36 @@
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/nanum_square_round_regular"
                                 android:hint="닉네임"
+                                android:maxLength="10"
                                 android:singleLine="true"
                                 android:textColor="@color/black"
                                 android:textColorHint="@color/black"
                                 android:textSize="15sp"
-                                android:maxLength="10"
                                 android:theme="@style/editText" />
                         </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                         <Button
-                            android:id="@+id/nickname_duplicate_check_btn_signup"                            android:layout_width="80dp"
+                            android:id="@+id/nickname_duplicate_check_btn_signup"
+                            android:layout_width="80dp"
                             android:layout_height="30dp"
                             android:layout_gravity="right|bottom"
                             android:layout_marginBottom="10dp"
                             android:background="@drawable/stroke_disabled_btn"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:text="중복체크"
-                            android:textColor="@color/thick_gray"/>
+                            android:textColor="@color/thick_gray" />
+
+                        <Button
+                            android:id="@+id/nickname_change_btn_signup"
+                            android:layout_width="80dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right|bottom"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/stroke_btn"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="변경"
+                            android:visibility="gone"
+                            android:textColor="@color/black" />
 
                     </FrameLayout>
 
@@ -83,6 +96,11 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -95,12 +113,11 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1" />
+                    android:layout_weight="0.3" />
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.25"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:gravity="center"
                     android:text="지역선택"
@@ -110,13 +127,12 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.2" />
+                    android:layout_weight="0.4" />
 
                 <Spinner
                     android:id="@+id/area_spinner_signup"
-                    android:layout_width="0dp"
+                    android:layout_width="100dp"
                     android:layout_height="30dp"
-                    android:layout_weight="0.35"
                     android:backgroundTint="@color/point_color"
                     android:dropDownWidth="150dp"
                     android:popupBackground="@color/white"
@@ -127,7 +143,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.1" />
+                    android:layout_weight="0.3" />
 
             </LinearLayout>
 
@@ -165,8 +181,6 @@
         </LinearLayout>
     </ScrollView>
 
-
-
     <Button
         android:id="@+id/next_btn_nickname_area_select"
         android:layout_marginBottom="50dp"
@@ -178,6 +192,7 @@
         android:text="다음"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:enabled="false"
         float:layout_constraintBottom_toBottomOf="parent"
         float:layout_constraintEnd_toEndOf="parent"
         float:layout_constraintStart_toStartOf="parent" />

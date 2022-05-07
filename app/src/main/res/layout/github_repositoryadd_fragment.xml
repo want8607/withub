@@ -7,6 +7,7 @@
 
 
     <LinearLayout
+        android:layout_marginTop="25dp"
         android:id="@+id/linearLayout11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,6 +52,7 @@
                         android:orientation="vertical">
 
                             <EditText
+                                android:id="@+id/github_nickname_edittext_signup"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:fontFamily="@font/nanum_square_round_regular"
@@ -70,22 +72,35 @@
 
                     </LinearLayout>
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="0dp"-->
-<!--                        android:layout_weight ="0.2"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="horizontal">-->
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
 
                         <Button
+                            android:id="@+id/github_nickname_confirm_btn_signup"
                             android:layout_width="50dp"
                             android:layout_height="30dp"
                             android:layout_gravity="right"
                             android:layout_marginBottom="10dp"
+                            android:enabled="false"
                             android:textColor="@color/thick_gray"
                             android:background="@drawable/stroke_disabled_btn"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:text="확인" />
-<!--                    </LinearLayout>-->
+
+                        <Button
+                            android:id="@+id/github_nickname_change_btn_signup"
+                            android:layout_width="50dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="right"
+                            android:layout_marginBottom="10dp"
+                            android:textColor="@color/black"
+                            android:background="@drawable/stroke_btn"
+                            android:visibility="gone"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:text="변경" />
+
+                    </FrameLayout>
 
                 </LinearLayout>
 
@@ -142,6 +157,7 @@
                 android:layout_weight="0.1" />
 
             <EditText
+                android:id="@+id/owner_edittext_signup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.35"
@@ -161,6 +177,7 @@
                 android:textAlignment="center" />
 
             <EditText
+                android:id="@+id/repository_edittext_signup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.4"
@@ -173,6 +190,8 @@
 
 
             <Button
+                android:id="@+id/repository_add_btn_signup"
+                android:enabled="false"
                 android:layout_width="50dp"
                 android:layout_height="30dp"
                 android:layout_gravity=""
@@ -219,10 +238,9 @@
     <ScrollView
         android:id="@+id/linearLayout12"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="220dp"
         android:orientation="vertical"
-        float:layout_constraintBottom_toTopOf="@+id/button"
+        float:layout_constraintBottom_toTopOf="@+id/next_btn_github_repository_add"
         float:layout_constraintTop_toBottomOf="@+id/linearLayout11">
 
         <LinearLayout
@@ -237,24 +255,22 @@
                 tools:listitem="@layout/signup_repository_recyclerview" />
         </LinearLayout>
 
-
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/next_btn_github_repository_add"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/disabled_button"
         android:fontFamily="@font/nanum_square_round_regular"
         android:text="회원가입"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:enabled="false"
         float:layout_constraintBottom_toBottomOf="parent"
         float:layout_constraintEnd_toEndOf="parent"
         float:layout_constraintStart_toStartOf="parent" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

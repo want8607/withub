@@ -16,6 +16,7 @@
         android:layout_weight="0.12">
 
         <Button
+            android:id="@+id/find_id_back_btn"
             android:layout_width="12dp"
             android:layout_height="25dp"
             android:layout_marginLeft="20dp"
@@ -37,7 +38,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.88"
+        android:layout_weight="0.73"
         android:weightSum="1"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout">
@@ -61,57 +62,73 @@
                     android:layout_weight="0.05"
                     android:layout_height="match_parent"/>
 
-                <FrameLayout
+
+                <LinearLayout
                     android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="0.9"
-                    android:layout_height="match_parent">
+                    android:orientation="horizontal">
 
                     <com.wrapp.floatlabelededittext.FloatLabeledEditText
                         android:id="@+id/floatLabeledEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
                         float:fletPadding="5dp"
                         tools:ignore="MissingClass,MissingConstraints">
 
                         <EditText
+                            android:id="@+id/email_edittext_find_id"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:hint="이메일"
                             android:singleLine="true"
                             android:textColor="@color/black"
-                            android:theme="@style/editText"
                             android:textColorHint="@color/black"
                             android:textSize="15sp"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:hint="이메일" />
+                            android:theme="@style/editText" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-
-                    <LinearLayout
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|bottom"
-                        android:layout_marginBottom="15dp"
-                        android:orientation="horizontal">
+                        android:layout_gravity="bottom"
+                        android:text="@"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:textColor="@color/black"
+                        />
 
-                        <Spinner
-                            android:layout_width="130dp"
-                            android:layout_height="30dp"
-                            android:dropDownWidth="100dp"
-                            android:spinnerMode="dropdown"
-                            android:backgroundTint="@color/point_color"
-                            android:popupBackground="@color/gray"/>  //스피너 팝업 컬러
 
-                        <Button
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="right"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:text="인증하기"
-                            android:background="@drawable/stroke_btn"/>
+                    <Spinner
+                        android:id="@+id/email_spinner_find_id"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="0.5"
+                        android:backgroundTint="@color/point_color"
+                        android:dropDownWidth="150dp"
+                        android:popupBackground="@color/white"
+                        android:background="@drawable/spinner_design"
+                        android:textAlignment="center"
+                        android:spinnerMode="dropdown"
+                        android:layout_gravity="bottom"
+                        tools:ignore="RtlCompat"/>  //스피너 팝업 컬러
 
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/email_certification_btn_find_id"
+                        android:layout_marginBottom="3dp"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="bottom"
+                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:text="인증하기"
+                        android:enabled="false"
+                        android:textColor="@color/thick_gray"
+                        android:background="@drawable/stroke_disabled_btn"/>
 
-                </FrameLayout>
+
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="0dp"
@@ -121,6 +138,7 @@
             </LinearLayout>
 
              <LinearLayout
+                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -134,7 +152,7 @@
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_weight="0.9"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <com.wrapp.floatlabelededittext.FloatLabeledEditText
                         android:layout_width="match_parent"
@@ -150,38 +168,32 @@
                             android:theme="@style/editText"
                             android:textColorHint="@color/black"
                             android:textSize="15sp"
+                            android:maxLength="4"
                             android:fontFamily="@font/nanum_square_round_regular"
                             android:hint="인증번호" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:layout_gravity="right|bottom"
-                        android:orientation="horizontal">
-
                         <TextView
+                            android:layout_marginBottom="11dp"
+                            android:layout_gravity="end|bottom"
+                            android:id="@+id/timer_text_find_id"
                             android:layout_width="wrap_content"
-                            android:layout_height="30dp"
-                            android:textAlignment="gravity"
-                            android:layout_gravity="bottom"
-                            android:text="5 : 00"
-                            android:textSize="20sp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
                             android:textColor="@color/timer"
-                            android:layout_marginRight="10dp"/>
-
-                        <Button
-                            android:layout_width="80dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="right"
-                            android:text="확인"
-                            android:fontFamily="@font/nanum_square_round_regular"
-                            android:background="@drawable/stroke_btn"/>
-
-                    </LinearLayout>
+                            android:textSize="20sp"/>
 
                 </FrameLayout>
+
+                <Button
+                    android:layout_marginBottom="3dp"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right|bottom"
+                    android:text="확인"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:background="@drawable/stroke_btn"/>
+
 
                  <TextView
                      android:layout_width="0dp"
@@ -207,16 +219,17 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.05"
+                    android:layout_weight="0.1"
                     android:layout_height="match_parent"/>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="0.9"
+                    android:layout_weight="0.8"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:text=" 회원님의 아이디"
@@ -224,10 +237,10 @@
                         android:textColor="@color/black"/>
 
                     <EditText
+                        android:visibility="gone"
                         android:layout_marginTop="3dp"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:text="코딩문딩"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:backgroundTint="@color/gray"
                         android:editable="false"/>
@@ -236,7 +249,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.05"
+                    android:layout_weight="0.1"
                     android:layout_height="match_parent"/>
 
             </LinearLayout>

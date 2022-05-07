@@ -5,24 +5,18 @@ import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
+import android.os.*
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.*
-import androidx.appcompat.widget.Toolbar
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.withub.DrawerActivity
-import com.example.withub.FriendActivity
 import com.example.withub.dataclasses.ChartData
 import com.example.withub.MainActivity
 import com.example.withub.R
@@ -34,6 +28,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.yy.mobile.rollingtextview.CharOrder
 import com.yy.mobile.rollingtextview.RollingTextView
 import com.yy.mobile.rollingtextview.strategy.Strategy
@@ -46,7 +41,7 @@ class HomeFragment : Fragment(){
     lateinit var mainActivity: MainActivity
     lateinit var pagerRecyclerView: ViewPager2
     lateinit var lineChart: LineChart
-    var intervalTime = 3000.toLong()
+    var intervalTime = 4000.toLong()
     var bannerPosition = (Int.MAX_VALUE/2)+1
     var numBanner = 4
     var homeHandler = HomeHandler()
@@ -92,11 +87,19 @@ class HomeFragment : Fragment(){
         initLineChart()
         setDataToLineChart()
         val horizontalScrollView = view.findViewById<HorizontalScrollView>(R.id.horizontal_scroll)
-        horizontalScrollView.post { horizontalScrollView.scrollTo(0,horizontalScrollView.height) }
+        horizontalScrollView.post { horizontalScrollView.scrollTo(lineChart.width,0) }
 
         //팁 뷰페이저
-        val textList = arrayListOf<String>("쉼에도 요령이 있는 법","아리가또","고자이마스","삼성전자 출신 팀쿡")
-        val homePagerRecyclerAdapter= HomePagerRecyclerAdapter(textList)
+        //이미지 넣기
+        val imgList = arrayListOf<Int>(R.drawable.view_pager1,R.drawable.view_pager2,R.drawable.view_pager3,R.drawable.view_pager4)
+        //url 넣기
+        val urlList = arrayListOf<String>(
+            "https://www.youtube.com/watch?v=NOVDVW5dask",
+            "https://www.youtube.com/watch?v=shZtNaSV5Tk",
+            "https://www.youtube.com/watch?v=kp5CEADyTFs",
+            "https://www.youtube.com/watch?v=Ru_bHWAqdSM")
+
+        val homePagerRecyclerAdapter= HomePagerRecyclerAdapter(mainActivity,imgList,urlList)
         pagerRecyclerView = view.findViewById<ViewPager2>(R.id.main_view_pager)
         pagerRecyclerView.adapter = homePagerRecyclerAdapter
         pagerRecyclerView.orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -123,7 +126,6 @@ class HomeFragment : Fragment(){
                 }
             }
         })
-
     }
 
     fun initLineChart(){
@@ -136,10 +138,6 @@ class HomeFragment : Fragment(){
             isDragXEnabled = true
             isScaleYEnabled = false
             isScaleXEnabled = false
-            //add animation
-            animateX(1000, Easing.EaseInSine)
-            //range
-            setScaleMinima(3f,1f)
             moveViewToX(xChartMax)
         }
         val xAxis: XAxis = lineChart.xAxis
@@ -149,24 +147,28 @@ class HomeFragment : Fragment(){
             setDrawAxisLine(true)
             setDrawLabels(true)
             position = XAxis.XAxisPosition.BOTTOM
-            valueFormatter = DefaultValueFormatter(0)
+            valueFormatter = XAxisCustomFormatter()
             textColor = resources.getColor(R.color.text_color,null)
             textSize = 10f
-            granularity = 0f
             labelRotationAngle = 0f
+            setLabelCount(30,false)
         }
     }
-
+    inner class XAxisCustomFormatter : ValueFormatter(){
+        override fun getFormattedValue(value: Float): String {
+            val date = value.toInt().toString() +"일"
+            return date
+        }
+    }
     fun setDataToLineChart(){
         val entries: ArrayList<Entry> = ArrayList()
-
         val dateList = addXAisle()
         for (i in dateList.indices){
             addChartData(dateList[i],(1..10).random())
         }
         chartDatas.reverse()
         for (i in chartDatas.indices){
-            var chartData = chartDatas[i]
+            val chartData = chartDatas[i]
             entries.add(Entry(chartData.day.toFloat(),chartData.commitNum.toFloat()))
         }
         Log.d("dd",chartDatas.toString())

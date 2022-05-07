@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/point_color"
-        app:layout_constraintVertical_weight="0.35"
+        app:layout_constraintVertical_weight="0.30"
         app:layout_constraintBottom_toTopOf="@id/drawer_body_constraint_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,14 +46,16 @@
 
         <ImageView
             android:id="@+id/drawer_header_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:src="@mipmap/ic_launcher"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/drawer_header_nickname"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintTop_toBottomOf="@+id/drawer_option_button"
+            app:layout_constraintWidth_percent="0.35" />
 
         <TextView
             android:id="@+id/drawer_header_nickname"
@@ -63,10 +65,10 @@
             android:text="땅땅이"
             android:textColor="@color/white"
             android:textSize="20sp"
+            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drawer_header_img" />
+            app:layout_constraintStart_toStartOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

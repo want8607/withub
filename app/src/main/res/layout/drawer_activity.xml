@@ -8,18 +8,18 @@
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/nav_header_constraint_layout"
+        android:id="@+id/drawer_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/point_color"
         app:layout_constraintVertical_weight="0.35"
-        app:layout_constraintBottom_toTopOf="@id/nav_body_constraint_layout"
+        app:layout_constraintBottom_toTopOf="@id/drawer_body_constraint_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/nav_exit_button"
+            android:id="@+id/drawer_exit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -32,7 +32,7 @@
             app:layout_constraintVertical_bias="0.1" />
 
         <ImageButton
-            android:id="@+id/nav_option_button"
+            android:id="@+id/drawer_option_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
@@ -45,7 +45,7 @@
             app:layout_constraintVertical_bias="0.1" />
 
         <ImageView
-            android:id="@+id/nav_header_img"
+            android:id="@+id/drawer_header_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
@@ -56,7 +56,7 @@
             app:layout_constraintVertical_bias="0.3" />
 
         <TextView
-            android:id="@+id/nav_header_nickname"
+            android:id="@+id/drawer_header_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanum_square_round_bold"
@@ -66,28 +66,28 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nav_header_img" />
+            app:layout_constraintTop_toBottomOf="@+id/drawer_header_img" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/nav_body_constraint_layout"
+        android:id="@+id/drawer_body_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintVertical_weight="0.75"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nav_header_constraint_layout">
+        app:layout_constraintTop_toBottomOf="@+id/drawer_constraint_layout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/nav_help_constraint_layout"
+            android:id="@+id/drawer_help_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:orientation="horizontal"
             android:layout_marginTop="10dp"
             android:padding="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/nav_friend_list_constraint_layout"
+            app:layout_constraintBottom_toTopOf="@+id/drawer_friend_list_constraint_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -109,9 +109,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/nanum_square_round_regular"
-                android:text="도움말"
+                android:text="@string/help"
                 android:textColor="@color/text_color"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -131,17 +131,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/nav_friend_list_constraint_layout"
+            android:id="@+id/drawer_friend_list_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:orientation="horizontal"
             android:padding="10dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/nav_friend_recycler_View"
+            app:layout_constraintBottom_toTopOf="@+id/drawer_friend_recycler_View"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nav_help_constraint_layout">
+            app:layout_constraintTop_toBottomOf="@+id/drawer_help_constraint_layout">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -160,9 +160,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/nanum_square_round_regular"
-                android:text="친구목록"
+                android:text="@string/friend_list"
                 android:textColor="@color/text_color"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -170,7 +170,7 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
             <ImageButton
-                android:id="@+id/nav_add_friend_button"
+                android:id="@+id/drawer_add_friend_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/nav_round_btn"
@@ -183,7 +183,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/nav_friend_recycler_View"
+            android:id="@+id/drawer_friend_recycler_View"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="10dp"
@@ -192,7 +192,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nav_friend_list_constraint_layout"
+            app:layout_constraintTop_toBottomOf="@+id/drawer_friend_list_constraint_layout"
             tools:listitem="@layout/main_activity_nav_recycler_view_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

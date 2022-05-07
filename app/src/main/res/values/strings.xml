@@ -17,4 +17,20 @@
         <item>월간 커밋 횟수</item>
         <item>월간 연속 커밋 횟수</item>
     </string-array>
+
+    <string name="neam">%1$s 님</string>
+    <string name="friend_commit_average">%1$s 님\n친구의 커밋 평균</string>
+    <string name="area_commit_average">%1$s 님\n지역의 커밋 평균</string>
+    <string name="friend_recent_commit">%1$s 님의 최근 커밋</string>
+    <string name="graph_text">30일 커밋 그래프</string>
+    <string name="my_commit_average">내 친구의 커밋 평균</string>
+    <string name="my_area_average">내 지역의 커밋 평균</string>
+    <string name="count">회</string>
+    <string name="commit_count">%1$d회</string>
+    <string name="vs_commit_text">이번 달 커밋 승자는?</string>
+    <string name="VS">VS</string>
+    <string name="slash">/</string>
+
+    <string name="help">도움말</string>
+    <string name="friend_list">친구목록</string>
 </resources>

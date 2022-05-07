@@ -14,8 +14,8 @@ import com.example.withub.R
 import com.example.withub.mainFragments.mainFragmentAdapters.CommitData
 import com.example.withub.mainFragments.mainFragmentAdapters.CommitRVAdapter
 
-class CommitFragement : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+class CommitFragment : Fragment() {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.commit_fragment,container,false)
         val mainActivity = activity as MainActivity
         val list : ArrayList<CommitData> = arrayListOf(
@@ -35,8 +35,6 @@ class CommitFragement : Fragment() {
         val adapter  = CommitRVAdapter(mainActivity,list)
         recyclerView.adapter = adapter
         recyclerView.setHasFixedSize(true)
-
-        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // 드로어레이아웃 swipe 잠금
 
         //리프레시 구현
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.commit_swipe_refresh_layout)

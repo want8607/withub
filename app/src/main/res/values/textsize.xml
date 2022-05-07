@@ -7,4 +7,11 @@
         <item>20sp</item>
         <item>30sp</item>
     </array>
+    <dimen name="fragment_title_text_size">27sp</dimen>
+    <dimen name="commit_text_size">17sp</dimen>
+    <dimen name="commit_message_text_size">15sp</dimen>
+    <dimen name="top_bar_text_size">20sp</dimen>
+    <dimen name="rolling_rolling_text_size">35sp</dimen>
+    <dimen name="view_title_text_size">15sp</dimen>
+
 </resources>

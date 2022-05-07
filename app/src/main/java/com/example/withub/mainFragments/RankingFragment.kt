@@ -25,8 +25,6 @@ class RankingFragment : Fragment() {
         rankingViewPager = view.findViewById(R.id.ranking_view_pager)
         //팁 뷰페이저 어댑터 생성
 
-        mainActivity.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED) // 드로어레이아웃 swipe 잠금
-
         return view
     }
 

@@ -13,7 +13,7 @@
         android:background="@color/point_color"
         android:fontFamily="@font/nanum_square_round_regular"
         android:gravity="center"
-        android:text="랭킹"
+        android:text="@string/ranking"
         android:textColor="@color/white"
         android:textSize="27sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +31,7 @@
         app:tabRippleColor="@android:color/transparent"
         app:tabIndicatorColor="@color/white"
         app:tabIndicatorFullWidth="false"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="@color/toolbar_text_color"
         app:tabTextAppearance="@style/rankingTabTextSize"
         app:tabTextColor="@color/rankingTap_unselected_color"
         app:tabIndicatorHeight="3dp"/>

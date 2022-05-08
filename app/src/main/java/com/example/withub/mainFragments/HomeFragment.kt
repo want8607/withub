@@ -6,22 +6,19 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.*
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.*
-import androidx.annotation.IdRes
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.example.withub.DrawerActivity
-import com.example.withub.dataclasses.ChartData
 import com.example.withub.MainActivity
 import com.example.withub.R
 import com.example.withub.mainFragments.mainFragmentAdapters.HomePagerRecyclerAdapter
-import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -29,6 +26,8 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
 import com.yy.mobile.rollingtextview.CharOrder
 import com.yy.mobile.rollingtextview.RollingTextView
 import com.yy.mobile.rollingtextview.strategy.Strategy
@@ -45,7 +44,7 @@ class HomeFragment : Fragment(){
     var bannerPosition = (Int.MAX_VALUE/2)+1
     var numBanner = 4
     var homeHandler = HomeHandler()
-    val chartDatas = ArrayList<ChartData>()
+    var xAxisData = addXAisle()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.home_fragment,container,false)
@@ -88,6 +87,18 @@ class HomeFragment : Fragment(){
         setDataToLineChart()
         val horizontalScrollView = view.findViewById<HorizontalScrollView>(R.id.horizontal_scroll)
         horizontalScrollView.post { horizontalScrollView.scrollTo(lineChart.width,0) }
+
+        //커밋 잔디
+        val commitGrassImgView = view.findViewById<ImageView>(R.id.main_commit_grass_img_view)
+        GlideToVectorYou.init()
+            .with(mainActivity)
+            .withListener(object : GlideToVectorYouListener{
+                override fun onLoadFailed() {
+                }
+                override fun onResourceReady() {
+                }
+            })
+            .load("https://ghchart.rshah.org/want8607".toUri(),commitGrassImgView)
 
         //팁 뷰페이저
         //이미지 넣기
@@ -138,7 +149,6 @@ class HomeFragment : Fragment(){
             isDragXEnabled = true
             isScaleYEnabled = false
             isScaleXEnabled = false
-            moveViewToX(xChartMax)
         }
         val xAxis: XAxis = lineChart.xAxis
         // to draw label on xAxis
@@ -154,26 +164,22 @@ class HomeFragment : Fragment(){
             setLabelCount(30,false)
         }
     }
-    inner class XAxisCustomFormatter : ValueFormatter(){
+
+    inner class XAxisCustomFormatter() : ValueFormatter(){
+
         override fun getFormattedValue(value: Float): String {
-            val date = value.toInt().toString() +"일"
-            return date
+            return xAxisData[(value).toInt()]
         }
     }
     fun setDataToLineChart(){
-        val entries: ArrayList<Entry> = ArrayList()
-        val dateList = addXAisle()
-        for (i in dateList.indices){
-            addChartData(dateList[i],(1..10).random())
-        }
-        chartDatas.reverse()
-        for (i in chartDatas.indices){
-            val chartData = chartDatas[i]
-            entries.add(Entry(chartData.day.toFloat(),chartData.commitNum.toFloat()))
-        }
-        Log.d("dd",chartDatas.toString())
 
-        val lineDataSet = LineDataSet(entries,"")
+        val entries: ArrayList<Entry> = ArrayList()
+        val ylist = mutableListOf<Int>(1,2,3,4,1,1,2,0,20,0,0,1,2,4,5,1,6,8,1,3,5,4,1,2,3,4,5,6,1,2)
+        for (i in xAxisData.indices){
+            entries.add(Entry(i.toFloat(),ylist[i].toFloat()))
+        }
+
+        val lineDataSet = LineDataSet(entries,"entries")
         lineDataSet.run {
             color = resources.getColor(R.color.point_color,null)
             circleRadius = 5f
@@ -186,26 +192,27 @@ class HomeFragment : Fragment(){
             valueTextSize = 10f
         }
         val data = LineData(lineDataSet)
+
         lineChart.data = data
+        lineChart.notifyDataSetChanged()
         lineChart.invalidate()
     }
 
     fun addXAisle() : ArrayList<String>{
-
         val dateList = arrayListOf<String>()
         for (i in 0..29){
             val cal = Calendar.getInstance()
             cal.add(Calendar.DATE,-i)
             val todayDate = cal.time
             val dateFormat = SimpleDateFormat("dd", Locale.KOREA).format(todayDate)
-            dateList.add(dateFormat)
+            if (dateFormat=="01"){
+                dateList.add(SimpleDateFormat("MM-dd", Locale.KOREA).format(todayDate))
+            }else{
+                dateList.add(dateFormat)
+            }
         }
+        dateList.reverse()
         return dateList
-    }
-
-    fun addChartData(day: String, commitNum : Int){
-        val item = ChartData(day,commitNum)
-        chartDatas.add(item)
     }
 
     fun autoScrollStart(intervalTime : Long){

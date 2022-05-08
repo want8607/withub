@@ -15,7 +15,7 @@
         <item>일간 커밋 횟수</item>
         <item>주간 커밋 횟수</item>
         <item>월간 커밋 횟수</item>
-        <item>월간 연속 커밋 횟수</item>
+        <item>월간 연속 커밋 일수</item>
     </string-array>
 
     <string name="neam">%1$s 님</string>

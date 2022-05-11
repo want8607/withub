@@ -11,4 +11,10 @@ class SharedPreferences (context:Context){
         set(value){
             prefs.edit().putString("token",value).apply()
         }
+
+    var githubToken: String?
+        get() = prefs.getString("githubToken",null)
+        set(value){
+            prefs.edit().putString("githubToken",value).apply()
+        }
 }

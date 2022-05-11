@@ -12,9 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.withub.R
-import com.example.withub.SignupActivity
-import com.example.withub.mainFragments.*
+import com.example.withub.*
 import retrofit2.Call
 import retrofit2.Response
 import java.util.regex.Pattern

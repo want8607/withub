@@ -188,6 +188,7 @@ class HomeFragment : Fragment(){
             circleHoleColor = resources.getColor(R.color.graph_dot_color,null)
             setDrawHighlightIndicators(false)
             setDrawValues(true) // 숫자표시
+            valueTextColor = resources.getColor(R.color.text_color,null)
             valueFormatter = DefaultValueFormatter(0)
             valueTextSize = 10f
         }

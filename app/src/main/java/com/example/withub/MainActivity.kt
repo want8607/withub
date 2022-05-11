@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView.VERTICAL
 import com.example.withub.mainActivityAdapters.NavFriendRVAdapter
 import com.example.withub.mainFragments.CommitFragment
 import com.example.withub.mainFragments.HomeFragment
+import com.example.withub.mainFragments.MyInfoFragment
 import com.example.withub.mainFragments.RankingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.main_activity)
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
@@ -50,6 +52,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.tap_commit ->{
                     setFragment(CommitFragment(),"Commit")
+                }
+                R.id.tap_my_info->{
+                    setFragment(MyInfoFragment(),"MyInfo")
                 }
             }
             true
@@ -85,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         val home = manager.findFragmentByTag("Home")
         val ranking = manager.findFragmentByTag("Ranking")
         val commit = manager.findFragmentByTag("Commit")
-
+        val myInfo = manager.findFragmentByTag("MyInfo")
         //모든 프래그먼트 hide
         if(home!=null){
             ft.hide(home)
@@ -95,6 +100,9 @@ class MainActivity : AppCompatActivity() {
         }
         if(commit!=null){
             ft.hide(commit)
+        }
+        if(myInfo!=null){
+            ft.hide(myInfo)
         }
 
         //선택한 항목에 따라 그에 맞는 프래그먼트만 show
@@ -111,6 +119,11 @@ class MainActivity : AppCompatActivity() {
         else if(tag == "Commit"){
             if(commit!=null){
                 ft.show(commit)
+            }
+        }
+        else if(tag == "MyInfo"){
+            if(myInfo!=null){
+                ft.show(myInfo)
             }
         }
         //마무리

@@ -11,6 +11,7 @@
         android:id="@+id/drawer_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:elevation="10dp"
         android:background="@color/point_color"
         app:layout_constraintVertical_weight="0.30"
         app:layout_constraintBottom_toTopOf="@id/drawer_body_constraint_layout"
@@ -75,6 +76,7 @@
         android:id="@+id/drawer_body_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/main_view_color"
         app:layout_constraintVertical_weight="0.75"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,25 +87,14 @@
             android:id="@+id/drawer_help_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:padding="10dp"
+            android:background="@android:color/transparent"
+            android:padding="7dp"
             app:layout_constraintBottom_toTopOf="@+id/drawer_friend_list_constraint_layout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_question_mark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -113,21 +104,21 @@
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:text="@string/help"
                 android:textColor="@color/text_color"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_nav_right_arrow"
-                app:layout_constraintHorizontal_bias="0.95"
                 app:layout_constraintBottom_toBottomOf="@+id/textView9"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView9" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -137,24 +128,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
+            android:padding="7dp"
             app:layout_constraintBottom_toTopOf="@+id/drawer_friend_recycler_View"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/drawer_help_constraint_layout">
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/ic_friend"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.05"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView10"
@@ -164,12 +142,12 @@
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:text="@string/friend_list"
                 android:textColor="@color/text_color"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toTopOf="@+id/imageView4" />
+                app:layout_constraintHorizontal_bias="0.05"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
                 android:id="@+id/drawer_add_friend_button"

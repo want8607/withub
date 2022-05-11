@@ -14,15 +14,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.annotation.Dimension
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.withub.R
-import com.example.withub.SignupActivity
-import com.example.withub.mainFragments.*
+import com.example.withub.*
 import com.example.withub.mainFragments.mainFragmentAdapters.SignupRVAdapter
-import com.example.withub.UserRepoData
 import retrofit2.Call
 import retrofit2.Response
 

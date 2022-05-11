@@ -12,10 +12,11 @@
         android:layout_height="80dp"
         android:background="@color/point_color"
         android:gravity="center"
-        android:fontFamily="@font/nanum_square_round_regular"
+        android:fontFamily="@font/nanum_square_round_bold"
         android:text="@string/commit"
         android:textColor="@color/white"
         android:textSize="@dimen/fragment_title_text_size"
+        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -1,7 +1,5 @@
-package com.example.withub.mainFragments
+package com.example.withub
 
-import android.text.Editable
-import com.example.withub.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import okhttp3.OkHttpClient
@@ -9,9 +7,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 object RetrofitClient {   //object 는 객체를 리턴해줄 수 있어 클래스보다 편리함
     fun initRetrofit(): Retrofit {

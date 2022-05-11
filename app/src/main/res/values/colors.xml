@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="timer">#D20000</color>
-
+<!--    #FFB703-->
     <color name="point_color">#FFB703</color>
     <color name="toolbar_text_color">#FEFEFE</color>
     <color name="background_color">#FEFEFE</color>
@@ -26,5 +26,7 @@
     <color name="tap_selected_color">@color/black</color>
     <color name="tap_unselected_color">#7f7f7f</color>
     <color name="rankingTap_unselected_color">#dedede</color>
-
+    <color name="bottom_nav_color">#fefefe</color>
+    <color name="bottom_nav_unselected_color">#696C74</color>
+    <color name="bottom_nav_selected_color">@color/point_color</color>
 </resources>

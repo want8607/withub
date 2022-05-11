@@ -15,10 +15,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.withub.R
 import com.example.withub.SignupActivity
-import com.example.withub.mainFragments.IdCheckApi
-import com.example.withub.mainFragments.IdCheckData
-import com.example.withub.mainFragments.IdValue
-import com.example.withub.mainFragments.RetrofitClient
+import com.example.withub.IdCheckApi
+import com.example.withub.IdCheckData
+import com.example.withub.IdValue
+import com.example.withub.RetrofitClient
 import retrofit2.Call
 import retrofit2.Response
 import java.util.regex.Pattern

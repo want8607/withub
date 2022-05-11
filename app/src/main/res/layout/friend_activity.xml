@@ -85,7 +85,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <com.example.withub.mainFragments.CustomSwipeToRefresh
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -117,19 +117,38 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.02" />
 
-                <com.github.mikephil.charting.charts.LineChart
+                <LinearLayout
                     android:id="@+id/friend_activity_user_chart"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="0dp"
                     android:background="@drawable/main_round_view"
-                    android:elevation="5dp"
+                    android:elevation="10dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintDimensionRatio="1:0.5"
                     app:layout_constraintBottom_toTopOf="@+id/friend_activity_friend_commit_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/friend_activity_graph_textview"
-                    app:layout_constraintWidth_percent="0.8" />
+                    app:layout_constraintWidth_percent="0.9" >
 
+                    <HorizontalScrollView
+                        android:id="@+id/friend_horizontal_scroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scrollbars="horizontal"
+                        android:fillViewport="true"
+                        android:paddingBottom="5dp">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
+                            <com.github.mikephil.charting.charts.LineChart
+                                android:id="@+id/friend_line_chart"
+                                android:layout_width="1000dp"
+                                android:layout_height="match_parent"
+                                />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
                 <TextView
                     android:id="@+id/friend_activity_friend_commit_text"
                     android:layout_width="wrap_content"
@@ -147,15 +166,16 @@
                 <LinearLayout
                     android:id="@+id/friend_activity_friend_commit_num_container"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/main_round_view"
-                    android:elevation="5dp"
+                    android:elevation="10dp"
                     android:gravity="center"
                     android:orientation="horizontal"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="@id/friend_activity_user_chart"
                     app:layout_constraintTop_toBottomOf="@id/friend_activity_friend_commit_text"
-                    app:layout_constraintWidth_percent="0.35">
+                    app:layout_constraintWidth_percent="0.40">
 
                     <TextView
                         android:id="@+id/friend_activity_friend_commit_num"
@@ -195,14 +215,15 @@
                 <LinearLayout
                     android:id="@+id/friend_activity_area_commit_num_container"
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/main_round_view"
-                    android:elevation="5dp"
+                    android:elevation="10dp"
                     android:gravity="center"
+                    app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintEnd_toEndOf="@id/friend_activity_user_chart"
                     app:layout_constraintTop_toBottomOf="@id/friend_activity_area_commit_text"
-                    app:layout_constraintWidth_percent="0.35">
+                    app:layout_constraintWidth_percent="0.40">
 
                     <TextView
                         android:id="@+id/friend_activity_area_commit_num"
@@ -243,12 +264,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/main_round_view"
-                    android:elevation="5dp"
+                    android:elevation="10dp"
                     android:paddingVertical="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/friend_activity_winner_text"
-                    app:layout_constraintWidth_percent="0.8">
+                    app:layout_constraintWidth_percent="0.9">
 
                     <TextView
                         android:id="@+id/friend_activity_vs"
@@ -350,81 +371,37 @@
                         app:layout_constraintTop_toBottomOf="@+id/friend_activity_friend_name" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/friend_activity_recent_commit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:fontFamily="@font/nanum_square_round_bold"
-                    android:text="@string/friend_recent_commit"
-                    android:textColor="@color/text_color"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/friend_activity_commit_constraint_layout"
+                <LinearLayout
+                    android:id="@+id/friend_commit_grass"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
                     android:background="@drawable/main_round_view"
-                    android:elevation="5dp"
-                    android:padding="10dp"
+                    android:elevation="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/friend_activity_recent_commit"
-                    app:layout_constraintWidth_percent="0.8">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                    app:layout_constraintWidth_percent="0.9">
 
-                    <TextView
-                        android:id="@+id/friend_activity_ccommit_date_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="2022-03-25 19:49"
-                        android:textColor="@color/text_color"
-                        android:textSize="17sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/friend_activity_commit_repository_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="want8607/ediya_kiosk"
-                        android:textColor="@color/text_color"
-                        android:textSize="17sp"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_ccommit_date_text_view"
-                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_ccommit_date_text_view" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/friend_activity_commit_message_text_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="UPADATE\n -다했다."
-                        android:textColor="@color/text_color"
-                        android:textSize="15sp"
-                        app:layout_constraintStart_toStartOf="@+id/friend_activity_commit_repository_name"
-                        app:layout_constraintTop_toBottomOf="@+id/friend_activity_commit_repository_name" />
-
-                    <ImageView
-                        android:id="@+id/commit_arrow_image_view"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="20dp"
-                        android:src="@drawable/ic_orange_right_arrow"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                            <ImageView
+                                android:id="@+id/friend_commit_grass_img_view"
+                                android:layout_width="750dp"
+                                android:layout_height="117dp"
+                                android:layout_margin="10dp" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.example.withub.mainFragments.CustomSwipeToRefresh>
 </androidx.constraintlayout.widget.ConstraintLayout>

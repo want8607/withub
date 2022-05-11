@@ -1,6 +1,6 @@
 package com.example.withub
 
 data class UserRepoData(
-//    var num: String,
-    var nameRepository: String
+    var owner:String,
+    var repository: String
 )

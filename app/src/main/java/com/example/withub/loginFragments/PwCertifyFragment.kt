@@ -1,4 +1,4 @@
-package com.example.withub
+package com.example.withub.loginFragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.example.withub.FindPwActivity
+import com.example.withub.LoginActivity
+import com.example.withub.R
 
 class PwCertifyFragment:Fragment() {
     override fun onCreateView(

@@ -48,15 +48,6 @@ class NickNameAreaSelectFragment: Fragment() {
         warningInform4.visibility = GONE
 
         signupBackBtn.setOnClickListener {
-//            builder.setMessage("이전으로 돌아갈시 아이디와 비밀번호 정보를 다시 입력해야 합니다.")
-//            builder.setPositiveButton("확인") { p0, p1 ->
-//                parentFragmentManager.beginTransaction()
-//                    .replace(R.id.fragmentArea, EmailCertifyFragment())
-//                    .commit()
-//            }
-//            builder.setNegativeButton("취소", null)
-//            val alertDialog: AlertDialog = builder.create()
-//            alertDialog.show()
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, EmailCertifyFragment()).commit()
         }
 

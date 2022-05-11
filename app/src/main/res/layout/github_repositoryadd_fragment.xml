@@ -258,7 +258,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/next_btn_github_repository_add"
+        android:id="@+id/signup_btn_github_repository_add"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"

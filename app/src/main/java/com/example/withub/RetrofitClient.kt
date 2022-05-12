@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 
 object RetrofitClient {   //object 는 객체를 리턴해줄 수 있어 클래스보다 편리함
@@ -161,4 +162,19 @@ data class FindPwCertiNumCheckData(val message: String, val success: Boolean)
 interface FindPwCertiNumConfirmApi{
     @POST("/account/pw/auth")
     fun certiNumCheck(@Body requestData: FindPwTokenAuthEmailIdValue) : Call<FindPwCertiNumCheckData>
+}
+
+
+//비밀번호 변경
+data class FindPwTokenPwValue(
+    @SerializedName("token") val token : String,
+    @SerializedName("pw") val pw : String
+    )
+
+data class FindPwChangePwCheckData(val message: String, val success: Boolean)
+
+//비밀번호 변경 API
+interface FindPwChangePwApi{
+    @PATCH("/account/pw")
+    fun changePw(@Body requestData: FindPwTokenPwValue) : Call<FindPwChangePwCheckData>
 }

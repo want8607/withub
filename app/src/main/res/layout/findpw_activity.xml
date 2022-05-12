@@ -13,7 +13,7 @@
         android:layout_weight="0.12">
 
         <Button
-            android:id="@+id/find_pw_back_btn"
+            android:id="@+id/back_btn_find_pw"
             android:layout_width="12dp"
             android:layout_height="25dp"
             android:layout_marginLeft="20dp"

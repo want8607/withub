@@ -95,7 +95,7 @@ class EmailCertifyFragment:Fragment() {
 
         confirmBtn.setOnClickListener{
            if(confirmBtnBoolean == false)  {
-               dialogMessage("이메일을 인증해주세요.")
+               dialogMessage("이메일 인증을 해주세요.")
             } else if (running == false) {
                dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
             } else if (certiNumText.text.isEmpty()){

@@ -59,14 +59,12 @@
         android:id="@+id/my_info_change_github_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:elevation="10dp"
         android:padding="5dp"
         android:background="@color/background_color"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11">
-
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
@@ -91,59 +89,24 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/my_info_change_nickname"
+        android:id="@+id/my_info_account"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/background_color"
         android:padding="5dp"
-        android:elevation="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/my_info_change_github_info">
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/nanum_square_round_regular"
-            android:text="@string/change_nickname"
+            android:text="@string/account"
             android:textColor="@color/text_color"
             android:textSize="18sp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_nav_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/textView15"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView15" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/my_info_change_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/background_color"
-        android:padding="5dp"
-        android:elevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_info_change_nickname">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_round_regular"
-            android:text="@string/change_password"
-            android:textColor="@color/text_color"
-            android:textSize="18sp"
-            android:layout_marginStart="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -152,19 +115,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_nav_right_arrow"
-            app:layout_constraintBottom_toBottomOf="@+id/textView16"
+            app:layout_constraintBottom_toBottomOf="@+id/textView17"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView16" />
+            app:layout_constraintTop_toTopOf="@+id/textView17" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:elevation="10dp"
-        android:background="@color/background_color"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/my_info_change_password" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

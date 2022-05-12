@@ -31,6 +31,7 @@ class FriendActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.friend_activity)
 
         //뒤로가기
@@ -45,11 +46,6 @@ class FriendActivity : AppCompatActivity() {
         val toolbarNickNameView = findViewById<TextView>(R.id.friend_activity_toolbar_textview)
         toolbarNickNameView.text = getString(R.string.neam,friendNickName)
 
-        val friendCommitTextView = findViewById<TextView>(R.id.friend_activity_friend_commit_text)
-        friendCommitTextView.text = getString(R.string.friend_commit_average,friendNickName)
-
-        val areaCommitTextView = findViewById<TextView>(R.id.friend_activity_area_commit_text)
-        areaCommitTextView.text = getString(R.string.friend_commit_average,friendNickName)
 
         val vsFriendNameTextView = findViewById<TextView>(R.id.friend_activity_friend_name)
         vsFriendNameTextView.text = friendNickName
@@ -72,7 +68,7 @@ class FriendActivity : AppCompatActivity() {
                 override fun onResourceReady() {
                 }
             })
-            .load("https://ghchart.rshah.org/want8607".toUri(),commitGrassImgView)
+            .load("https://ghchart.rshah.org/219138/want8607".toUri(),commitGrassImgView)
 
         //그래프 설정
         lineChart  = findViewById(R.id.friend_line_chart)
@@ -130,6 +126,7 @@ class FriendActivity : AppCompatActivity() {
             circleHoleColor = resources.getColor(R.color.graph_dot_color,null)
             setDrawHighlightIndicators(false)
             setDrawValues(true) // 숫자표시
+            valueTextColor = resources.getColor(R.color.text_color,null)
             valueFormatter = DefaultValueFormatter(0)
             valueTextSize = 10f
         }

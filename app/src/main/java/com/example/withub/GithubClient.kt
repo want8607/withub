@@ -35,7 +35,7 @@ data class GithubNickNameData(
 
 
 //깃허브 아이디 유효성 체크 API
-interface GithubNickNameCheckApi{
-    @GET("users/{username}")
-    fun githubNickNameCheck(@Path("username") username: String) : Single<ArrayList<GithubNickNameData>>
-}
+//interface GithubNickNameCheckApi{
+//    @GET("users/{username}")
+//    fun githubNickNameCheck(@Path("username") username: String) : Single<ArrayList<GithubNickNameData>>
+//}

@@ -98,7 +98,7 @@ class HomeFragment : Fragment(){
                 override fun onResourceReady() {
                 }
             })
-            .load("https://ghchart.rshah.org/want8607".toUri(),commitGrassImgView)
+            .load("https://ghchart.rshah.org/219138/want8607".toUri(),commitGrassImgView)
 
         //팁 뷰페이저
         //이미지 넣기

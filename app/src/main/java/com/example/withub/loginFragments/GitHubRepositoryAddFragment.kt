@@ -59,7 +59,7 @@ class GitHubRepositoryAddFragment: Fragment() {
         textViewColorChange(warningInform2,1,6,R.color.timer)
         textViewColorChange(warningInform4,0,34,R.color.timer)
 
-        adapter = SignupRVAdapter(repositoryList,view)
+//        adapter = SignupRVAdapter(repositoryList)
         recyclerView.adapter = adapter
 
         signupBackBtn.setOnClickListener {
@@ -67,9 +67,9 @@ class GitHubRepositoryAddFragment: Fragment() {
                 .commit()
         }
 
-        githubNickNameConfirmBtn.setOnClickListener{
+//        githubNickNameConfirmBtn.setOnClickListener{
 //            githubNickNameDuplicateApi(view,githubNickNameText,githubNickNameConfirmBtn,githubNickNameChangeBtn)
-        }
+//        }
 
         repositoryAddBtn.setOnClickListener{
             if (githubNickNameCheckBoolean == false) {
@@ -202,17 +202,16 @@ class GitHubRepositoryAddFragment: Fragment() {
                 if (!response.body()!!.success) {
                     dialogMessage("일치하는 GitHub 닉네임이 없습니다.")
                 } else {
-                    addRepository(githubOwnerText.text.toString(),githubRepositoryText.text.toString())
-//                    addRepository(repositoryList,"${githubOwnerText.text} / ${githubRepositoryText.text}")
+                    addRepository(repositoryList,"${githubOwnerText.text} / ${githubRepositoryText.text}")
                     dialogMessage("레포지토리가 추가되었습니다.")
                 }
             }
         })
     }
 
-    fun addRepository(owner:String, repository:String) {
+    fun addRepository(repositoryList:ArrayList<UserRepoData>, ownerRepository:String) {
 //        repositoryList.add(UserRepoData("$ownerRepository"))
-        adapter.addItem(UserRepoData(owner,repository))
+//        adapter.addItem(UserRepoData(ownerRepository))
     }
 
 

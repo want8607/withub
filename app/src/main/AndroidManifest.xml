@@ -38,11 +38,19 @@
             android:windowSoftInputMode="adjustPan">
         </activity>
 
-
         <activity android:name=".FriendActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".DrawerActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AccountActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ResignAccount"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

@@ -33,16 +33,87 @@
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <LinearLayout
+        android:id="@+id/account_activity_change_password_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_activity_change_nickname_view">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.97"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center"
+            android:text="@string/change_password"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_weight="0.03"
+            android:gravity="end"
+            android:src="@drawable/ic_nav_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/account_activity_delete_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/account_activity_delete_text" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/account_activity_change_nickname_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.97"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center"
+            android:text="@string/change_nickname"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_weight="0.03"
+            android:gravity="end"
+            android:src="@drawable/ic_nav_right_arrow"
+            app:layout_constraintBottom_toBottomOf="@+id/account_activity_delete_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/account_activity_delete_text" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/account_activity_logout_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/background_color"
         android:orientation="horizontal"
-        android:weightSum="1"
         android:padding="5dp"
+        android:weightSum="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/account_activity_change_password_view">
 
         <TextView
             android:id="@+id/account_activity_logout_text"

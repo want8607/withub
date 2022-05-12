@@ -1,5 +1,6 @@
 package com.example.withub
 
+import android.content.Intent
 import android.icu.number.Scale.none
 import android.os.Bundle
 import android.view.ViewGroup
@@ -54,6 +55,11 @@ class DrawerActivity : AppCompatActivity() {
                 .setPositiveButton("추가"){ _, _ -> navFriendRVAdapter.addItem(input.text.toString()) }
                 .setNegativeButton("취소"){ _, _ ->  }
                 .show()
+        }
+
+        findViewById<ImageButton>(R.id.drawer_option_button).setOnClickListener {
+            val intent = Intent(this,SettingActivity::class.java)
+            startActivity(intent)
         }
 
         //닫기

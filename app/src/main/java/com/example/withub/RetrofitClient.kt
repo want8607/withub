@@ -86,18 +86,18 @@ interface NickNameCheckApi{
 }
 
 
-//깃허브 닉네임 중복체크
-data class GithubNickNameValue(
-    @SerializedName("committer") val committer : String
-)
-
-data class GitHubNickNameCheckData(val message: String, val success: Boolean)
-
-//깃허브 아이디 유효성 체크 API
-interface GithubNickNameCheckApi{
-    @POST("/account/committer")
-    fun githubNickNameCheck(@Body requestData: GithubNickNameValue) : Call<GitHubNickNameCheckData>
-}
+////깃허브 닉네임 중복체크
+//data class GithubNickNameValue(
+//    @SerializedName("committer") val committer : String
+//)
+//
+//data class GitHubNickNameCheckData(val message: String, val success: Boolean)
+//
+////깃허브 아이디 유효성 체크 API
+//interface GithubNickNameCheckApi{
+//    @POST("/account/committer")
+//    fun githubNickNameCheck(@Body requestData: GithubNickNameValue) : Call<GitHubNickNameCheckData>
+//}
 
 
 //깃허브 닉네임,오너,레포지토리 체크
@@ -115,7 +115,7 @@ interface GithubOwnerRepoCheckApi{
     fun githubOwnerRepoCheck(@Body requestData: GithubOwnerRepoValue) : Call<GitHubOwnerRepoCheckData>
 }
 
-
+//----------------------아이디 찾기----------------------------
 //아이디 찾기 메일전송
 data class FindIdEmailValue(
     @SerializedName("email") val email : String
@@ -127,4 +127,38 @@ data class IdFindEmailCheckData(val message: String, val success: Boolean, val t
 interface FindIdSendEmailApi{
     @POST("/account/id")
     fun emailCheck(@Body requestData: FindIdEmailValue) : Call<IdFindEmailCheckData>
+}
+
+
+//-----------------------비밀번호 찾기-------------------------------
+//비밀번호 찾기 아이디, 이메일 전송 (로그인 전)
+data class FindPwIdEmailValue(
+    @SerializedName("id") val id : String,
+    @SerializedName("email") val email : String
+)
+
+data class FindPwIdEmailCheckData(val message: String, val success: Boolean, val token: String)
+
+//비밀번호 찾기(메일전송) API
+interface FindPwSendEmailApi{
+    @POST("/account/pw")
+    fun idEmailCheck(@Body requestData: FindPwIdEmailValue) : Call<FindPwIdEmailCheckData>
+}
+
+
+
+//메일로 보낸 인증번호 확인
+data class FindPwTokenAuthEmailIdValue(
+    @SerializedName("id") val id : String,
+    @SerializedName("email") val email : String,
+    @SerializedName("auth") val auth : String,
+    @SerializedName("token") val token : String
+)
+
+data class FindPwCertiNumCheckData(val message: String, val success: Boolean)
+
+//메일 보내는 API
+interface FindPwCertiNumConfirmApi{
+    @POST("/account/pw/auth")
+    fun certiNumCheck(@Body requestData: FindPwTokenAuthEmailIdValue) : Call<FindPwCertiNumCheckData>
 }

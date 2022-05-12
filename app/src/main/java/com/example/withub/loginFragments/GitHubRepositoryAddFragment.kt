@@ -59,7 +59,7 @@ class GitHubRepositoryAddFragment: Fragment() {
         textViewColorChange(warningInform2,1,6,R.color.timer)
         textViewColorChange(warningInform4,0,34,R.color.timer)
 
-        adapter = SignupRVAdapter(repositoryList)
+        adapter = SignupRVAdapter(repositoryList,view)
         recyclerView.adapter = adapter
 
         signupBackBtn.setOnClickListener {
@@ -68,7 +68,7 @@ class GitHubRepositoryAddFragment: Fragment() {
         }
 
         githubNickNameConfirmBtn.setOnClickListener{
-            githubNickNameDuplicateApi(view,githubNickNameText,githubNickNameConfirmBtn,githubNickNameChangeBtn)
+//            githubNickNameDuplicateApi(view,githubNickNameText,githubNickNameConfirmBtn,githubNickNameChangeBtn)
         }
 
         repositoryAddBtn.setOnClickListener{
@@ -162,32 +162,32 @@ class GitHubRepositoryAddFragment: Fragment() {
         repositoryAddBtn.isEnabled = false
     }
 
-    fun githubNickNameDuplicateApi(view:View, githubNickNameText: EditText,githubNickNameConfirmBtn: Button,githubNickNameChangeBtn:Button){
-        val inform = GithubNickNameValue(githubNickNameText.text.toString())
-        val requestGithubNickNameCheckApi = retrofit.create(GithubNickNameCheckApi::class.java)
-        requestGithubNickNameCheckApi.githubNickNameCheck(inform).enqueue(object : retrofit2.Callback<GitHubNickNameCheckData> {
-            override fun onFailure(
-                call: Call<GitHubNickNameCheckData>,
-                t: Throwable
-            ) {
-            }
-            override fun onResponse(call: Call<GitHubNickNameCheckData>, response: Response<GitHubNickNameCheckData>) {
-
-                if (!response.body()!!.success) {
-                    dialogMessage("일치하는 GitHub 닉네임이 없습니다.")
-                } else {
-                    Log.d("message","${response.body()!!.success}")
-                    githubNickNameValue =githubNickNameText.text.toString()
-                    githubNickNameCheckBoolean = true
-                    githubNickNameConfirmBtn.visibility = GONE
-                    githubNickNameChangeBtn.visibility = VISIBLE
-                    githubNickNameText.isEnabled = false
-                    nextBtnActivate(view)
-                    dialogMessage("GiHub 닉네임이 확인되었습니다.")
-                }
-            }
-        })
-    }
+//    fun githubNickNameDuplicateApi(view:View, githubNickNameText: EditText,githubNickNameConfirmBtn: Button,githubNickNameChangeBtn:Button){
+//        val inform = GithubNickNameValue(githubNickNameText.text.toString())
+//        val requestGithubNickNameCheckApi = retrofit.create(GithubNickNameCheckApi::class.java)
+//        requestGithubNickNameCheckApi.githubNickNameCheck(inform).enqueue(object : retrofit2.Callback<GitHubNickNameCheckData> {
+//            override fun onFailure(
+//                call: Call<GitHubNickNameCheckData>,
+//                t: Throwable
+//            ) {
+//            }
+//            override fun onResponse(call: Call<GitHubNickNameCheckData>, response: Response<GitHubNickNameCheckData>) {
+//
+//                if (!response.body()!!.success) {
+//                    dialogMessage("일치하는 GitHub 닉네임이 없습니다.")
+//                } else {
+//                    Log.d("message","${response.body()!!.success}")
+//                    githubNickNameValue =githubNickNameText.text.toString()
+//                    githubNickNameCheckBoolean = true
+//                    githubNickNameConfirmBtn.visibility = GONE
+//                    githubNickNameChangeBtn.visibility = VISIBLE
+//                    githubNickNameText.isEnabled = false
+//                    nextBtnActivate(view)
+//                    dialogMessage("GiHub 닉네임이 확인되었습니다.")
+//                }
+//            }
+//        })
+//    }
 
     fun githubOwnerRepoCheckApi(githubOwnerText: EditText, githubRepositoryText:EditText, repositoryList: ArrayList<UserRepoData>, adapter:RecyclerView.Adapter<SignupRVAdapter.Holder>) {
         val inform = GithubOwnerRepoValue(githubNickNameValue,githubOwnerText.text.toString(),githubRepositoryText.text.toString())
@@ -202,16 +202,17 @@ class GitHubRepositoryAddFragment: Fragment() {
                 if (!response.body()!!.success) {
                     dialogMessage("일치하는 GitHub 닉네임이 없습니다.")
                 } else {
-                    addRepository(repositoryList,"${githubOwnerText.text} / ${githubRepositoryText.text}")
+                    addRepository(githubOwnerText.text.toString(),githubRepositoryText.text.toString())
+//                    addRepository(repositoryList,"${githubOwnerText.text} / ${githubRepositoryText.text}")
                     dialogMessage("레포지토리가 추가되었습니다.")
                 }
             }
         })
     }
 
-    fun addRepository(repositoryList:ArrayList<UserRepoData>, ownerRepository:String) {
+    fun addRepository(owner:String, repository:String) {
 //        repositoryList.add(UserRepoData("$ownerRepository"))
-        adapter.addItem(UserRepoData(ownerRepository))
+        adapter.addItem(UserRepoData(owner,repository))
     }
 
 

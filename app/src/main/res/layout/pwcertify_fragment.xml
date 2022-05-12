@@ -31,6 +31,7 @@
                 tools:ignore="MissingClass,MissingConstraints">
 
                 <EditText
+                    android:id="@+id/id_edittext_find_pw"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/nanum_square_round_regular"
@@ -42,20 +43,24 @@
                     android:theme="@style/editText" />
             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:orientation="horizontal">
 
                 <com.wrapp.floatlabelededittext.FloatLabeledEditText
                     android:id="@+id/floatLabeledEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
                     float:fletPadding="5dp"
                     tools:ignore="MissingClass,MissingConstraints">
 
                     <EditText
+                        android:id="@+id/email_edittext_find_pw"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:hint="이메일"
                         android:singleLine="true"
@@ -65,83 +70,103 @@
                         android:theme="@style/editText" />
                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|bottom"
-                    android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
+                    android:layout_gravity="bottom"
+                    android:text="@"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:textColor="@color/black"
+                    />
 
-                    <Spinner
-                        android:layout_width="130dp"
-                        android:layout_height="30dp"
-                        android:backgroundTint="@color/point_color"
-                        android:dropDownWidth="100dp"
-                        android:popupBackground="@color/gray"
-                        android:spinnerMode="dropdown" />
-                    //스피너 팝업 컬러
+                <Spinner
+                    android:id="@+id/email_spinner_find_pw"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="@color/point_color"
+                    android:dropDownWidth="150dp"
+                    android:popupBackground="@color/white"
+                    android:background="@drawable/spinner_design"
+                    android:textAlignment="center"
+                    android:spinnerMode="dropdown"
+                    android:layout_gravity="bottom"
+                    tools:ignore="RtlCompat" />
 
-                    <Button
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right"
-                        android:background="@drawable/stroke_btn"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="인증하기" />
+                <Button
+                    android:id="@+id/email_certification_btn_find_pw"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:textColor="@color/thick_gray"
+                    android:background="@drawable/stroke_disabled_btn"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="14sp"
+                    android:enabled="false"
+                    android:text="인증하기" />
 
-                </LinearLayout>
+            </LinearLayout>
 
-            </FrameLayout>
-
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:weightSum="1"
+                android:orientation="horizontal">
 
-                <com.wrapp.floatlabelededittext.FloatLabeledEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    float:fletPadding="5dp"
-                    tools:ignore="MissingClass,MissingConstraints">
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                    <EditText
+                    <com.wrapp.floatlabelededittext.FloatLabeledEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:hint="인증번호"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        android:textSize="15sp"
-                        android:theme="@style/editText" />
-                </com.wrapp.floatlabelededittext.FloatLabeledEditText>
+                        float:fletPadding="5dp"
+                        tools:ignore="MissingClass,MissingConstraints">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right|bottom"
-                    android:layout_marginBottom="15dp"
-                    android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/certi_num_Edittext_find_pw"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/nanum_square_round_regular"
+                            android:hint="인증번호"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/black"
+                            android:textSize="15sp"
+                            android:maxLength="4"
+                            android:theme="@style/editText" />
+                    </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                     <TextView
+                        android:layout_marginBottom="11dp"
+                        android:layout_gravity="end|bottom"
+                        android:id="@+id/timer_text_find_pw"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_gravity="bottom"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
-                        android:text="5 : 00"
-                        android:textAlignment="gravity"
                         android:textColor="@color/timer"
                         android:textSize="20sp" />
 
-                    <Button
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="right|bottom"
-                        android:background="@drawable/stroke_btn"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="확인" />
-                </LinearLayout>
 
-            </FrameLayout>
+                </FrameLayout>
+
+                <Button
+                    android:layout_marginBottom="3dp"
+                    android:id="@+id/certi_num_confirm_btn_find_pw"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="right|bottom"
+                    android:background="@drawable/stroke_btn"
+                    android:fontFamily="@font/nanum_square_round_regular"
+                    android:text="확인" />
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
@@ -154,14 +179,15 @@
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/next_btn_find_pw"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/disabled_button"
         android:fontFamily="@font/nanum_square_round_regular"
         android:text="다음"
+        android:enabled="false"
         android:textColor="@color/white"
         android:textSize="20sp"
         float:layout_constraintBottom_toBottomOf="parent"

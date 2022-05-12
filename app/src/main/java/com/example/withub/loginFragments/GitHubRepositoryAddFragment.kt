@@ -59,7 +59,7 @@ class GitHubRepositoryAddFragment: Fragment() {
         textViewColorChange(warningInform2,1,6,R.color.timer)
         textViewColorChange(warningInform4,0,34,R.color.timer)
 
-        adapter = SignupRVAdapter(repositoryList)
+//        adapter = SignupRVAdapter(repositoryList)
         recyclerView.adapter = adapter
 
         signupBackBtn.setOnClickListener {
@@ -211,7 +211,7 @@ class GitHubRepositoryAddFragment: Fragment() {
 
     fun addRepository(repositoryList:ArrayList<UserRepoData>, ownerRepository:String) {
 //        repositoryList.add(UserRepoData("$ownerRepository"))
-        adapter.addItem(UserRepoData(ownerRepository))
+//        adapter.addItem(UserRepoData(ownerRepository))
     }
 
 

@@ -16,6 +16,7 @@ import com.example.withub.mainActivityAdapters.NavFriendRVAdapter
 class DrawerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.drawer_activity)
 
         //헤더 이미지 설정

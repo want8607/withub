@@ -19,9 +19,8 @@
     </string-array>
 
     <string name="neam">%1$s 님</string>
-    <string name="friend_commit_average">%1$s 님\n친구의 커밋 평균</string>
-    <string name="area_commit_average">%1$s 님\n지역의 커밋 평균</string>
-    <string name="friend_recent_commit">%1$s 님의 최근 커밋</string>
+    <string name="friend_recent_commit">%1$s님의 최근 커밋</string>
+    <string name="friend_repository_list">%1$s님의 레포지토리 목록</string>
     <string name="graph_text">30일 커밋 그래프</string>
     <string name="my_commit_average">내 친구의 커밋 평균</string>
     <string name="my_area_average">내 지역의 커밋 평균</string>
@@ -36,4 +35,11 @@
     <string name="github_info_change">GitHub 정보수정</string>
     <string name="change_nickname">닉네임 변경</string>
     <string name="change_password">비밀번호 변경</string>
+    <string name="tips_for_developer">개발자를 위한 팁</string>
+    <string name="contributions_graph">깃허브 그래프</string>
+    <string name="setting">설정</string>
+    <string name="account">계정</string>
+    <string name="logout">로그아웃</string>
+    <string name="delete_account">회원탈퇴</string>
+
 </resources>

@@ -13,6 +13,7 @@
     <color name="toolbar_text_color">#FEFEFE</color>
     <color name="background_color">#141414</color>
     <color name="graph_color">#201F24</color>
+    <color name="graph_dot_color">#f71735</color>
     <color name="main_view_color">#201F24</color>
     <color name="border_color">#EEEEEE</color>
     <color name="gray">#D9D9D9</color>
@@ -25,4 +26,5 @@
     <color name="bottom_nav_color">#17181C</color>
     <color name="bottom_nav_unselected_color">#696C74</color>
     <color name="bottom_nav_selected_color">@color/point_color</color>
-</resources>gi
+    <color name="red">#D20000</color>
+</resources>

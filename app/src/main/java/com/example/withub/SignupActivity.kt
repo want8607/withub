@@ -25,7 +25,7 @@ class SignupActivity: AppCompatActivity() {
         id = idValue
         var fragment = EmailCertifyFragment()
         var myBundle = Bundle()
-        myBundle.putString("id", idValue)
+        myBundle.putString("id", id)
         fragment.arguments = myBundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }

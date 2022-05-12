@@ -22,6 +22,7 @@ class PwCertifyFragment:Fragment() {
     lateinit var userEmail: String
     lateinit var count: CountDownTimer
     lateinit var token: String
+    lateinit var id: String
     private var running = false
     private var confirmBtnBoolean = false
     val retrofit = RetrofitClient.initRetrofit()
@@ -32,26 +33,29 @@ class PwCertifyFragment:Fragment() {
     ): View {
         var view: View = inflater.inflate(R.layout.pwcertify_fragment, container, false)
         val findPwActivity = activity as FindPwActivity
-        val findPwBackBtn = findPwActivity.findViewById<Button>(R.id.find_pw_back_btn)
+        val backBtn = findPwActivity.findViewById<Button>(R.id.back_btn_find_pw)
         val spinner = view.findViewById<Spinner>(R.id.email_spinner_find_pw)
         val emailText = view.findViewById<EditText>(R.id.email_edittext_find_pw)
         val certificationBtn = view.findViewById<Button>(R.id.email_certification_btn_find_pw)
         val timerTime = view.findViewById<TextView>(R.id.timer_text_find_pw)
         val idText = view.findViewById<EditText>(R.id.id_edittext_find_pw)
+        val confirmBtn = view.findViewById<Button>(R.id.certi_num_confirm_btn_find_pw)
+        val certiNumText = view.findViewById<EditText>(R.id.certi_num_Edittext_find_pw)
+        val nextBtn = view.findViewById<Button>(R.id.next_btn_find_pw)
 
-        findPwBackBtn.setOnClickListener{
+        backBtn.setOnClickListener{
             val intent = Intent(findPwActivity, LoginActivity::class.java)
             startActivity(intent)
         }
 
         certificationBtn.setOnClickListener {
             confirmBtnBoolean = true
-
             if (idText.text.toString().isEmpty()) {
                 dialogMessage("아이디를 적어주세요.")
             } else if (select == "--선택--") {
                 dialogMessage("도메인을 선택해주세요.")
             } else {
+                id = idText.text.toString()
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.thick_gray))
                 certificationBtn.setEnabled(false)
@@ -60,6 +64,22 @@ class PwCertifyFragment:Fragment() {
                     count.cancel()
                 }
                 timerStart(timerTime)
+            }
+        }
+
+        nextBtn.setOnClickListener{
+            findPwActivity.tokenInform(token)
+        }
+
+        confirmBtn.setOnClickListener{
+            if(confirmBtnBoolean == false)  {
+                dialogMessage("이메일 인증을 해주세요.")
+            } else if (running == false) {
+                dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
+            } else if (certiNumText.text.isEmpty()){
+                dialogMessage("인증번호를 입력해주세요.")
+            } else{
+                EmailCertifyApi(certiNumText,nextBtn,certificationBtn)
             }
         }
 
@@ -162,6 +182,32 @@ class PwCertifyFragment:Fragment() {
                 Log.d("message","${response.body()!!.token}")
 
                 token = response.body()!!.token
+            }
+        })
+    }
+
+    fun EmailCertifyApi(certiNumText:EditText,nextBtn:Button,certificationBtn: Button) {
+        var inform = FindPwTokenAuthEmailIdValue(id, userEmail, certiNumText.text.toString(),token)
+        val requestCertiNumConfirmApi = retrofit.create(FindPwCertiNumConfirmApi::class.java)
+        requestCertiNumConfirmApi.certiNumCheck(inform).enqueue(object : retrofit2.Callback<FindPwCertiNumCheckData> {
+            override fun onFailure(
+                call: Call<FindPwCertiNumCheckData>,
+                t: Throwable
+            ) {
+            }
+            override fun onResponse(call: Call<FindPwCertiNumCheckData>, response: Response<FindPwCertiNumCheckData>) {
+                if (response.body()!!.success == true) {
+                    count.cancel()
+                    dialogMessage("인증번호가 확인되었습니다.")
+                    nextBtn.setBackgroundResource(R.drawable.login_btn)
+                    nextBtn.setEnabled(true)
+                } else {
+                    count.cancel()
+                    dialogMessage("인증번호가 틀렸습니다. 다시 인증해주세요.")
+                    certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
+                    certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                    certificationBtn.setEnabled(true)
+                }
             }
         })
     }

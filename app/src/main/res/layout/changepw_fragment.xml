@@ -37,6 +37,9 @@
                     tools:ignore="MissingClass,MissingConstraints">
 
                     <EditText
+                        android:id="@+id/pw_edittext_find_pw"
+                        android:maxLength="20"
+                        android:inputType="textPassword"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/nanum_square_round_regular"
@@ -49,19 +52,26 @@
                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                 <TextView
+                    android:id="@+id/pw_safety_textview_find_pw"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:gravity="bottom"
-                    android:text="안전"
                     android:textAlignment="gravity"
-                    android:textColor="@color/correct_color"
-                    android:textSize="18sp" />
+                    android:textColor="@color/timer"
+                    android:textSize="15sp" />
 
             </FrameLayout>
+
+            <TextView
+                android:id="@+id/pw_check_textview_find_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/timer"
+                android:textSize="12sp" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -74,6 +84,9 @@
                     tools:ignore="MissingClass,MissingConstraints">
 
                     <EditText
+                        android:id="@+id/pw_confirm_edittext_find_pw"
+                        android:maxLength="20"
+                        android:inputType="textPassword"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/nanum_square_round_regular"
@@ -86,17 +99,17 @@
                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                 <TextView
+                    android:id="@+id/pw_confirm_mismatch_textview_find_pw"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:gravity="bottom"
-                    android:text="일치"
                     android:textAlignment="gravity"
-                    android:textColor="@color/correct_color"
-                    android:textSize="18sp" />
+                    android:textColor="@color/timer"
+                    android:textSize="15sp" />
 
             </FrameLayout>
 
@@ -121,15 +134,16 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/change_pw_btn_find_pw"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/disabled_button"
         android:fontFamily="@font/nanum_square_round_regular"
         android:text="비밀번호 변경"
         android:textColor="@color/white"
+        android:enabled="false"
         android:textSize="20sp"
         float:layout_constraintBottom_toBottomOf="parent"
         float:layout_constraintEnd_toEndOf="parent"

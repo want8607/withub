@@ -88,4 +88,7 @@ dependencies {
 
     //GlideToVectorYou
     implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
+
+    //okhttp interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
 }

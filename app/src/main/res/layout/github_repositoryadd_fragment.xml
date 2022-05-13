@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:fontFamily="@font/nanum_square_round_regular"
-                android:text="Repository name"
+                android:text="Repository"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
@@ -157,6 +157,7 @@
                 android:layout_weight="0.1" />
 
             <EditText
+                android:hint="레포지토리 주인"
                 android:id="@+id/owner_edittext_signup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -177,6 +178,7 @@
                 android:textAlignment="center" />
 
             <EditText
+                android:hint="레포지토리 이름"
                 android:id="@+id/repository_edittext_signup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

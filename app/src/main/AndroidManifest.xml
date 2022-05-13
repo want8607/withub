@@ -13,7 +13,7 @@
         android:theme="@style/Theme.WITHUB">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>

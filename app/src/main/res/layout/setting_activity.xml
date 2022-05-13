@@ -62,6 +62,7 @@
                 android:textSize="18sp" />
 
             <Spinner
+                android:id="@+id/area_select_spinner_setting"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"

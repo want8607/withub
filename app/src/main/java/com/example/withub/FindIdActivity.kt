@@ -72,7 +72,11 @@ class FindIdActivity : AppCompatActivity() {
             ) {
             }
             override fun onResponse(call: Call<IdFindEmailCheckData>, response: Response<IdFindEmailCheckData>) {
-                token = response.body()!!.token
+                if (!response.body()!!.success) {
+                    dialogMessage(response.body()!!.message)
+                } else {
+                    token = response.body()!!.token
+                }
             }
         })
     }

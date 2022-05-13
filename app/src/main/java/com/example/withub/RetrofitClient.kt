@@ -87,35 +87,6 @@ interface NickNameCheckApi{
 }
 
 
-////깃허브 닉네임 중복체크
-//data class GithubNickNameValue(
-//    @SerializedName("committer") val committer : String
-//)
-//
-//data class GitHubNickNameCheckData(val message: String, val success: Boolean)
-//
-////깃허브 아이디 유효성 체크 API
-//interface GithubNickNameCheckApi{
-//    @POST("/account/committer")
-//    fun githubNickNameCheck(@Body requestData: GithubNickNameValue) : Call<GitHubNickNameCheckData>
-//}
-
-
-//깃허브 닉네임,오너,레포지토리 체크
-data class GithubOwnerRepoValue(
-    @SerializedName("committer") val committer : String,
-    @SerializedName("owner") val owner : String,
-    @SerializedName("name") val name : String
-)
-
-data class GitHubOwnerRepoCheckData(val message: String, val success: Boolean)
-
-//깃허브 아이디 유효성 체크 API
-interface GithubOwnerRepoCheckApi{
-    @POST("/account/github")
-    fun githubOwnerRepoCheck(@Body requestData: GithubOwnerRepoValue) : Call<GitHubOwnerRepoCheckData>
-}
-
 //----------------------아이디 찾기----------------------------
 //아이디 찾기 메일전송
 data class FindIdEmailValue(

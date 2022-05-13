@@ -167,21 +167,24 @@ class PwCertifyFragment:Fragment() {
     fun sendMailApi(idText: String) {
         var inform = FindPwIdEmailValue(idText,userEmail)
         val requestSendEmailApi = retrofit.create(FindPwSendEmailApi::class.java)
-        Log.d("message","sdfsdfsdf")
 
         requestSendEmailApi.idEmailCheck(inform).enqueue(object : retrofit2.Callback<FindPwIdEmailCheckData> {
             override fun onFailure(
                 call: Call<FindPwIdEmailCheckData>,
                 t: Throwable
             ) {
-                Log.d("message","sdfsdfsdf")
+                Log.d("message",t.toString())
 
             }
             override fun onResponse(call: Call<FindPwIdEmailCheckData>, response: Response<FindPwIdEmailCheckData>) {
-                Log.d("message","${response.body()!!.success}")
-                Log.d("message","${response.body()!!.token}")
+                if (response.body()!!.success == false) {
+                    Log.d("message","${response.body()!!.success}")
+                    Log.d("message","${response.body()!!.token}")
+                    dialogMessage(response.body()!!.message)
+                } else {
+                    token = response.body()!!.token
+                }
 
-                token = response.body()!!.token
             }
         })
     }

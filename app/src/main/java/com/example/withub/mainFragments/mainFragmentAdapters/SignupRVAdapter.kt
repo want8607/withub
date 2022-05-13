@@ -1,6 +1,5 @@
 package com.example.withub.mainFragments.mainFragmentAdapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +39,10 @@ class SignupRVAdapter (private val items: ArrayList<UserRepoData>, private val v
     fun addItem(item: UserRepoData) {
         items.add(item)
         notifyItemInserted(items.size)
+    }
+
+    fun deleteAllItem(){
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

@@ -17,7 +17,7 @@ class SignupActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_activity)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, GitHubRepositoryAddFragment()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, NickNameAreaSelectFragment()).commit()
         }
     }
 

@@ -105,6 +105,7 @@ class GitHubRepositoryAddFragment: Fragment() {
 
         signupBtn.setOnClickListener{
             //데이터 끌고 액티비티로 이동
+            signupActivity.githubNickNameRepoInform(githubNickNameValue,repositoryList)
         }
 
         githubNickNameRegEx(githubNickNameText,githubNickNameConfirmBtn)

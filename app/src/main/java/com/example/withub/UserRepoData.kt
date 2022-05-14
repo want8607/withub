@@ -1,6 +1,8 @@
 package com.example.withub
 
+import com.google.gson.annotations.SerializedName
+
 data class UserRepoData(
-    var owner:String,
-    var repository: String
+    @SerializedName("owner") var owner:String,
+    @SerializedName("name") var name: String
 )

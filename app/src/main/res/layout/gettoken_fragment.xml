@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     xmlns:float="http://schemas.android.com/apk/res-auto">
 
-
     <LinearLayout
         android:id="@+id/linearLayout22"
         android:layout_width="match_parent"
@@ -18,7 +17,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.1"/>
 
         <ScrollView
             android:layout_width="0dp"

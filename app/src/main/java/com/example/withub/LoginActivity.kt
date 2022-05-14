@@ -1,11 +1,24 @@
 package com.example.withub
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import retrofit2.Call
+import retrofit2.Response
 
 class LoginActivity: AppCompatActivity() {
+    lateinit var id: String
+    lateinit var pw: String
+    val retrofit = RetrofitClient.initRetrofit()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
@@ -14,6 +27,9 @@ class LoginActivity: AppCompatActivity() {
         val signupBtn = findViewById<TextView>(R.id.signup_btn)
         val idFindingBtn = findViewById<TextView>(R.id.id_finding_btn)
         val pwFindingBtn = findViewById<TextView>(R.id.pw_finding_btn)
+        val idText = findViewById<EditText>(R.id.id_edittext_login_activity)
+        val pwText = findViewById<EditText>(R.id.pw_edittext_login_activity)
+        val loginBtn = findViewById<Button>(R.id.login_btn)
 
         signupBtn.setOnClickListener{
             val intent = Intent(this, SignupActivity::class.java)
@@ -29,5 +45,70 @@ class LoginActivity: AppCompatActivity() {
             val intent = Intent(this, FindPwActivity::class.java)
             startActivity(intent)
         }
+
+        loginBtn.setOnClickListener{
+            loginApi(idText,pwText)
+        }
+
+        loginBtnRegEx(idText,pwText,loginBtn)
+    }
+
+    fun loginBtnRegEx(idText:EditText,pwText: EditText,loginBtn:Button){
+        idText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                loginBtnActivate(idText,pwText,loginBtn)
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+        pwText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                loginBtnActivate(idText,pwText,loginBtn)
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+    }
+
+    fun loginBtnActivate(idText:EditText,pwText: EditText,loginBtn:Button) {
+        if (idText.text.length >= 5 && pwText.text.length >= 8){
+            loginBtn.setBackgroundResource(R.drawable.login_btn)
+            loginBtn.isEnabled = true
+        } else {
+            loginBtn.setBackgroundResource(R.drawable.disabled_button)
+            loginBtn.isEnabled = false
+        }
+    }
+
+    fun loginApi(idText: EditText,pwText: EditText) {
+        Log.d("message",idText.text.toString())
+        Log.d("message",pwText.text.toString())
+        val inform = LoginIdPwValue(idText.text.toString(),pwText.text.toString())
+        val requestLoginApi = retrofit.create(LoginApi::class.java)
+        requestLoginApi.loginCheck(inform).enqueue(object : retrofit2.Callback<LoginCheckData> {
+            override fun onFailure(
+                call: Call<LoginCheckData>,
+                t: Throwable
+            ) {
+            }
+            override fun onResponse(call: Call<LoginCheckData>, response: Response<LoginCheckData>) {
+                if (response.body()!!.success) {
+                    MyApp.prefs.accountToken = response.body()!!.token
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    var builder: AlertDialog.Builder = AlertDialog.Builder(this@LoginActivity)
+                    builder.setMessage("아이디 혹은 비밀번호를 확인해주세요.")
+                    builder.setPositiveButton("확인", null)
+                    val alertDialog: AlertDialog = builder.create()
+                    alertDialog.show()
+                }
+
+            }
+        })
     }
 }

@@ -68,8 +68,10 @@
                 tools:ignore="MissingClass,MissingConstraints">
 
                 <EditText
+                    android:id="@+id/id_edittext_login_activity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:maxLength="15"
                     android:hint="아이디"
                     android:singleLine="true"
                     android:textColor="@color/black"
@@ -107,9 +109,11 @@
                 tools:ignore="MissingClass,MissingConstraints">
 
                 <EditText
+                    android:id="@+id/pw_edittext_login_activity"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:singleLine="true"
+                    android:maxLength="20"
                     android:inputType="textPassword"
                     android:textColor="@color/black"
                     android:theme="@style/editText"
@@ -214,10 +218,12 @@
         android:gravity="center">
 
         <Button
+            android:id="@+id/login_btn"
             android:layout_width="300dp"
             android:layout_height="55dp"
-            android:background="@drawable/login_btn"
+            android:background="@drawable/disabled_button"
             android:text="로그인"
+            android:enabled="false"
             android:fontFamily="@font/nanum_square_round_regular"
             android:textColor="@color/white"
             android:textSize="20sp"/>

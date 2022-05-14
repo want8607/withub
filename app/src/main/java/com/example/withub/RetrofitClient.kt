@@ -25,6 +25,8 @@ object RetrofitClient {   //object 는 객체를 리턴해줄 수 있어 클래�
 }
 
 
+//------------------------------회원가입-------------------------------
+
 //아이디 중복체크
 data class IdValue(
     @SerializedName("id") val id : String
@@ -84,6 +86,26 @@ data class NickNameCheckData(val message: String, val success: Boolean)
 interface NickNameCheckApi{
     @POST("/account/duplicate/nickname")
     fun nickNameCheck(@Body requestData: NickNameValue) : Call<NickNameCheckData>
+}
+
+
+//회원가입
+data class SignupValue(
+    @SerializedName("id") val id : String,
+    @SerializedName("pw") val pw : String,
+    @SerializedName("nickname") val nickname : String,
+    @SerializedName("email") val email : String,
+    @SerializedName("area") val area : Int,
+    @SerializedName("committer") val committer : String,
+    @SerializedName("repository") val repository : List<UserRepoData>
+)
+
+data class SignupCheckData(val message: String, val success: Boolean)
+
+//회원가입 API
+interface SignupApi{
+    @POST("/account")
+    fun signupCheck(@Body requestData: SignupValue) : Call<SignupCheckData>
 }
 
 
@@ -148,4 +170,18 @@ data class FindPwChangePwCheckData(val message: String, val success: Boolean)
 interface FindPwChangePwApi{
     @PATCH("/account/pw")
     fun changePw(@Body requestData: FindPwTokenPwValue) : Call<FindPwChangePwCheckData>
+}
+
+//-------------------------로그인----------------------------------
+data class LoginIdPwValue(
+    @SerializedName("id") val id : String,
+    @SerializedName("pw") val pw : String
+)
+
+data class LoginCheckData(val message: String, val success: Boolean, val token: String)
+
+//비밀번호 찾기(메일전송) API
+interface LoginApi{
+    @POST("/account/login")
+    fun loginCheck(@Body requestData: LoginIdPwValue) : Call<LoginCheckData>
 }

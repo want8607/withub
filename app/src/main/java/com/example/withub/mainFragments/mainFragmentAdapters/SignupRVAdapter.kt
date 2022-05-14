@@ -19,7 +19,7 @@ class SignupRVAdapter (private val items: ArrayList<UserRepoData>, private val v
         var signupBtn = view.findViewById<Button>(R.id.signup_btn_github_repository_add)
         fun bind(position: Int){
             num?.text = "${position + 1}"
-            nameRepository?.text = "${items[position].owner} / ${items[position].repository}"
+            nameRepository?.text = "${items[position].owner} / ${items[position].name}"
             if (items.size >= 1) {
                 signupBtn?.setBackgroundResource(R.drawable.login_btn)
                 signupBtn?.isEnabled = true

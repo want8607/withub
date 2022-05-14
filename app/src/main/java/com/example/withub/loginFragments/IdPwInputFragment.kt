@@ -27,6 +27,7 @@ class IdPwInputFragment: Fragment() {
     val retrofit = RetrofitClient.initRetrofit()
     var idCheckBoolean = false
     var idValue : String = ""
+    var pwValue : String = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -134,6 +135,7 @@ class IdPwInputFragment: Fragment() {
                     safetyView.setTextColor(ContextCompat.getColor(context!!, R.color.correct_color))
                     safetyView.text = "안전"
                     pwCheckView.text = ""
+                    pwValue = pwText.text.toString()
                     nextBtnActivate(view)
                 }
 
@@ -187,10 +189,9 @@ class IdPwInputFragment: Fragment() {
         if (safetyView.getText().toString() == "안전" && pwMismatchView.getText().toString() == "일치" && idCheckBoolean){
             nextBtn.setBackgroundResource(R.drawable.login_btn)
             nextBtn.setEnabled(true)
-            Log.d("message","next")
             nextBtn.setOnClickListener{
                 var signupActivity = activity as SignupActivity
-                signupActivity.idInform(idValue)
+                signupActivity.idPwInform(idValue,pwValue)
             }
         } else {
             nextBtn.setBackgroundResource(R.drawable.disabled_button)

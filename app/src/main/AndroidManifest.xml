@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.withub">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name="com.example.withub.MyApp"
@@ -50,6 +51,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ChangePasswordActivity"
             android:screenOrientation="portrait" />
+        <service android:name=".ForegroundService"/>
 
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait" />

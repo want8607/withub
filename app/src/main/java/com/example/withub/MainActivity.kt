@@ -1,26 +1,13 @@
 package com.example.withub
 
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
-import com.bumptech.glide.Glide
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.VERTICAL
-import com.example.withub.mainActivityAdapters.NavFriendRVAdapter
 import com.example.withub.mainFragments.CommitFragment
 import com.example.withub.mainFragments.HomeFragment
 import com.example.withub.mainFragments.MyInfoFragment
@@ -35,10 +22,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.main_activity)
+
+        //서비스 실행
+//        val serviceIntent = Intent(this,ForegroundService::class.java)
+//        startForegroundService(serviceIntent)
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
             setFragment(HomeFragment(),"Home")
         }
+
+        //통신
 
         //바텀 네비게이션 뷰
         bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav_view)

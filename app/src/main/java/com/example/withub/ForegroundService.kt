@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.util.Log
 import com.google.gson.GsonBuilder
-import kotlinx.coroutines.*
+
 
 class ForegroundService : Service() {
     override fun onBind(p0: Intent?): IBinder? {

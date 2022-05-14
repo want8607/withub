@@ -124,6 +124,23 @@ interface FindIdSendEmailApi{
 }
 
 
+
+//메일로 보낸 인증번호 확인
+data class FindIdAuthTokenEmailValue(
+    @SerializedName("auth") val auth : String,
+    @SerializedName("token") val token : String,
+    @SerializedName("email") val id : String
+)
+
+data class FindIdCertiNumCheckData(val message: String, val success: Boolean, val id: String)
+
+//메일 보내는 API
+interface FindIdCertiNumConfirmApi{
+    @POST("/account/id/auth")
+    fun certiNumCheck(@Body requestData: FindIdAuthTokenEmailValue) : Call<FindIdCertiNumCheckData>
+}
+
+
 //-----------------------비밀번호 찾기-------------------------------
 //비밀번호 찾기 아이디, 이메일 전송 (로그인 전)
 data class FindPwIdEmailValue(

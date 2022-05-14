@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import retrofit2.Call
 import retrofit2.Response
@@ -30,12 +31,16 @@ class FindIdActivity : AppCompatActivity() {
 
         val spinner: Spinner = findViewById(R.id.email_spinner_find_id)
         val emailText = findViewById<EditText>(R.id.email_edittext_find_id)
+        val certiNumText = findViewById<EditText>(R.id.certi_num_edittext_find_id)
         val findIdBackBtn = findViewById<Button>(R.id.find_id_back_btn)
         val certificationBtn = findViewById<Button>(R.id.email_certification_btn_find_id)
-        var timerTime = findViewById<TextView>(R.id.timer_text_find_id)
+        val confirmBtn = findViewById<Button>(R.id.certi_num_confirm_btn_find_id)
+        val timerTime = findViewById<TextView>(R.id.timer_text_find_id)
+        val yourIdTextView = findViewById<TextView>(R.id.your_id_textview_find_id)
+        val idText = findViewById<EditText>(R.id.id_edittext_find_id)
 
         findIdBackBtn.setOnClickListener{
-            if (running == true) {
+            if (running) {
                 count.cancel()
             }
             val intent = Intent(this, LoginActivity::class.java)
@@ -58,6 +63,18 @@ class FindIdActivity : AppCompatActivity() {
             }
         }
 
+        confirmBtn.setOnClickListener{
+            if(confirmBtnBoolean == false)  {
+                dialogMessage("이메일 인증을 해주세요.")
+            } else if (running == false) {
+                dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
+            } else if (certiNumText.text.isEmpty()){
+                dialogMessage("인증번호를 입력해주세요.")
+            } else{
+                emailCertifyApi(certiNumText,certificationBtn,yourIdTextView,idText)
+            }
+        }
+
         emailSpinnerSelect(spinner,emailText)
         emailRegEx(emailText,certificationBtn)
     }
@@ -76,6 +93,31 @@ class FindIdActivity : AppCompatActivity() {
                     dialogMessage(response.body()!!.message)
                 } else {
                     token = response.body()!!.token
+                }
+            }
+        })
+    }
+
+    fun emailCertifyApi(certiNumText:EditText, certificationBtn:Button,yourIdTextView:TextView, idText: EditText) {
+        var inform = FindIdAuthTokenEmailValue(certiNumText.text.toString(),token,userEmail)
+        val requestCertiNumConfirmApi = retrofit.create(FindIdCertiNumConfirmApi::class.java)
+        requestCertiNumConfirmApi.certiNumCheck(inform).enqueue(object : retrofit2.Callback<FindIdCertiNumCheckData> {
+            override fun onFailure(
+                call: Call<FindIdCertiNumCheckData>,
+                t: Throwable
+            ) {
+            }
+            override fun onResponse(call: Call<FindIdCertiNumCheckData>, response: Response<FindIdCertiNumCheckData>) {
+                if (response.body()!!.success) {
+                    count.cancel()
+                    dialogMessage("인증번호가 확인되었습니다.")
+                    appearId(yourIdTextView,idText,response.body()!!.id)
+                } else {
+                    count.cancel()
+                    dialogMessage("인증번호가 틀렸습니다. 다시 인증해주세요.")
+                    certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
+                    certificationBtn.setTextColor(ContextCompat.getColor(applicationContext,R.color.black))
+                    certificationBtn.isEnabled = true
                 }
             }
         })
@@ -129,6 +171,12 @@ class FindIdActivity : AppCompatActivity() {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
         })
+    }
+
+    fun appearId(yourIdTextView:TextView,idText: EditText, id : String) {
+        yourIdTextView.visibility = View.VISIBLE
+        idText.visibility = View.VISIBLE
+        idText.setText(id)
     }
 
     fun timerStart(timerTime: TextView) {

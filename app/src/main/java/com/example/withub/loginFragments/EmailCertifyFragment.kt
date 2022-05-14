@@ -101,7 +101,7 @@ class EmailCertifyFragment:Fragment() {
             } else if (certiNumText.text.isEmpty()){
                dialogMessage("인증번호를 입력해주세요.")
            } else{
-                EmailCertifyApi(certiNumText,nextBtn,certificationBtn)
+               emailCertifyApi(certiNumText,nextBtn,certificationBtn)
             }
         }
 
@@ -196,7 +196,7 @@ class EmailCertifyFragment:Fragment() {
         })
     }
 
-    fun EmailCertifyApi(certiNumText:EditText,nextBtn:Button,certificationBtn: Button) {
+    fun emailCertifyApi(certiNumText:EditText,nextBtn:Button,certificationBtn: Button) {
         var inform = tokenAuthEmailValue(token,certiNumText.text.toString(),id)
         val requestCertiNumConfirmApi = retrofit.create(CertiNumConfirmApi::class.java)
         requestCertiNumConfirmApi.certiNumCheck(inform).enqueue(object : retrofit2.Callback<CertiNumCheckData> {

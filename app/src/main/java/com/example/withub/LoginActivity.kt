@@ -107,7 +107,6 @@ class LoginActivity: AppCompatActivity() {
                     val alertDialog: AlertDialog = builder.create()
                     alertDialog.show()
                 }
-
             }
         })
     }

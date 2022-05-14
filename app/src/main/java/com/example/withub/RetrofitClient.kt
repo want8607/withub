@@ -178,3 +178,6 @@ interface FindPwChangePwApi{
     @PATCH("/account/pw")
     fun changePw(@Body requestData: FindPwTokenPwValue) : Call<FindPwChangePwCheckData>
 }
+
+/////////////////////////////////승재꺼//////////////////////////////////////////////////
+

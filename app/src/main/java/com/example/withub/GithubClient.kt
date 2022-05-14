@@ -1,15 +1,19 @@
 package com.example.withub
 
 import com.google.gson.Gson
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import io.reactivex.Single
 import okhttp3.OkHttpClient
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 object GithubClient {
 
@@ -39,3 +43,103 @@ data class GithubNickNameData(
 //    @GET("users/{username}")
 //    fun githubNickNameCheck(@Path("username") username: String) : Single<ArrayList<GithubNickNameData>>
 //}
+
+class GitHubCommitDatas : ArrayList<GitHubCommitDatasItem>()
+data class GitHubCommitDatasItem(
+    val author: Author,
+    val comments_url: String,
+    val commit: Commit,
+    val committer: CommitterX,
+    val html_url: String,
+    val node_id: String,
+    val parents: List<Parent>,
+    val sha: String,
+    val url: String
+)
+
+data class Author(
+    val avatar_url: String,
+    val events_url: String,
+    val followers_url: String,
+    val following_url: String,
+    val gists_url: String,
+    val gravatar_id: String,
+    val html_url: String,
+    val id: Int,
+    val login: String,
+    val node_id: String,
+    val organizations_url: String,
+    val received_events_url: String,
+    val repos_url: String,
+    val site_admin: Boolean,
+    val starred_url: String,
+    val subscriptions_url: String,
+    val type: String,
+    val url: String
+)
+
+data class AuthorX(
+    val date: String,
+    val email: String,
+    val name: String
+)
+
+data class Commit(
+    val author: AuthorX,
+    val comment_count: Int,
+    val committer: Committer,
+    val message: String,
+    val tree: Tree,
+    val url: String,
+    val verification: Verification
+)
+
+data class Committer(
+    val date: String,
+    val email: String,
+    val name: String
+)
+
+data class CommitterX(
+    val avatar_url: String,
+    val events_url: String,
+    val followers_url: String,
+    val following_url: String,
+    val gists_url: String,
+    val gravatar_id: String,
+    val html_url: String,
+    val id: Int,
+    val login: String,
+    val node_id: String,
+    val organizations_url: String,
+    val received_events_url: String,
+    val repos_url: String,
+    val site_admin: Boolean,
+    val starred_url: String,
+    val subscriptions_url: String,
+    val type: String,
+    val url: String
+)
+
+data class Parent(
+    val sha: String,
+    val url: String
+)
+
+data class Tree(
+    val sha: String,
+    val url: String
+)
+
+data class Verification(
+    val payload: Any,
+    val reason: String,
+    val signature: Any,
+    val verified: Boolean
+)
+interface InfoApi{
+    //커밋 가져오기
+    @GET("/repos/{owner}/{repo}/commits")
+    suspend fun getInfo(@Path("owner") owner: String,@Path("repo") repo: String) : GitHubCommitDatas
+}
+

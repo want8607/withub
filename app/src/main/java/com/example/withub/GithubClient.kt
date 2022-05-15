@@ -8,7 +8,9 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 import kotlin.collections.ArrayList
 
 
@@ -135,10 +137,17 @@ data class Verification(
     val signature: Any,
     val verified: Boolean
 )
-interface InfoApi{
+interface GitHubInfoApi{
     //커밋 가져오기
     @GET("/repos/{owner}/{repo}/commits")
-    suspend fun getInfo(@Path("owner") owner: String,@Path("repo") repo: String) : GitHubCommitDatas
+    suspend fun getInfo(@Header("Authorization") github_token : String,
+                        @Path("owner") owner: String,
+                        @Path("repo") repo: String,
+                        @Query("author") author : String,
+                        @Query("since") since :String,
+                        @Query("until") until :String,
+                        @Query("per_page") per_page : Int,
+                        @Query("page") page : Int) : GitHubCommitDatas
 }
 
 

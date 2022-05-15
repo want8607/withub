@@ -15,6 +15,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.example.withub.DrawerActivity
 import com.example.withub.MainActivity
 import com.example.withub.R
@@ -110,7 +111,7 @@ class HomeFragment : Fragment(){
             "https://www.youtube.com/watch?v=kp5CEADyTFs",
             "https://www.youtube.com/watch?v=Ru_bHWAqdSM")
 
-        val homePagerRecyclerAdapter= HomePagerRecyclerAdapter(mainActivity,imgList,urlList)
+        val homePagerRecyclerAdapter= HomePagerRecyclerAdapter(mainActivity,Glide.with(this),imgList,urlList)
         pagerRecyclerView = view.findViewById<ViewPager2>(R.id.main_view_pager)
         pagerRecyclerView.adapter = homePagerRecyclerAdapter
         pagerRecyclerView.orientation = ViewPager2.ORIENTATION_HORIZONTAL

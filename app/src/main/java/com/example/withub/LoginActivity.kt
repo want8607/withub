@@ -94,6 +94,7 @@ class LoginActivity: AppCompatActivity() {
                 call: Call<LoginCheckData>,
                 t: Throwable
             ) {
+                Log.d("D",t.toString())
             }
             override fun onResponse(call: Call<LoginCheckData>, response: Response<LoginCheckData>) {
                 if (response.body()!!.success) {

@@ -6,9 +6,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
 
 object RetrofitClient {   //object 는 객체를 리턴해줄 수 있어 클래스보다 편리함
     fun initRetrofit(): Retrofit {
@@ -185,3 +183,62 @@ interface LoginApi{
     @POST("/account/login")
     fun loginCheck(@Body requestData: LoginIdPwValue) : Call<LoginCheckData>
 }
+
+//-----------------------10분에 한번 데이터 저장---------------------------
+data class InfoData(
+    val token: String,
+    val commits: List<GitHubCommitDatasItem>
+    )
+data class InfoResultData(
+    val success: Boolean,
+    val message: String
+)
+
+interface InfoApi{
+    @POST("/info")
+    suspend fun sendGithubDataToServer(@Body requestData: InfoData ) : InfoResultData
+}
+
+//---------------------유저 데이터 반환 API---------------------------
+data class MyTokenData(
+    val token: String
+    )
+
+data class MyData(
+    val success: Boolean,
+    val message: String,
+    val committer: String,
+    val daily_commit : Int,
+    val thirty_commit : List<MyThirtyCommits>,
+    val friend_avg : Float,
+    val area_avg : Float,
+)
+
+data class MyThirtyCommits(
+    val data: String,
+    val commit : Int
+)
+
+interface MyDataApi{
+    @GET("/account")
+    suspend fun getMyData(@Query("token") token: String) : MyData
+}
+//---------------------내 레포 반환 API---------------------------
+
+data class Repositories(
+    val owner : String,
+    val name : String
+)
+
+data class MyRepoData(
+    val message: String,
+    val success: Boolean,
+    val committer: String,
+    val repository: List<Repositories>
+)
+
+interface MyRepoDataApi{
+    @GET("/account/repo")
+    suspend fun getMyRepoData(@Query("token") token: String) : MyRepoData
+}
+

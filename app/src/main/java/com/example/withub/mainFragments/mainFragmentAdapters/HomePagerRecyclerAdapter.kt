@@ -11,12 +11,13 @@ import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils.fitCenter
 import com.example.withub.R
 
-class HomePagerRecyclerAdapter(val context: Context,val imgList : ArrayList<Int>,val urlList : ArrayList<String>) :
+class HomePagerRecyclerAdapter(val context: Context,val requestManager: RequestManager, val imgList : ArrayList<Int>,val urlList : ArrayList<String>) :
     RecyclerView.Adapter<HomePagerRecyclerAdapter.PagerViewHolder>() {
 
     inner class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -24,7 +25,7 @@ class HomePagerRecyclerAdapter(val context: Context,val imgList : ArrayList<Int>
         val tipImg: ImageView = itemView.findViewById(R.id.tip_view)
 
         fun bind(img: Int,url: String) {
-            Glide.with(tipImg)
+            requestManager
                 .load(img)
                 .into(tipImg)
             tipImg.setOnClickListener {

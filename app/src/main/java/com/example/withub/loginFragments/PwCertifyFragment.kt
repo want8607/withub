@@ -59,11 +59,7 @@ class PwCertifyFragment:Fragment() {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.thick_gray))
                 certificationBtn.setEnabled(false)
-                sendMailApi(idText.text.toString())  //api로 메일 보내기
-                if (running) {
-                    count.cancel()
-                }
-                timerStart(timerTime)
+                sendMailApi(idText.text.toString(),timerTime)  //api로 메일 보내기
             }
         }
 
@@ -164,7 +160,7 @@ class PwCertifyFragment:Fragment() {
         })
     }
 
-    fun sendMailApi(idText: String) {
+    fun sendMailApi(idText: String,timerTime: TextView) {
         var inform = FindPwIdEmailValue(idText,userEmail)
         val requestSendEmailApi = retrofit.create(FindPwSendEmailApi::class.java)
 
@@ -177,11 +173,13 @@ class PwCertifyFragment:Fragment() {
 
             }
             override fun onResponse(call: Call<FindPwIdEmailCheckData>, response: Response<FindPwIdEmailCheckData>) {
-                if (response.body()!!.success == false) {
-                    Log.d("message","${response.body()!!.success}")
-                    Log.d("message","${response.body()!!.token}")
+                if (!response.body()!!.success) {
                     dialogMessage(response.body()!!.message)
                 } else {
+                    if (running) {
+                        count.cancel()
+                    }
+                    timerStart(timerTime)
                     token = response.body()!!.token
                 }
 

@@ -27,7 +27,7 @@ class ChangePwFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.changepw_fragment, container, false)
-        val requestToken = arguments?.getString("id")
+        val requestToken = arguments?.getString("token")
         if (requestToken != null) {
             token = requestToken
         }

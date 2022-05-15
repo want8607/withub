@@ -23,6 +23,6 @@ class FindPwActivity: AppCompatActivity() {
         var myBundle = Bundle()
         myBundle.putString("token", token)
         fragment.arguments = myBundle
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea_find_pw, fragment).commit()
     }
 }

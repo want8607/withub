@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationView : BottomNavigationView
     var myDatas: Deferred<MyData>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
         val myDataApi= RetrofitClient.initRetrofit().create(MyDataApi::class.java)

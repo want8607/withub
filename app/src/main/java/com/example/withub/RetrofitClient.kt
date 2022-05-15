@@ -7,6 +7,8 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import retrofit2.http.*
+import retrofit2.http.Query as Query
 
 object RetrofitClient {   //object 는 객체를 리턴해줄 수 있어 클래스보다 편리함
     fun initRetrofit(): Retrofit {
@@ -119,6 +121,23 @@ data class IdFindEmailCheckData(val message: String, val success: Boolean, val t
 interface FindIdSendEmailApi{
     @POST("/account/id")
     fun emailCheck(@Body requestData: FindIdEmailValue) : Call<IdFindEmailCheckData>
+}
+
+
+
+//메일로 보낸 인증번호 확인
+data class FindIdAuthTokenEmailValue(
+    @SerializedName("auth") val auth : String,
+    @SerializedName("token") val token : String,
+    @SerializedName("email") val id : String
+)
+
+data class FindIdCertiNumCheckData(val message: String, val success: Boolean, val id: String)
+
+//메일 보내는 API
+interface FindIdCertiNumConfirmApi{
+    @POST("/account/id/auth")
+    fun certiNumCheck(@Body requestData: FindIdAuthTokenEmailValue) : Call<FindIdCertiNumCheckData>
 }
 
 
@@ -242,3 +261,17 @@ interface MyRepoDataApi{
     suspend fun getMyRepoData(@Query("token") token: String) : MyRepoData
 }
 
+
+
+//------------------------토큰 자동로그인-------------------------------
+//data class TokenValue(
+//    @SerializedName("token") val token : String
+//)
+
+data class TokenCheckData(val message: String, val success: Boolean)
+
+//자동로그인 토큰 API
+interface TokenApi{
+    @GET("/token")
+    fun loginCheck(@Query("token") token: String) : Call<TokenCheckData>
+}

@@ -6,9 +6,8 @@ import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.PATCH
-import retrofit2.http.POST
+import retrofit2.http.*
+import retrofit2.http.Query as Query
 
 object RetrofitClient {   //object 는 객체를 리턴해줄 수 있어 클래스보다 편리함
     fun initRetrofit(): Retrofit {
@@ -201,4 +200,17 @@ data class LoginCheckData(val message: String, val success: Boolean, val token: 
 interface LoginApi{
     @POST("/account/login")
     fun loginCheck(@Body requestData: LoginIdPwValue) : Call<LoginCheckData>
+}
+
+//------------------------토큰 자동로그인-------------------------------
+//data class TokenValue(
+//    @SerializedName("token") val token : String
+//)
+
+data class TokenCheckData(val message: String, val success: Boolean)
+
+//자동로그인 토큰 API
+interface TokenApi{
+    @GET("/token")
+    fun loginCheck(@Query("token") token: String) : Call<TokenCheckData>
 }

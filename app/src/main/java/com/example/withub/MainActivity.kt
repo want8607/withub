@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var bottomNavigationView : BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.main_activity)

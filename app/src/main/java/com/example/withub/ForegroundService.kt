@@ -10,7 +10,6 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.gson.GsonBuilder
-
 import kotlinx.coroutines.*
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -53,10 +52,10 @@ class ForegroundService : Service() {
                 for (i in myRepoData.repository.indices) {
                     val commitsInOneRepo = ArrayList<GitHubCommitDatasItem>()
                     var count = 1
-                        while (true){
+                    while (true){
                         val gitHubCommitDatas: Deferred<GitHubCommitDatas> = async {
                             requestCommitApi.getInfo(
-                                "token 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",
+                                "token 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",
                                 myRepoData.repository[i].owner,
                                 myRepoData.repository[i].name,
                                 committer,

@@ -26,7 +26,7 @@ object GithubClient {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-            return connection
+        return connection
     }
 }
 

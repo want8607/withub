@@ -14,6 +14,7 @@ import androidx.fragment.app.commit
 import com.example.withub.LoginActivity
 import com.example.withub.R
 import com.example.withub.SignupActivity
+import kotlin.math.sign
 
 class TermsOfUseFragment: Fragment() {
 
@@ -41,8 +42,7 @@ class TermsOfUseFragment: Fragment() {
         warningInform4.visibility = View.GONE
 
         signupBackBtn.setOnClickListener{
-            val intent = Intent(signupActivity, LoginActivity::class.java)
-            startActivity(intent)
+            signupActivity.finish()
         }
 
         nextBtn.setOnClickListener{

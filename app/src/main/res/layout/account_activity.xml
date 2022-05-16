@@ -33,6 +33,49 @@
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <LinearLayout
+        android:layout_marginTop="3dp"
+        android:id="@+id/account_activity_area_select_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/account_activity_logout_view"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.6"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center"
+            android:text="@string/area_select"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/area_select_spinner_account"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.35"
+            android:backgroundTint="@color/point_color"
+            android:dropDownWidth="100dp"
+            android:popupBackground="@color/gray"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/account_activity_change_password_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -78,7 +121,7 @@
         android:weightSum="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintTop_toBottomOf="@+id/account_activity_area_select_view">
 
         <TextView
             android:layout_width="0dp"

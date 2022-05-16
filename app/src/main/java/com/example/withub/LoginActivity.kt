@@ -18,10 +18,10 @@ class LoginActivity: AppCompatActivity() {
     val retrofit = RetrofitClient.initRetrofit()
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
-//        if(MyApp.prefs.accountToken!=null){
-//            Log.d("message","${MyApp.prefs.accountToken}")
-//            tokenApi()
-//        }
+        if(MyApp.prefs.accountToken!=null){
+            Log.d("message","${MyApp.prefs.accountToken}")
+            tokenApi()
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
 
@@ -102,6 +102,7 @@ class LoginActivity: AppCompatActivity() {
                     MyApp.prefs.accountToken = response.body()!!.token
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     var builder: AlertDialog.Builder = AlertDialog.Builder(this@LoginActivity)
                     builder.setMessage("아이디 혹은 비밀번호를 확인해주세요.")
@@ -127,6 +128,7 @@ class LoginActivity: AppCompatActivity() {
                 if (response.body()!!.success) {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         })

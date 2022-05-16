@@ -15,6 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
+            android:id="@+id/back_btn_setting"
             android:layout_width="12dp"
             android:layout_height="25dp"
             android:layout_gravity="start|center"
@@ -39,45 +40,6 @@
         android:background="@color/background_color"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.51"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="start|center_vertical"
-                android:text="지역선택"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <Spinner
-                android:id="@+id/area_select_spinner_setting"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.35"
-                android:backgroundTint="@color/point_color"
-                android:dropDownWidth="100dp"
-                android:popupBackground="@color/gray"
-                android:spinnerMode="dropdown" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

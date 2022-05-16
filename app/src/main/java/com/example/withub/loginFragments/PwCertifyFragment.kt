@@ -72,6 +72,9 @@ class PwCertifyFragment:Fragment() {
                 dialogMessage("이메일 인증을 해주세요.")
             } else if (running == false) {
                 dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
+                certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
+                certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+                certificationBtn.isEnabled = true
             } else if (certiNumText.text.isEmpty()){
                 dialogMessage("인증번호를 입력해주세요.")
             } else{
@@ -117,6 +120,7 @@ class PwCertifyFragment:Fragment() {
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(context!!, R.color.black))
                     certificationBtn.setEnabled(true)
+                    userEmail = emailText.getText().toString() + "@" + select
                 } else {
                     certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                     certificationBtn.setTextColor(
@@ -169,8 +173,6 @@ class PwCertifyFragment:Fragment() {
                 call: Call<FindPwIdEmailCheckData>,
                 t: Throwable
             ) {
-                Log.d("message",t.toString())
-
             }
             override fun onResponse(call: Call<FindPwIdEmailCheckData>, response: Response<FindPwIdEmailCheckData>) {
                 if (!response.body()!!.success) {

@@ -23,6 +23,7 @@ class EmailCertifyFragment:Fragment() {
     lateinit var token: String
     private var running = false
     private var confirmBtnBoolean = false
+    private var emailInfoExist = false
     lateinit var id :String
     val retrofit = RetrofitClient.initRetrofit()
 
@@ -84,12 +85,14 @@ class EmailCertifyFragment:Fragment() {
             } else {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.thick_gray))
-                certificationBtn.setEnabled(false)
+                certificationBtn.isEnabled = false
                 sendMailApi()  //api로 메일 보내기
-                if (running) {
-                    count.cancel()
+                if (!emailInfoExist) {
+                    if (running) {
+                        count.cancel()
+                    }
+                    timerStart(timerTime)
                 }
-                timerStart(timerTime)
             }
         }
 
@@ -98,6 +101,9 @@ class EmailCertifyFragment:Fragment() {
                dialogMessage("이메일 인증을 해주세요.")
             } else if (running == false) {
                dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
+               certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
+               certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+               certificationBtn.isEnabled = true
             } else if (certiNumText.text.isEmpty()){
                dialogMessage("인증번호를 입력해주세요.")
            } else{
@@ -163,6 +169,7 @@ class EmailCertifyFragment:Fragment() {
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(context!!, R.color.black))
                     certificationBtn.setEnabled(true)
+                    userEmail = emailText.getText().toString() + "@" + select
                 } else {
                     certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                     certificationBtn.setTextColor(
@@ -191,7 +198,12 @@ class EmailCertifyFragment:Fragment() {
             ) {
             }
             override fun onResponse(call: Call<EmailCheckData>, response: Response<EmailCheckData>) {
-                token = response.body()!!.token
+                if (!response.body()!!.success) {
+                    dialogMessage("${response.body()!!.message}")
+                    emailInfoExist = true
+                } else {
+                    token = response.body()!!.token
+                }
             }
         })
     }
@@ -206,7 +218,7 @@ class EmailCertifyFragment:Fragment() {
             ) {
             }
             override fun onResponse(call: Call<CertiNumCheckData>, response: Response<CertiNumCheckData>) {
-                if (response.body()!!.success == true) {
+                if (response.body()!!.success) {
                     count.cancel()
                     dialogMessage("인증번호가 확인되었습니다.")
                     nextBtn.setBackgroundResource(R.drawable.login_btn)

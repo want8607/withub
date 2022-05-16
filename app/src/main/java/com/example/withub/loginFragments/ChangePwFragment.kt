@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.withub.*
@@ -41,7 +42,7 @@ class ChangePwFragment:Fragment() {
         val backBtn = findPwActivity.findViewById<Button>(R.id.back_btn_find_pw)
 
         backBtn.setOnClickListener{
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, PwCertifyFragment())
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea_find_pw, PwCertifyFragment())
                 .commit()
         }
 
@@ -120,7 +121,6 @@ class ChangePwFragment:Fragment() {
         if (safetyView.getText().toString() == "안전" && pwMismatchView.getText().toString() == "일치" ){
             changePwBtn.setBackgroundResource(R.drawable.login_btn)
             changePwBtn.isEnabled = true
-            Log.d("message","next")
         } else {
             changePwBtn.setBackgroundResource(R.drawable.disabled_button)
             changePwBtn.isEnabled = false
@@ -135,12 +135,12 @@ class ChangePwFragment:Fragment() {
                 call: Call<FindPwChangePwCheckData>,
                 t: Throwable
             ) {
-                Log.d("message","sdfsdfsdf")
             }
             override fun onResponse(call: Call<FindPwChangePwCheckData>, response: Response<FindPwChangePwCheckData>) {
                 if (response.body()!!.success) {
                     val intent = Intent(activity, LoginActivity::class.java)
                     startActivity(intent)
+                    Toast.makeText(context, "비밀번호가 변경되었습니다.", Toast.LENGTH_SHORT).show()
                 }
             }
         })

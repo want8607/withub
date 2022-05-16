@@ -149,14 +149,13 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.17"
+                    android:layout_weight="0.36"
                     android:layout_height="wrap_content"/>
 
                 <TextView
                     android:id="@+id/id_finding_btn"
-                    android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
                     android:autoSizeTextType="uniform"
                     android:autoSizePresetSizes="@array/autosize_text_sizes"
                     android:text="아이디 찾기"
@@ -164,17 +163,25 @@
                     android:textAlignment="center"
                     android:textColor="@color/black" />
 
-                <View
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.005"
+                    android:layout_weight="0.07"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_width="0.5dp"
                     android:layout_height="25dp"
                     android:background="@color/gray" />
 
                 <TextView
-                    android:id="@+id/pw_finding_btn"
                     android:layout_width="0dp"
-                    android:layout_weight="0.25"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/pw_finding_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
                     android:autoSizeTextType="uniform"
                     android:autoSizePresetSizes="@array/autosize_text_sizes"
                     android:text="비밀번호 찾기"
@@ -182,17 +189,25 @@
                     android:textAlignment="center"
                     android:textColor="@color/black" />
 
-                <View
+                <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.005"
+                    android:layout_weight="0.07"
+                    android:layout_height="wrap_content"/>
+
+                <View
+                    android:layout_width="0.5dp"
                     android:layout_height="25dp"
                     android:background="@color/gray" />
 
                 <TextView
-                    android:id="@+id/signup_btn"
                     android:layout_width="0dp"
-                    android:layout_weight="0.2"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="0.07"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/signup_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
                     android:autoSizeTextType="uniform"
                     android:autoSizePresetSizes="@array/autosize_text_sizes"
                     android:text="회원가입"
@@ -202,7 +217,7 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_weight="0.17"
+                    android:layout_weight="0.36"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>

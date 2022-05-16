@@ -118,7 +118,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/nanum_square_round_regular"
-                android:text="* 비밀번호를 변경하면 모든 디바이스에서 즉시 로그아웃 \n 처리됩니다."
+                android:text="* 비밀번호를 변경하면 모든 디바이스에서 즉시 로그아웃 처리됩니다."
                 android:textColor="@color/timer"
                 android:textSize="14sp">
 

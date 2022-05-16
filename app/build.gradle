@@ -90,4 +90,7 @@ dependencies {
 
     //okhttp interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
+
+    // 프래그먼트 - KTX
+    implementation("androidx.fragment:fragment-ktx:1.4.1")
 }

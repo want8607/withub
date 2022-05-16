@@ -2,8 +2,14 @@ package com.example.withub
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Insets
+import android.graphics.Insets.add
 import android.os.Bundle
+import android.text.TextUtils.replace
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import com.example.withub.loginFragments.*
 import retrofit2.Call
 import retrofit2.Response
@@ -18,14 +24,19 @@ class SignupActivity: AppCompatActivity() {
     lateinit var githubNickName : String
     lateinit var repositoryList : List<UserRepoData>
     val retrofit = RetrofitClient.initRetrofit()
-
+    val fragmentManager = supportFragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_activity)
+
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, TermsOfUseFragment()).commit()
+            fragmentManager.commit {
+                setReorderingAllowed(true)
+                add(R.id.fragmentArea, TermsOfUseFragment(), "termsOfUseFragment")
+                }
+            }
         }
-    }
+
 
     fun idPwInform(idValue:String, pwValue:String){
         id = idValue
@@ -34,20 +45,30 @@ class SignupActivity: AppCompatActivity() {
         var myBundle = Bundle()
         myBundle.putString("id", id)
         fragment.arguments = myBundle
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+        fragmentManager.commit {
+            add(R.id.fragmentArea, fragment, "emailCertifyFragment")
+            addToBackStack(null)
+        }
     }
 
     fun emailInform(emailValue:String) {
         email = emailValue
         var fragment = NickNameAreaSelectFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+        fragmentManager.commit {
+            add(R.id.fragmentArea, fragment, "nickNameAreaSelectFragment")
+            addToBackStack(null)
+        }
     }
 
     fun nickNameAreaInform(nickNameValue:String,areaValue: String){
         nickName = nickNameValue
         area = areaValue
         var fragment = GetTokenFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+        fragmentManager.commit {
+            add(R.id.fragmentArea, fragment, "getTokenFragment")
+            addToBackStack(null)
+        }
+//        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
     }
 
     fun githubNickNameRepoInform(githubNickNameValue: String, repositoryListValue: List<UserRepoData>) {
@@ -71,6 +92,7 @@ class SignupActivity: AppCompatActivity() {
                 if (response.body()!!.success) {
                     val intent = Intent(this@SignupActivity, LoginActivity::class.java)
                     startActivity(intent)
+                    Toast.makeText(this@SignupActivity, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                 } else {
                     var builder: AlertDialog.Builder = AlertDialog.Builder(this@SignupActivity)
                     builder.setMessage("서버연결에 문제가 발생하였습니다.")
@@ -82,3 +104,5 @@ class SignupActivity: AppCompatActivity() {
         })
     }
 }
+
+

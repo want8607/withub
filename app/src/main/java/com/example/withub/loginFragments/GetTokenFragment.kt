@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.example.withub.MyApp
 import com.example.withub.R
 
@@ -33,8 +34,13 @@ class GetTokenFragment:Fragment() {
 
         nextBtn.setOnClickListener{
             MyApp.prefs.githubToken = githubTokenText.text.toString()
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, GitHubRepositoryAddFragment())
-                .commit()
+            val fragmentManager = parentFragmentManager
+            fragmentManager.commit {
+                add(R.id.fragmentArea, GitHubRepositoryAddFragment(), "gitHubRepositoryAddFragment")
+                addToBackStack(null)
+            }
+//            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, GitHubRepositoryAddFragment())
+//                .commit()
         }
         nextBtnActivate(githubTokenText,nextBtn)
         return view

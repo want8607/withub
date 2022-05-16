@@ -18,14 +18,12 @@ class LoginActivity: AppCompatActivity() {
     val retrofit = RetrofitClient.initRetrofit()
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
+//        if(MyApp.prefs.accountToken!=null){
+//            Log.d("message","${MyApp.prefs.accountToken}")
+//            tokenApi()
+//        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
-
-        if(MyApp.prefs.accountToken!=null){
-            Log.d("message","${MyApp.prefs.accountToken}")
-            tokenApi()
-        }
-
 
         val signupBtn = findViewById<TextView>(R.id.signup_btn)
         val idFindingBtn = findViewById<TextView>(R.id.id_finding_btn)
@@ -116,7 +114,6 @@ class LoginActivity: AppCompatActivity() {
     }
 
     fun tokenApi(){
-//        val inform = TokenValue(MyApp.prefs.accountToken!!)
         val requestTokenApi = retrofit.create(TokenApi::class.java)
         requestTokenApi.loginCheck(MyApp.prefs.accountToken!!).enqueue(object : retrofit2.Callback<TokenCheckData> {
             override fun onFailure(
@@ -127,11 +124,13 @@ class LoginActivity: AppCompatActivity() {
             }
             override fun onResponse(call: Call<TokenCheckData>, response: Response<TokenCheckData>) {
                 Log.d("message","${response.body()!!.success}")
-                if (response.body()!!.success==true) {
+                if (response.body()!!.success) {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
                 }
             }
         })
     }
+
+
 }

@@ -10,11 +10,14 @@ import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.example.withub.LoginActivity
 import com.example.withub.R
 import com.example.withub.SignupActivity
+import kotlin.math.sign
 
 class TermsOfUseFragment: Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,13 +42,17 @@ class TermsOfUseFragment: Fragment() {
         warningInform4.visibility = View.GONE
 
         signupBackBtn.setOnClickListener{
-            val intent = Intent(signupActivity, LoginActivity::class.java)
-            startActivity(intent)
+            signupActivity.finish()
         }
 
         nextBtn.setOnClickListener{
+            val fragmentManager = parentFragmentManager
             if ( checkBox1.isChecked && checkBox2.isChecked) {
-                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, IdPwInputFragment()).commit()
+                fragmentManager.commit {
+                    add(R.id.fragmentArea, IdPwInputFragment(), "idPwInputFragment")
+                    addToBackStack(null)
+                }
+//                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, IdPwInputFragment()).commit()
             }
         }
 

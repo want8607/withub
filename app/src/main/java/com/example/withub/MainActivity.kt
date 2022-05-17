@@ -1,6 +1,7 @@
 package com.example.withub
 
 
+import android.app.Activity
 import android.app.ActivityManager
 import android.content.Intent
 import android.os.Bundle
@@ -19,6 +20,7 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNavigationView : BottomNavigationView
+    var myDatas: Deferred<MyData>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
@@ -70,9 +72,6 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
-
-
 
     fun setFragment(fragment: Fragment,tag: String){
         val manager: FragmentManager = supportFragmentManager
@@ -133,5 +132,4 @@ class MainActivity : AppCompatActivity() {
         return manager.getRunningServices(Integer.MAX_VALUE)
             .any { it.service.className == serviceClass.name }
     }
-
 }

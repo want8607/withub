@@ -67,6 +67,9 @@ class FindIdActivity : AppCompatActivity() {
                 dialogMessage("이메일 인증을 해주세요.")
             } else if (running == false) {
                 dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
+                certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
+                certificationBtn.setTextColor(ContextCompat.getColor(this,R.color.black))
+                certificationBtn.isEnabled = true
             } else if (certiNumText.text.isEmpty()){
                 dialogMessage("인증번호를 입력해주세요.")
             } else{
@@ -150,10 +153,11 @@ class FindIdActivity : AppCompatActivity() {
     ) {
         emailText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                if (emailText.getText().toString().isNotEmpty()) {
+                if (emailText.text.toString().isNotEmpty()) {
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(this@FindIdActivity, R.color.black))
-                    certificationBtn.setEnabled(true)
+                    certificationBtn.isEnabled = true
+                    userEmail = emailText.text.toString() + "@" + select
                 } else {
                     certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                     certificationBtn.setTextColor(
@@ -162,7 +166,7 @@ class FindIdActivity : AppCompatActivity() {
                             R.color.thick_gray
                         )
                     )
-                    certificationBtn.setEnabled(false)
+                    certificationBtn.isEnabled = false
                 }
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

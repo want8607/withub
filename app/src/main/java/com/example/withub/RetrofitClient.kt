@@ -264,9 +264,6 @@ interface MyRepoDataApi{
 
 
 //------------------------토큰 자동로그인-------------------------------
-//data class TokenValue(
-//    @SerializedName("token") val token : String
-//)
 
 data class TokenCheckData(val message: String, val success: Boolean)
 
@@ -274,4 +271,14 @@ data class TokenCheckData(val message: String, val success: Boolean)
 interface TokenApi{
     @GET("/token")
     fun loginCheck(@Query("token") token: String) : Call<TokenCheckData>
+}
+
+//-----------------------로그인 이후 새비밀번호---------------------------
+
+data class PwCheckData(val message: String, val success: Boolean)
+
+//현재 비밀번호 확인 API
+interface CurrentPwConfirmApi{
+    @GET("/account/pw/after")
+    fun tokenPwCheck(@Query("token") token: String,@Query("pw") pw: String) : Call<PwCheckData>
 }

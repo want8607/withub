@@ -19,17 +19,11 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNavigationView : BottomNavigationView
-    var myDatas: Deferred<MyData>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
-//        setTheme(R.style.Theme_WITHUB)
+        setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
-        val myDataApi= RetrofitClient.initRetrofit().create(MyDataApi::class.java)
-//        CoroutineScope(Dispatchers.IO).launch{
-//            myDatas = async{
-//                myDataApi.getMyData(MyApp.prefs.accountToken!!)
-//            }
-//        }
+
         setContentView(R.layout.main_activity)
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
@@ -76,6 +70,9 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
+
+
 
     fun setFragment(fragment: Fragment,tag: String){
         val manager: FragmentManager = supportFragmentManager
@@ -131,9 +128,10 @@ class MainActivity : AppCompatActivity() {
         //ft.commit()
     }
 
-    private fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
+    fun isMyServiceRunning(serviceClass: Class<*>): Boolean {
         val manager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
         return manager.getRunningServices(Integer.MAX_VALUE)
             .any { it.service.className == serviceClass.name }
     }
+
 }

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.example.withub.mainFragments.MyInfoFragment
 
 class AccountActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,5 +24,6 @@ class AccountActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, ResignAccount::class.java)
             startActivity(intent)
         }
+
     }
 }

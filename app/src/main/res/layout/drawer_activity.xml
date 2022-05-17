@@ -14,12 +14,7 @@
         android:layout_height="0dp"
         android:layout_weight="0.3"
         android:elevation="10dp"
-        android:background="@color/point_color"
-        app:layout_constraintVertical_weight="0.30"
-        app:layout_constraintBottom_toTopOf="@id/drawer_body_constraint_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/point_color">
 
         <ImageButton
             android:id="@+id/drawer_exit_button"
@@ -52,13 +47,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@mipmap/ic_launcher"
-            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toTopOf="@+id/drawer_header_nickname"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/drawer_option_button"
-            app:layout_constraintWidth_percent="0.35" />
+            app:layout_constraintHeight_percent="0.5"
+            />
 
         <TextView
             android:id="@+id/drawer_header_nickname"

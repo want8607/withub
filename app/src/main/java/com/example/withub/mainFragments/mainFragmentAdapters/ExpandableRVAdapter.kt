@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.withub.R
 
 
-class ExpandableRVAdapter( var rankingDataList: ArrayList<ArrayList<FriendRankingData>>):RecyclerView.Adapter<ExpandableRVAdapter.Holder>() {
+class ExpandableRVAdapter( var rankingDataList: ArrayList<List<FriendRankingData>>):RecyclerView.Adapter<ExpandableRVAdapter.Holder>() {
     var visibilityList = arrayListOf<Boolean>(false,false,false,false)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.ranking_recycler_view_item, parent, false)

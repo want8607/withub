@@ -6,6 +6,7 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.*
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,12 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.*
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
-import com.example.withub.DrawerActivity
-import com.example.withub.MainActivity
-import com.example.withub.R
+import com.example.withub.*
 import com.example.withub.mainFragments.mainFragmentAdapters.HomePagerRecyclerAdapter
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
@@ -32,6 +33,7 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
 import com.yy.mobile.rollingtextview.CharOrder
 import com.yy.mobile.rollingtextview.RollingTextView
 import com.yy.mobile.rollingtextview.strategy.Strategy
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -39,18 +41,22 @@ import kotlin.collections.ArrayList
 class HomeFragment : Fragment(){
 
     lateinit var mainActivity: MainActivity
+    lateinit var rollingTextView: RollingTextView //오늘 커밋 뷰
+    lateinit var commitGrassImgView : ImageView //잔디
     lateinit var pagerRecyclerView: ViewPager2
-    lateinit var lineChart: LineChart
+    lateinit var lineChart: LineChart //라인 차트
+    lateinit var friendAvgCommitView : RollingTextView // 친구 커밋 평균 뷰
+    lateinit var areaAvgCommitView : RollingTextView // 지역 커밋 평균 뷰
+    var myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
     var intervalTime = 4000.toLong()
     var bannerPosition = (Int.MAX_VALUE/2)+1
     var numBanner = 4
     var homeHandler = HomeHandler()
-    var xAxisData = addXAisle()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.home_fragment,container,false)
         mainActivity = activity as MainActivity
-
+        
         return view
     }
 
@@ -67,39 +73,33 @@ class HomeFragment : Fragment(){
         }
 
         //topView 설정
-        val rollingTextView = view.findViewById<RollingTextView>(R.id.rolling_commit)
+        rollingTextView = view.findViewById<RollingTextView>(R.id.rolling_commit)
         rollingTextView.animationDuration = 1000L
         rollingTextView.charStrategy = Strategy.NormalAnimation()
         rollingTextView.addCharOrder(CharOrder.Number)
         rollingTextView.animationInterpolator = AccelerateDecelerateInterpolator()
-        rollingTextView.setText("8")
-
-        //swipeRefreshLayout
-        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
-        swipeRefreshLayout.setOnRefreshListener {
-            rollingTextView.setText("2")
-            swipeRefreshLayout.isRefreshing = false
-            Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
-        }
 
         //30일 커밋 차트
         lineChart  = view.findViewById(R.id.line_chart)
-        initLineChart()
-        setDataToLineChart()
         val horizontalScrollView = view.findViewById<HorizontalScrollView>(R.id.horizontal_scroll)
         horizontalScrollView.post { horizontalScrollView.scrollTo(lineChart.width,0) }
 
+        //친구 평균 뷰
+        friendAvgCommitView = view.findViewById(R.id.home_fragment_my_friend_commit_avg)
+        friendAvgCommitView.animationDuration = 1000L
+        friendAvgCommitView.charStrategy = Strategy.NormalAnimation()
+        friendAvgCommitView.addCharOrder(CharOrder.Number)
+        friendAvgCommitView.animationInterpolator = AccelerateDecelerateInterpolator()
+
+        //지역 평균 뷰
+        areaAvgCommitView = view.findViewById(R.id.home_fragment_my_area_commit_avg)
+        areaAvgCommitView.animationDuration = 1000L
+        areaAvgCommitView.charStrategy = Strategy.NormalAnimation()
+        areaAvgCommitView.addCharOrder(CharOrder.Number)
+        areaAvgCommitView.animationInterpolator = AccelerateDecelerateInterpolator()
+
         //커밋 잔디
-        val commitGrassImgView = view.findViewById<ImageView>(R.id.main_commit_grass_img_view)
-        GlideToVectorYou.init()
-            .with(mainActivity)
-            .withListener(object : GlideToVectorYouListener{
-                override fun onLoadFailed() {
-                }
-                override fun onResourceReady() {
-                }
-            })
-            .load("https://ghchart.rshah.org/219138/want8607".toUri(),commitGrassImgView)
+        commitGrassImgView = view.findViewById(R.id.main_commit_grass_img_view)
 
         //팁 뷰페이저
         //이미지 넣기
@@ -138,9 +138,19 @@ class HomeFragment : Fragment(){
                 }
             }
         })
+
+        //swipeRefreshLayout
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
+        swipeRefreshLayout.setOnRefreshListener {
+            lifecycleScope.launch {getMainData()}
+            swipeRefreshLayout.isRefreshing = false
+            Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
+        }
+
+        lifecycleScope.launch {getMainData()}
     }
 
-    fun initLineChart(){
+    fun initLineChart(dateList : List<MyThirtyCommits>){
         lineChart.run {
             axisRight.isEnabled = false
             legend.isEnabled = false
@@ -158,7 +168,7 @@ class HomeFragment : Fragment(){
             setDrawAxisLine(true)
             setDrawLabels(true)
             position = XAxis.XAxisPosition.BOTTOM
-            valueFormatter = XAxisCustomFormatter()
+            valueFormatter = XAxisCustomFormatter(addXAisle(dateList))
             textColor = resources.getColor(R.color.text_color,null)
             textSize = 10f
             labelRotationAngle = 0f
@@ -166,20 +176,18 @@ class HomeFragment : Fragment(){
         }
     }
 
-    inner class XAxisCustomFormatter() : ValueFormatter(){
+    inner class XAxisCustomFormatter( val xAxisData : ArrayList<String>) : ValueFormatter(){
 
         override fun getFormattedValue(value: Float): String {
             return xAxisData[(value).toInt()]
         }
     }
-    fun setDataToLineChart(){
+    fun setDataToLineChart(commitList : List<MyThirtyCommits>){
 
         val entries: ArrayList<Entry> = ArrayList()
-        val ylist = mutableListOf<Int>(1,2,3,4,1,1,2,0,20,0,0,1,2,4,5,1,6,8,1,3,5,4,1,2,3,4,5,6,1,2)
-        for (i in xAxisData.indices){
-            entries.add(Entry(i.toFloat(),ylist[i].toFloat()))
+        for (i in commitList.indices){
+            entries.add(Entry(i.toFloat(),commitList[i].commit.toFloat()))
         }
-
         val lineDataSet = LineDataSet(entries,"entries")
         lineDataSet.run {
             color = resources.getColor(R.color.point_color,null)
@@ -194,27 +202,24 @@ class HomeFragment : Fragment(){
             valueTextSize = 10f
         }
         val data = LineData(lineDataSet)
-
         lineChart.data = data
         lineChart.notifyDataSetChanged()
         lineChart.invalidate()
     }
 
-    fun addXAisle() : ArrayList<String>{
-        val dateList = arrayListOf<String>()
-        for (i in 0..29){
-            val cal = Calendar.getInstance()
-            cal.add(Calendar.DATE,-i)
-            val todayDate = cal.time
-            val dateFormat = SimpleDateFormat("dd", Locale.KOREA).format(todayDate)
-            if (dateFormat=="01"){
-                dateList.add(SimpleDateFormat("MM-dd", Locale.KOREA).format(todayDate))
+    fun addXAisle(dateList : List<MyThirtyCommits>) : ArrayList<String>{
+        val dataTextList = ArrayList<String>()
+        for (i in dateList.indices){
+            val textSize = dateList[i].date.length
+            val dateText = dateList[i].date.substring(textSize-2,textSize)
+            if(dateText=="01"){
+                dataTextList.add(dateList[i].date)
             }else{
-                dateList.add(dateFormat)
+                dataTextList.add(dateText)
             }
         }
-        dateList.reverse()
-        return dateList
+
+        return dataTextList
     }
 
     fun autoScrollStart(intervalTime : Long){
@@ -272,5 +277,49 @@ class HomeFragment : Fragment(){
     override fun onPause() {
         super.onPause()
         autoScrollStop()
+    }
+
+
+    suspend fun getMainData(){
+        var handler = CoroutineExceptionHandler{_,exception->
+            Log.d("error",exception.toString())
+        }
+        CoroutineScope(Dispatchers.Main).launch(handler){
+            //호출
+            val callMainDataApi : Deferred<MyData> = async(Dispatchers.IO){
+                myDataApi.getMyData(MyApp.prefs.accountToken!!)
+            }
+            //변경
+            Log.d("success",callMainDataApi.await().success.toString())
+            Log.d("message",callMainDataApi.await().message)
+            Log.d("daily",callMainDataApi.await().daily_commit.toString())
+            Log.d("area",callMainDataApi.await().area_avg.toString())
+            Log.d("friend",callMainDataApi.await().friend_avg.toString())
+            Log.d("thirty",callMainDataApi.await().thirty_commit.toString())
+            Log.d("commiter",callMainDataApi.await().committer)
+            rollingTextView.setText(callMainDataApi.await().daily_commit.toString())//오늘 커밋
+            if (callMainDataApi.await().friend_avg == -1f){
+                friendAvgCommitView.setText("친구추가하세용")
+            }else{
+                friendAvgCommitView.setText(callMainDataApi.await().friend_avg.toString())
+            }
+            //친구 커밋
+            areaAvgCommitView.setText(callMainDataApi.await().area_avg.toString())//지역 커밋
+            initLineChart(callMainDataApi.await().thirty_commit)//차트 x축
+            setDataToLineChart(callMainDataApi.await().thirty_commit)//차트 커밋수 조절
+            getGrassImg(callMainDataApi.await().committer) //잔디 불러오기
+        }
+    }
+    
+    fun getGrassImg(url : String){
+        GlideToVectorYou.init()
+            .with(mainActivity)
+            .withListener(object : GlideToVectorYouListener{
+                override fun onLoadFailed() {
+                }
+                override fun onResourceReady() {
+                }
+            })
+            .load("https://ghchart.rshah.org/219138/$url".toUri(),commitGrassImgView)
     }
 }

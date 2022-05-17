@@ -3,22 +3,28 @@ package com.example.withub.mainActivityAdapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.daimajia.swipe.SwipeLayout
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.daimajia.swipe.implments.SwipeItemMangerImpl
-import com.example.withub.FriendActivity
-import com.example.withub.MainActivity
-import com.example.withub.R
+import com.example.withub.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlin.collections.ArrayList
 
 class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) : RecyclerSwipeAdapter<NavFriendRVAdapter.Holder>(){
+
+    val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NavFriendRVAdapter.Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.main_activity_nav_recycler_view_item, parent, false)
@@ -75,7 +81,16 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
                 val name = friendNameTextView?.text.toString()
                 val dialog = AlertDialog.Builder(context)
                 dialog.setMessage(name+"님을 친구목록에서 삭제하시겠습니까?")
-                    .setPositiveButton("삭제"){ _, _ -> deleteItem(position) }
+                    .setPositiveButton("삭제"){ _, _ ->
+                        CoroutineScope(Dispatchers.Main).launch {
+                            var deleteFriendToList = async(Dispatchers.IO) {
+                                friendApi.deleteFriend(FriendNameData(MyApp.prefs.accountToken!!,name))
+                            }
+                            Log.d("success",deleteFriendToList.await().success.toString())
+                            Log.d("message",deleteFriendToList.await().message)
+                            notifyItemRemoved(position)
+                        }
+                    }
                     .setNegativeButton("취소"){ _, _ ->  }
                     .show()
             }

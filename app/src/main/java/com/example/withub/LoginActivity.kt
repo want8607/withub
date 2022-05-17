@@ -130,6 +130,7 @@ class LoginActivity: AppCompatActivity() {
                 if (response.body()!!.success==true) {
                     val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 }
             }
         })

@@ -55,7 +55,7 @@ class ForegroundService : Service() {
                     while (true){
                         val gitHubCommitDatas: Deferred<GitHubCommitDatas> = async {
                             requestCommitApi.getInfo(
-                                "token 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",
+                                BuildConfig.GITTOKEN,
                                 myRepoData.repository[i].owner,
                                 myRepoData.repository[i].name,
                                 committer,

@@ -39,7 +39,6 @@ class FriendActivity : AppCompatActivity() {
         backBtn.setOnClickListener {
             finish()
         }
-
         val friendNickName : String? = intent.getStringExtra("friendNickName")
 
         //닉네임 설정

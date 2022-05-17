@@ -207,21 +207,17 @@ data class InfoData(
     val token: String,
     val commits: List<GitHubCommitDatasItem>
     )
-data class InfoResultData(
+data class ResultData(
     val success: Boolean,
     val message: String
 )
 
 interface InfoApi{
     @POST("/info")
-    suspend fun sendGithubDataToServer(@Body requestData: InfoData ) : InfoResultData
+    suspend fun sendGithubDataToServer(@Body requestData: InfoData ) : ResultData
 }
 
 //---------------------유저 데이터 반환 API---------------------------
-data class MyTokenData(
-    val token: String
-    )
-
 data class MyData(
     val success: Boolean,
     val message: String,
@@ -229,11 +225,11 @@ data class MyData(
     val daily_commit : Int,
     val thirty_commit : List<MyThirtyCommits>,
     val friend_avg : Float,
-    val area_avg : Float,
+    val area_avg : Float
 )
 
 data class MyThirtyCommits(
-    val data: String,
+    val date: String,
     val commit : Int
 )
 
@@ -274,3 +270,112 @@ interface TokenApi{
     @GET("/token")
     fun loginCheck(@Query("token") token: String) : Call<TokenCheckData>
 }
+
+//------------------------친구 API-------------------------------
+
+data class FriendListData(
+    val success: Boolean,
+    val message: String,
+    val friends : List<FriendName>
+)
+
+data class FriendName(
+    val nickname: String,
+    val avatar_url : String
+)
+
+data class FriendNameData(
+    val token: String,
+    val nickname: String
+)
+
+data class FriendCommitInfo(
+    val success: Boolean,
+    val message: String,
+    val committer: String,
+    val friend_daily: Int,
+    val thirty_commit: List<MyThirtyCommits>,
+    val my_month_total: Int,
+    val friend_month_total:Int,
+    val repository: List<Repositories>
+)
+
+
+interface FriendApi{
+    @GET("/friend")
+    suspend fun getFriendList(@Query("token") token: String) : FriendListData
+
+    @POST("/friend")
+    suspend fun addFriend(@Body addedFriendData: FriendNameData) : ResultData
+
+    @DELETE("/friend")
+    suspend fun deleteFriend(@Body deleteFriendData : FriendNameData) : ResultData
+
+    @GET("/friend/info")
+    suspend fun getFriendInfo(@Query("token") token: String, @Query("nickname") nickname: String) : FriendCommitInfo
+}
+
+
+//------------------------커밋 API-------------------------------
+
+data class MyCommitList(
+    val success: Boolean,
+    val message: String,
+    val commits: List<CommitData>
+)
+
+data class CommitData(
+    val date: String,
+    val time : String,
+    val repository: String,
+    val commit_message: String,
+    val sha: String
+)
+
+data class FriendRankData(
+    val success: Boolean,
+    val message: String,
+    val daily_rank : List<DailyRankData>,
+    val weekly_rank : List<WeeklyRankData>,
+    val monthly_rank : List<MonthlyRankData>,
+    val continuous_rank : List<ContinuousRankData>
+)
+
+data class AreaRankData(
+    val success: Boolean,
+    val message: String,
+    val daily_rank : List<DailyRankData>,
+    val weekly_rank : List<WeeklyRankData>,
+    val monthly_rank : List<MonthlyRankData>,
+    val continuous_rank : List<ContinuousRankData>
+)
+data class DailyRankData(
+    val nickname: String,
+    val count : Int
+)
+
+data class WeeklyRankData(
+    val nickname: String,
+    val count : Int
+)
+
+data class MonthlyRankData(
+    val nickname: String,
+    val count : Int
+)
+
+data class ContinuousRankData(
+    val nickname: String,
+    val count : Int
+)
+
+
+interface CommitApi{
+    @GET("/commit")
+    suspend fun getMyCommitList(@Query("token") token: String) : MyCommitList
+
+    @GET("/commit/rank/friend")
+    suspend fun getFriendRank(@Query("token") token: String) : FriendRankData
+
+    @GET("/commit/rank/area")
+    suspend fun getAreaRank(@Query("token") token: String) : AreaRankData}

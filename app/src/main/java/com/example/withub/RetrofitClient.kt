@@ -275,10 +275,56 @@ interface TokenApi{
 
 //-----------------------로그인 이후 새비밀번호---------------------------
 
+//비밀번호 확인 및 탈퇴 비밀번호 확인
 data class PwCheckData(val message: String, val success: Boolean)
 
 //현재 비밀번호 확인 API
 interface CurrentPwConfirmApi{
     @GET("/account/pw/after")
     fun tokenPwCheck(@Query("token") token: String,@Query("pw") pw: String) : Call<PwCheckData>
+}
+
+
+//비밀번호 변경
+data class PwTokenPwValue(
+    @SerializedName("token") val token : String,
+    @SerializedName("pw") val pw : String
+)
+
+data class ChangePwCheckData(val message: String, val success: Boolean)
+
+//비밀번호 변경 API
+interface ChangePwApi{
+    @PATCH("/account/pw/after")
+    fun changePw(@Body requestData: PwTokenPwValue) : Call<ChangePwCheckData>
+}
+
+
+//------------------------------탈퇴하기-----------------------------------
+//탈퇴
+data class TokenValue(
+    @SerializedName("token") val token : String
+)
+
+data class ResignTokenCheckData(val message: String, val success: Boolean)
+
+//탈퇴하기 API
+interface ResignApi{
+    @DELETE("/account")
+    fun tokenCheck(@Body requestData: TokenValue) : Call<ResignTokenCheckData>
+}
+
+//-----------------------------로그인 후 닉네임 변경--------------------------
+//닉네임 변경
+data class TokenNickNameValue(
+    @SerializedName("token") val token : String,
+    @SerializedName("nickname") val nickname : String
+)
+
+data class TokenNickNameCheckData(val message: String, val success: Boolean)
+
+//닉네임변경 API
+interface ChangeNicknameApi{
+    @PATCH("/account/nickname")
+    fun tokenCheck(@Body requestData: TokenNickNameValue) : Call<TokenNickNameCheckData>
 }

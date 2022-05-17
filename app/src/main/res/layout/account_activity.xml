@@ -33,7 +33,6 @@
         app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <LinearLayout
-        android:layout_marginTop="3dp"
         android:id="@+id/account_activity_area_select_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -59,7 +58,7 @@
         <Spinner
             android:id="@+id/area_select_spinner_account"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.35"
             android:backgroundTint="@color/point_color"

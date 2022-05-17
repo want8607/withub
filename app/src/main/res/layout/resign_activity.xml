@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
+            android:id="@+id/back_btn_resign"
             android:layout_width="12dp"
             android:layout_height="25dp"
             android:layout_gravity="start|center"
@@ -60,6 +61,9 @@
                 tools:ignore="MissingClass,MissingConstraints">
 
                 <EditText
+                    android:inputType="textPassword"
+                    android:maxLength="20"
+                    android:id="@+id/pw_edittext_resign"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/nanum_square_round_regular"
@@ -80,6 +84,7 @@
 
 
                 <Button
+                    android:id="@+id/confirm_btn_resign"
                     android:layout_width="80dp"
                     android:layout_height="30dp"
                     android:layout_gravity="right"
@@ -218,11 +223,12 @@
     </LinearLayout>
 
     <Button
-        android:layout_marginBottom="20dp"
+        android:id="@+id/resign_btn_resign"
+        android:layout_marginBottom="50dp"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/disabled_button"
         android:fontFamily="@font/nanum_square_round_regular"
         android:text="회원 탈퇴"
         android:textColor="@color/white"

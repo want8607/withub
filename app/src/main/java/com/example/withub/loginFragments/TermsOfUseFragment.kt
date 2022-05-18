@@ -41,6 +41,8 @@ class TermsOfUseFragment: Fragment() {
         warningInform3.visibility = View.GONE
         warningInform4.visibility = View.GONE
 
+        val allCheckText = view.findViewById<TextView>(R.id.all_check_textview)
+
         signupBackBtn.setOnClickListener{
             signupActivity.finish()
         }
@@ -52,7 +54,6 @@ class TermsOfUseFragment: Fragment() {
                     add(R.id.fragmentArea, IdPwInputFragment(), "idPwInputFragment")
                     addToBackStack(null)
                 }
-//                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, IdPwInputFragment()).commit()
             }
         }
 

@@ -15,12 +15,11 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.setting_activity)
-//        val backBtn = findViewById<Button>(R.id.back_btn_setting)
-//
-//        backBtn.setOnClickListener{
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//        }
+        val backBtn = findViewById<Button>(R.id.back_btn_setting)
+
+        backBtn.setOnClickListener{
+            finish()
+        }
 
 
     }

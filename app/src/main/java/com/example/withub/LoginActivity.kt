@@ -18,6 +18,7 @@ class LoginActivity: AppCompatActivity() {
     val retrofit = RetrofitClient.initRetrofit()
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
+        window.statusBarColor = getColor(R.color.background_color)
         if(MyApp.prefs.accountToken!=null){
             Log.d("message","${MyApp.prefs.accountToken}")
             tokenApi()

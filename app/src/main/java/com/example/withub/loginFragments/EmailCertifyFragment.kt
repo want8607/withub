@@ -86,6 +86,7 @@ class EmailCertifyFragment:Fragment() {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.thick_gray))
                 certificationBtn.isEnabled = false
+                dialogMessage("인증번호가 발송되었습니다.")
                 sendMailApi()  //api로 메일 보내기
                 if (!emailInfoExist) {
                     if (running) {
@@ -221,14 +222,15 @@ class EmailCertifyFragment:Fragment() {
                 if (response.body()!!.success) {
                     count.cancel()
                     dialogMessage("인증번호가 확인되었습니다.")
+                    certiNumText.isEnabled = false
                     nextBtn.setBackgroundResource(R.drawable.login_btn)
-                    nextBtn.setEnabled(true)
+                    nextBtn.isEnabled = true
                 } else {
                     count.cancel()
                     dialogMessage("인증번호가 틀렸습니다. 다시 인증해주세요.")
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
-                    certificationBtn.setEnabled(true)
+                    certificationBtn.isEnabled = true
                 }
             }
         })

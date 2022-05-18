@@ -47,21 +47,24 @@
                         android:layout_weight="0.8"
                         android:orientation="vertical">
 
-                        <FrameLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:weightSum="1"
+                            android:orientation="horizontal">
 
                             <com.wrapp.floatlabelededittext.FloatLabeledEditText
                                 android:id="@+id/floatLabeledEditText"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 float:fletPadding="3dp"
                                 tools:ignore="MissingClass,MissingConstraints">
 
                                 <EditText
                                     android:id="@+id/id_edittext_signup"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanum_square_round_regular"
                                     android:hint="아이디"
                                     android:maxLength="15"
@@ -73,17 +76,20 @@
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
                             <Button
+                                android:layout_marginBottom="4dp"
                                 android:id="@+id/id_duplicate_check_btn_signup"
                                 android:layout_width="80dp"
                                 android:layout_height="30dp"
-                                android:layout_gravity="right|bottom"
-                                android:layout_marginBottom="10dp"
                                 android:background="@drawable/stroke_disabled_btn"
                                 android:fontFamily="@font/nanum_square_round_regular"
+                                android:layout_gravity="bottom"
+                                android:enabled="false"
                                 android:text="중복체크"
                                 android:textColor="@color/thick_gray" />
 
-                        </FrameLayout>
+                        </LinearLayout>
+
+
 
                         <TextView
                             android:id="@+id/id_check_textview_signup"

@@ -1,5 +1,6 @@
 package com.example.withub.loginFragments
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.withub.MyApp
 import com.example.withub.R
+import com.example.withub.SignupActivity
 
 
 class GetTokenFragment:Fragment() {
@@ -26,6 +28,14 @@ class GetTokenFragment:Fragment() {
         val tokenReceiveBtn = view.findViewById<Button>(R.id.github_token_receive_btn_gettoken)
         val githubTokenText = view.findViewById<EditText>(R.id.github_token_paste_edittext_gettoken)
         val nextBtn = view.findViewById<Button>(R.id.next_btn_gettoken)
+
+        val signupActivity = activity as SignupActivity
+        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+
+        signupBackBtn.setOnClickListener{
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, NickNameAreaSelectFragment()).commit()
+        }
+
         tokenReceiveBtn.setOnClickListener{
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("https://github.com/settings/tokens")

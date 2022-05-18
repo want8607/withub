@@ -27,6 +27,7 @@ class FindIdActivity : AppCompatActivity() {
         setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.findid_activity)
+        window.statusBarColor = getColor(R.color.background_color)
 
         val spinner: Spinner = findViewById(R.id.email_spinner_find_id)
         val emailText = findViewById<EditText>(R.id.email_edittext_find_id)
@@ -53,7 +54,8 @@ class FindIdActivity : AppCompatActivity() {
             } else {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(this,R.color.thick_gray))
-                certificationBtn.setEnabled(false)
+                certificationBtn.isEnabled = false
+                dialogMessage("인증번호가 발송되었습니다.")
                 sendMailApi()  //api로 메일 보내기
                 if (running) {
                     count.cancel()
@@ -63,7 +65,7 @@ class FindIdActivity : AppCompatActivity() {
         }
 
         confirmBtn.setOnClickListener{
-            if(confirmBtnBoolean == false)  {
+            if(!confirmBtnBoolean)  {
                 dialogMessage("이메일 인증을 해주세요.")
             } else if (running == false) {
                 dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
@@ -113,6 +115,7 @@ class FindIdActivity : AppCompatActivity() {
                 if (response.body()!!.success) {
                     count.cancel()
                     dialogMessage("인증번호가 확인되었습니다.")
+                    certiNumText.isEnabled = false
                     appearId(yourIdTextView,idText,response.body()!!.id)
                 } else {
                     count.cancel()

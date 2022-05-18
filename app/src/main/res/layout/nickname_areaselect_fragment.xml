@@ -91,7 +91,6 @@
                         android:id="@+id/nickname_check_textview_signup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2~10자 한글, 영어, 숫자만 사용하세요."
                         android:textColor="@color/timer"
                         android:textSize="12sp" />
 
@@ -114,10 +113,11 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3" />
+                    android:layout_weight="0.1" />
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:gravity="center"
@@ -128,12 +128,14 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4" />
+                    android:layout_weight="0.15" />
 
                 <Spinner
                     android:id="@+id/area_spinner_signup"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.35"
                     android:layout_height="30dp"
+                    android:textAlignment="center"
                     android:backgroundTint="@color/point_color"
                     android:dropDownWidth="150dp"
                     android:popupBackground="@color/white"
@@ -144,7 +146,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3" />
+                    android:layout_weight="0.1" />
 
             </LinearLayout>
 

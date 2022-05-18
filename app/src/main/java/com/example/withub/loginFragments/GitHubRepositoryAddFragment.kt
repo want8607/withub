@@ -67,7 +67,7 @@ class GitHubRepositoryAddFragment: Fragment() {
         recyclerView.adapter = adapter
 
         signupBackBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, NickNameAreaSelectFragment())
+            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, GetTokenFragment())
                 .commit()
         }
 

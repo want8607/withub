@@ -54,9 +54,10 @@
                         android:layout_weight="0.05" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/all_check_textview"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.849"
+                        android:layout_weight="0.3"
                         android:fontFamily="@font/nanum_square_round_bold"
                         android:text="전체 동의"
                         android:textColor="@color/black"
@@ -94,9 +95,9 @@
 
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.849"
+                        android:layout_weight="0.3"
                         android:fontFamily="@font/nanum_square_round_bold"
                         android:text="이용약관"
                         android:textColor="@color/black"
@@ -162,9 +163,9 @@
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.849"
+                    android:layout_weight="0.3"
                     android:fontFamily="@font/nanum_square_round_bold"
                     android:text="이용약관"
                     android:textColor="@color/black"

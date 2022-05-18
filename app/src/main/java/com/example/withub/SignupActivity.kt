@@ -28,6 +28,7 @@ class SignupActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_activity)
+        window.statusBarColor = getColor(R.color.background_color)
 
         if (savedInstanceState == null) {
             fragmentManager.commit {
@@ -36,6 +37,15 @@ class SignupActivity: AppCompatActivity() {
                 }
             }
         }
+
+    fun nicknameAreaSelectToEmailCerti() {
+        var fragment = EmailCertifyFragment()
+        var myBundle = Bundle()
+        myBundle.putString("id", id)
+        fragment.arguments = myBundle
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentArea, fragment).commit()
+
+    }
 
 
     fun idPwInform(idValue:String, pwValue:String){
@@ -103,6 +113,8 @@ class SignupActivity: AppCompatActivity() {
             }
         })
     }
+
+
 }
 
 

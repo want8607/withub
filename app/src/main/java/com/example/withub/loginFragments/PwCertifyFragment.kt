@@ -58,7 +58,8 @@ class PwCertifyFragment:Fragment() {
                 id = idText.text.toString()
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.thick_gray))
-                certificationBtn.setEnabled(false)
+                certificationBtn.isEnabled = false
+                dialogMessage("인증번호가 발송되었습니다.")
                 sendMailApi(idText.text.toString(),timerTime)  //api로 메일 보내기
             }
         }
@@ -68,9 +69,9 @@ class PwCertifyFragment:Fragment() {
         }
 
         confirmBtn.setOnClickListener{
-            if(confirmBtnBoolean == false)  {
+            if(!confirmBtnBoolean)  {
                 dialogMessage("이메일 인증을 해주세요.")
-            } else if (running == false) {
+            } else if (!running) {
                 dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
                 certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
@@ -202,6 +203,7 @@ class PwCertifyFragment:Fragment() {
                 if (response.body()!!.success == true) {
                     count.cancel()
                     dialogMessage("인증번호가 확인되었습니다.")
+                    certiNumText.isEnabled = false
                     nextBtn.setBackgroundResource(R.drawable.login_btn)
                     nextBtn.setEnabled(true)
                 } else {

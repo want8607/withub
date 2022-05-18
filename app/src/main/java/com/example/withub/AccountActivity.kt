@@ -1,6 +1,7 @@
 package com.example.withub
 
 import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -32,22 +33,7 @@ class AccountActivity : AppCompatActivity() {
 
         //닉네임 변경
         findViewById<LinearLayout>(R.id.account_activity_change_nickname_view).setOnClickListener{
-            val input = EditText(this)
-            input.hint = "닉네임"
-            input.setSingleLine()
-            val inputContainer = LinearLayout(this)
-            val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-            params.leftMargin = resources.getDimensionPixelSize(R.dimen.dialog_margin)
-            params.rightMargin = resources.getDimensionPixelSize(R.dimen.dialog_margin)
-            input.layoutParams = params
-            inputContainer.addView(input)
-            val dialog : androidx.appcompat.app.AlertDialog.Builder = androidx.appcompat.app.AlertDialog.Builder(this)
-            dialog.setTitle("닉네임 변경")
-                .setMessage("변경할 닉네임을 입력해 주세요.")
-                .setView(inputContainer)
-                .setPositiveButton("변경"){ _, _ -> nicknameCheck(input.text.toString()) }
-                .setNegativeButton("취소"){ _, _ ->  }
-                .show()
+            nicknameChangeDialog()
         }
 
         //비밀번호 변경
@@ -75,8 +61,27 @@ class AccountActivity : AppCompatActivity() {
         }
     }
 
+    fun nicknameChangeDialog() {
+        val input = EditText(this)
+        input.hint = "닉네임"
+        input.setSingleLine()
+        val inputContainer = LinearLayout(this)
+        val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        params.leftMargin = resources.getDimensionPixelSize(R.dimen.dialog_margin)
+        params.rightMargin = resources.getDimensionPixelSize(R.dimen.dialog_margin)
+        input.layoutParams = params
+        inputContainer.addView(input)
+        val dialog : androidx.appcompat.app.AlertDialog.Builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        dialog.setTitle("닉네임 변경")
+            .setMessage("변경할 닉네임을 입력해 주세요.")
+            .setView(inputContainer)
+            .setPositiveButton("변경"){ _, _ -> nicknameCheck(input.text.toString()) }
+            .setNegativeButton("취소"){ _, _ ->  }
+            .show()
+    }
+
     fun nicknameCheck(nickname : String) {
-        var boolean = Pattern.matches("^[a-z0-9가-힣]*$", nickname)
+        val boolean = Pattern.matches("^[a-z0-9가-힣]*$", nickname)
         if (!boolean || nickname.length < 2 || nickname.length>10) {
             dialogMessage("닉네임은 2~10자 한글, 영어, 숫자만 사용하세요.")
         } else {
@@ -131,7 +136,11 @@ class AccountActivity : AppCompatActivity() {
     fun dialogMessage(message:String) {
         var builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setMessage(message)
-        builder.setPositiveButton("확인", null)
+        builder.setPositiveButton("확인", object : DialogInterface.OnClickListener {
+            override fun onClick(dialog: DialogInterface, which: Int) {
+                nicknameChangeDialog()
+            }
+        })
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }

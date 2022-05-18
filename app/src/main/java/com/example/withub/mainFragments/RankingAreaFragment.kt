@@ -35,14 +35,10 @@ class RankingAreaFragment : Fragment() {
 
         //랭킹 리사이클러 설정
         CoroutineScope(Dispatchers.Main).launch(handler) {
-            Log.d("실행","1")
             getRankingData()
-            Log.d("실행","2")
             expandableAdapter = ExpandableRVAdapter(rankingDataList)
             recyclerView = view.findViewById<RecyclerView>(R.id.ranking_area_recycler_view)
-            Log.d("실행","3")
             recyclerView.adapter = expandableAdapter
-            Log.d("실행","4")
             recyclerView.setHasFixedSize(true)
         }
         

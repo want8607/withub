@@ -341,36 +341,21 @@ data class CommitData(
 data class FriendRankData(
     val success: Boolean,
     val message: String,
-    val daily_rank : List<DailyRankData>,
-    val weekly_rank : List<WeeklyRankData>,
-    val monthly_rank : List<MonthlyRankData>,
-    val continuous_rank : List<ContinuousRankData>
+    val daily_rank : List<RankData>,
+    val weekly_rank : List<RankData>,
+    val monthly_rank : List<RankData>,
+    val continuous_rank : List<RankData>
 )
 
 data class AreaRankData(
     val success: Boolean,
     val message: String,
-    val daily_rank : List<DailyRankData>,
-    val weekly_rank : List<WeeklyRankData>,
-    val monthly_rank : List<MonthlyRankData>,
-    val continuous_rank : List<ContinuousRankData>
+    val daily_rank : List<RankData>,
+    val weekly_rank : List<RankData>,
+    val monthly_rank : List<RankData>,
+    val continuous_rank : List<RankData>
 )
-data class DailyRankData(
-    val nickname: String,
-    val count : Int
-)
-
-data class WeeklyRankData(
-    val nickname: String,
-    val count : Int
-)
-
-data class MonthlyRankData(
-    val nickname: String,
-    val count : Int
-)
-
-data class ContinuousRankData(
+data class RankData(
     val nickname: String,
     val count : Int
 )

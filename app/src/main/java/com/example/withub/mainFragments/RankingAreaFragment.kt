@@ -7,113 +7,91 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.withub.*
 import com.example.withub.mainFragments.mainFragmentAdapters.ExpandableRVAdapter
-import com.example.withub.mainFragments.mainFragmentAdapters.FriendRankingData
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class RankingAreaFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var recyclerView : RecyclerView
     lateinit var expandableAdapter : ExpandableRVAdapter
     var commitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
-    val rankingDataList : ArrayList<List<FriendRankingData>> = arrayListOf(
-        arrayListOf(
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3)
-        ),
-        arrayListOf(
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3),
-            FriendRankingData("문승재",3)
-        ),
-        arrayListOf(
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3)
-        ),
-        arrayListOf(
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3),
-            FriendRankingData("원해성",3)
-        ))
+    val handler = CoroutineExceptionHandler{_,exception->
+        Log.d("error",exception.toString())
+        Log.d("error",exception.cause.toString())
+    }
+    val rankingDataList : MutableList<ArrayList<RankData>> = arrayListOf()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.ranking_area_fragment,container,false)
         mainActivity = activity as MainActivity
-
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        expandableAdapter = ExpandableRVAdapter(rankingDataList)
-        recyclerView = view.findViewById<RecyclerView>(R.id.ranking_area_recycler_view)
-        recyclerView.adapter = expandableAdapter
-        recyclerView.setHasFixedSize(true)
 
+        //랭킹 리사이클러 설정
+        CoroutineScope(Dispatchers.Main).launch(handler) {
+            Log.d("실행","1")
+            getRankingData()
+            Log.d("실행","2")
+            expandableAdapter = ExpandableRVAdapter(rankingDataList)
+            recyclerView = view.findViewById<RecyclerView>(R.id.ranking_area_recycler_view)
+            Log.d("실행","3")
+            recyclerView.adapter = expandableAdapter
+            Log.d("실행","4")
+            recyclerView.setHasFixedSize(true)
+        }
+        
+        //스와이프 리프레시 설정
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.ranking_area_swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
-            lifecycleScope.launch { getRankingData() }
-            swipeRefreshLayout.isRefreshing = false
-            Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
+            CoroutineScope(Dispatchers.Main).launch(handler) {
+                Log.d("실행","1")
+                getRankingData()
+                Log.d("실행","2")
+                expandableAdapter.refresh(rankingDataList.toMutableList())
+                Log.d("실행","3")
+                swipeRefreshLayout.isRefreshing = false
+                Log.d("실행","4")
+                Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
+            }
         }
     }
-
+    //랭킹데이터 가져오기
     suspend fun getRankingData(){
-
-        val handler = CoroutineExceptionHandler{_,exception->
-            Log.d("error",exception.toString())
-            Log.d("error",exception.cause.toString())
-        }
-
-        CoroutineScope(Dispatchers.Main).launch(handler){
-
-            Log.d("success",commitApi.getAreaRank(MyApp.prefs.accountToken!!).message)
-            Log.d("success",commitApi.getAreaRank(MyApp.prefs.accountToken!!).success.toString())
-            Log.d("daily",commitApi.getAreaRank(MyApp.prefs.accountToken!!).daily_rank.toString())
-            Log.d("weekly_rank",commitApi.getAreaRank(MyApp.prefs.accountToken!!).weekly_rank.toString())
-            Log.d("monthly_rank",commitApi.getAreaRank(MyApp.prefs.accountToken!!).monthly_rank.toString())
-            Log.d("continuous_rank",commitApi.getAreaRank(MyApp.prefs.accountToken!!).continuous_rank.toString())
-//            commitApi.getFriendRank(MyApp.prefs.accountToken!!).daily_rank
-//            commitApi.getFriendRank(MyApp.prefs.accountToken!!).weekly_rank
-//            commitApi.getFriendRank(MyApp.prefs.accountToken!!).monthly_rank
-//            commitApi.getFriendRank(MyApp.prefs.accountToken!!).continuous_rank
+        withContext(CoroutineScope(Dispatchers.Default).coroutineContext + handler) {
+            val getAreaRanking = withContext(Dispatchers.IO) {
+                commitApi.getAreaRank(MyApp.prefs.accountToken!!)
+            }
+            val newDailyRankData = ArrayList<RankData>()
+            val newWeeklyRankData = ArrayList<RankData>()
+            val newMonthlyRankData = ArrayList<RankData>()
+            val newContinuousRankData = ArrayList<RankData>()
+            withContext(Dispatchers.Default) {
+                for (i in 0..9) {
+                    if (i < getAreaRanking.daily_rank.size) {
+                        newDailyRankData.add(getAreaRanking.daily_rank[i])
+                        newWeeklyRankData.add(getAreaRanking.weekly_rank[i])
+                        newMonthlyRankData.add(getAreaRanking.monthly_rank[i])
+                        newContinuousRankData.add(getAreaRanking.continuous_rank[i])
+                    } else {
+                        val emptyRankData = RankData("-", -1)
+                        newDailyRankData.add(emptyRankData)
+                        newWeeklyRankData.add(emptyRankData)
+                        newMonthlyRankData.add(emptyRankData)
+                        newContinuousRankData.add(emptyRankData)
+                    }
+                }
+            }
+            rankingDataList.clear()
+            rankingDataList.add(newDailyRankData)
+            rankingDataList.add(newWeeklyRankData)
+            rankingDataList.add(newMonthlyRankData)
+            rankingDataList.add(newContinuousRankData)
         }
     }
 }

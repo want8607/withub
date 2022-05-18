@@ -7,27 +7,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.lifecycleScope
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.daimajia.swipe.SwipeLayout
 import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
-import com.daimajia.swipe.implments.SwipeItemMangerImpl
 import com.example.withub.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import kotlin.collections.ArrayList
+import kotlinx.coroutines.*
 
-class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) : RecyclerSwipeAdapter<NavFriendRVAdapter.Holder>(){
+class NavFriendRVAdapter(val context : Context, val items : MutableList<FriendName>) : RecyclerSwipeAdapter<NavFriendRVAdapter.Holder>(){
 
     val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NavFriendRVAdapter.Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.main_activity_nav_recycler_view_item, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.drawer_activity_recycler_view_item, parent, false)
 
         return Holder(view)
     }
@@ -51,7 +47,8 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
             override fun onHandRelease(layout: SwipeLayout?, xvel: Float, yvel: Float) {}
 
         })
-        holder.bind(position)    }
+        holder.bind(position)
+    }
 
     override fun getItemCount(): Int {
         return items.size
@@ -67,28 +64,33 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
         val friendNameTextView = itemView?.findViewById<TextView>(R.id.nav_friend_name)
         val swipeView = itemView?.findViewById<SwipeLayout>(R.id.swipe_view)
         val friendItem = itemView?.findViewById<ConstraintLayout>(R.id.nav_friend_recycler_item)
-
+        val friendImg = itemView?.findViewById<ImageView>(R.id.nav_friend_img)
         fun bind(position: Int){
-            friendNameTextView?.text = items[position]
-
+            //닉네임
+            friendNameTextView?.text = items[position].nickname
+            //이미지
+            Glide.with(context)
+                .load(items[position].avatar_url.toUri())
+                .into(friendImg!!)
+            //친구페이지 전환
             friendItem?.setOnClickListener {
                 val intent = Intent(context,FriendActivity::class.java)
-                intent.putExtra("friendNickName",items[position])
+                intent.putExtra("friendNickName",items[position].nickname)
                 context.startActivity(intent)
             }
-
+            //삭제
             deleteBtn?.setOnClickListener {
-                val name = friendNameTextView?.text.toString()
+                val name = items[position].nickname
                 val dialog = AlertDialog.Builder(context)
                 dialog.setMessage(name+"님을 친구목록에서 삭제하시겠습니까?")
                     .setPositiveButton("삭제"){ _, _ ->
                         CoroutineScope(Dispatchers.Main).launch {
-                            var deleteFriendToList = async(Dispatchers.IO) {
-                                friendApi.deleteFriend(FriendNameData(MyApp.prefs.accountToken!!,name))
+                            withContext(Dispatchers.IO) {
+                                friendApi.deleteFriend(FriendNameData(MyApp.prefs.accountToken!!, name))
                             }
-                            Log.d("success",deleteFriendToList.await().success.toString())
-                            Log.d("message",deleteFriendToList.await().message)
+                            items.removeAt(position)
                             notifyItemRemoved(position)
+                            closeSwipeView()
                         }
                     }
                     .setNegativeButton("취소"){ _, _ ->  }
@@ -98,14 +100,9 @@ class NavFriendRVAdapter(val context : Context, val items : ArrayList<String>) :
 
     }
 
-    fun addItem(item : String){
+    fun addItem(item : FriendName,position: Int){
         items.add(item)
-        notifyItemInserted(items.size)
-    }
-
-    fun deleteItem(position: Int){
-        items.removeAt(position)
-        notifyItemRemoved(position)
+        notifyItemInserted(position)
     }
 
     fun closeSwipeView(){

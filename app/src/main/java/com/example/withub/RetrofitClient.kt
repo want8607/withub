@@ -233,9 +233,18 @@ data class MyThirtyCommits(
     val commit : Int
 )
 
+data class MyNickNameData(
+    val success: Boolean,
+    val message: String,
+    val avatar_url: String,
+    val nickname: String
+)
 interface MyDataApi{
     @GET("/account")
     suspend fun getMyData(@Query("token") token: String) : MyData
+
+    @GET("/account/info")
+    suspend fun getMyNickname(@Query("token") token: String) : MyNickNameData
 }
 //---------------------내 레포 반환 API---------------------------
 
@@ -305,7 +314,7 @@ interface FriendApi{
     @POST("/friend")
     suspend fun addFriend(@Body addedFriendData: FriendNameData) : ResultData
 
-    @DELETE("/friend")
+    @HTTP(method = "DELETE", hasBody = true, path = "/friend" )
     suspend fun deleteFriend(@Body deleteFriendData : FriendNameData) : ResultData
 
     @GET("/friend/info")

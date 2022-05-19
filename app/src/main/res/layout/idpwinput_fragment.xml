@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/id_pw_input_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
+    android:clickable="true"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
@@ -69,23 +71,39 @@
                                     android:hint="아이디"
                                     android:maxLength="15"
                                     android:singleLine="true"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/black"
+                                    android:textColor="@color/text_color"
+                                    android:textColorHint="@color/text_color"
                                     android:textSize="15sp"
                                     android:theme="@style/editText" />
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
 
-                            <Button
-                                android:layout_marginBottom="4dp"
-                                android:id="@+id/id_duplicate_check_btn_signup"
-                                android:layout_width="80dp"
-                                android:layout_height="30dp"
-                                android:background="@drawable/stroke_disabled_btn"
-                                android:fontFamily="@font/nanum_square_round_regular"
-                                android:layout_gravity="bottom"
-                                android:enabled="false"
-                                android:text="중복체크"
-                                android:textColor="@color/thick_gray" />
+                            <FrameLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <Button
+                                    android:id="@+id/id_duplicate_check_btn_signup"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    android:background="@drawable/stroke_disabled_btn"
+                                    android:fontFamily="@font/nanum_square_round_regular"
+                                    android:enabled="false"
+                                    android:text="중복체크"
+                                    android:layout_marginTop="20dp"
+                                    android:textColor="@color/gray" />
+
+                                <Button
+                                    android:id="@+id/id_change_btn_signup"
+                                    android:layout_width="80dp"
+                                    android:layout_height="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:textColor="@color/black"
+                                    android:background="@drawable/stroke_btn"
+                                    android:visibility="gone"
+                                    android:fontFamily="@font/nanum_square_round_regular"
+                                    android:text="변경" />
+                            </FrameLayout>
+
 
                         </LinearLayout>
 
@@ -118,8 +136,8 @@
                                     android:inputType="textPassword"
                                     android:maxLength="20"
                                     android:singleLine="true"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/black"
+                                    android:textColor="@color/text_color"
+                                    android:textColorHint="@color/text_color"
                                     android:textSize="15sp"
                                     android:theme="@style/editText" />
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -167,8 +185,8 @@
                                     android:inputType="textPassword"
                                     android:maxLength="20"
                                     android:singleLine="true"
-                                    android:textColor="@color/black"
-                                    android:textColorHint="@color/black"
+                                    android:textColor="@color/text_color"
+                                    android:textColorHint="@color/text_color"
                                     android:textSize="15sp"
                                     android:theme="@style/editText" />
                             </com.wrapp.floatlabelededittext.FloatLabeledEditText>

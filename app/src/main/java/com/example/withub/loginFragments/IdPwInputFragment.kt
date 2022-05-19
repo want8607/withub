@@ -7,10 +7,13 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.withub.R
@@ -33,34 +36,39 @@ class IdPwInputFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        var view: View = inflater.inflate(R.layout.idpwinput_fragment, container, false)
-        var signupActivity = activity as SignupActivity
-        var signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
-        var idText = view.findViewById<EditText>(R.id.id_edittext_signup)
-        var idCheckView = view.findViewById<TextView>(R.id.id_check_textview_signup)
-        var idDuplicateBtn = view.findViewById<Button>(R.id.id_duplicate_check_btn_signup)
-        var pwText = view.findViewById<EditText>(R.id.pw_edittext_signup)
-        var pwCheckView = view.findViewById<TextView>(R.id.pw_check_textview_signup)
-        var safetyView = view.findViewById<TextView>(R.id.pw_safety_textview_signup)
-        var pwConfirmText = view.findViewById<EditText>(R.id.pw_confirm_edittext_signup)
-        var pwMismatchView = view.findViewById<TextView>(R.id.pw_confirm_mismatch_textview_signup)
+        val view: View = inflater.inflate(R.layout.idpwinput_fragment, container, false)
+        val signupActivity = activity as SignupActivity
+        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+        val idText = view.findViewById<EditText>(R.id.id_edittext_signup)
+        val idCheckView = view.findViewById<TextView>(R.id.id_check_textview_signup)
+        val idDuplicateBtn = view.findViewById<Button>(R.id.id_duplicate_check_btn_signup)
+        val idChangeBtn = view.findViewById<Button>(R.id.id_change_btn_signup)
+        val pwText = view.findViewById<EditText>(R.id.pw_edittext_signup)
+        val pwCheckView = view.findViewById<TextView>(R.id.pw_check_textview_signup)
+        val safetyView = view.findViewById<TextView>(R.id.pw_safety_textview_signup)
+        val pwConfirmText = view.findViewById<EditText>(R.id.pw_confirm_edittext_signup)
+        val pwMismatchView = view.findViewById<TextView>(R.id.pw_confirm_mismatch_textview_signup)
         val signupText = signupActivity.findViewById<TextView>(R.id.signup_text)
         val warningInform1 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_1)
         val warningInform2 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_2)
         val warningInform3 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_3)
         val warningInform4 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_4)
-        signupText.visibility = View.VISIBLE
-        warningInform1.visibility = View.GONE
-        warningInform2.visibility = View.GONE
-        warningInform3.visibility = View.GONE
-        warningInform4.visibility = View.GONE
+        signupText.visibility = VISIBLE
+        warningInform1.visibility = GONE
+        warningInform2.visibility = GONE
+        warningInform3.visibility = GONE
+        warningInform4.visibility = GONE
 
         signupBackBtn.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, TermsOfUseFragment()).commit()
         }
 
         idDuplicateBtn.setOnClickListener{
-            idDuplicateApi(view,idText)
+            idDuplicateApi(view,idText,idDuplicateBtn,idChangeBtn)
+        }
+
+        idChangeBtn.setOnClickListener{
+            idDuplicateBtnVisible(view,idDuplicateBtn,idChangeBtn,idText)
         }
 
         idRegExp(idText,idCheckView,idDuplicateBtn)
@@ -69,8 +77,15 @@ class IdPwInputFragment: Fragment() {
         return view
     }
 
-    fun idDuplicateApi(view:View,idText:EditText) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+    fun idDuplicateBtnVisible(view:View,idDuplicateBtn:Button,idChangeBtn: Button,idText: EditText) {
+        idCheckBoolean = false
+        idDuplicateBtn.visibility = VISIBLE
+        idChangeBtn.visibility = GONE
+        idText.isEnabled = true
+        nextBtnActivate(view)
+    }
+
+    fun idDuplicateApi(view:View,idText:EditText,idDuplicateBtn:Button,idChangeBtn:Button) {
         var inform = IdValue(idText.text.toString())
         val requestIdCheckApi = retrofit.create(IdCheckApi::class.java)    // 메뉴를 불러올때는 for문 써서 각각의 index값으로 불러오기
         requestIdCheckApi.idCheck(inform).enqueue(object : retrofit2.Callback<IdCheckData> {   //enqueue 로 콜백함수 결과가 들어옴
@@ -81,19 +96,16 @@ class IdPwInputFragment: Fragment() {
             }
             override fun onResponse(call: Call<IdCheckData>, response: Response<IdCheckData>) {
                 if (!response.body()!!.success) {
-                    builder.setMessage("이미 사용중인 아이디입니다.")
-                    builder.setPositiveButton("확인", null)
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.show()
+                    dialogMessage("이미 사용중인 아이디입니다.")
+                    nextBtnActivate(view)
                 } else {
                     idValue = idText.text.toString()
                     idCheckBoolean = true
+                    idDuplicateBtn.visibility = GONE
+                    idChangeBtn.visibility = VISIBLE
                     idText.isEnabled = false
                     nextBtnActivate(view)
-                    builder.setMessage("${response.body()!!.message}")
-                    builder.setPositiveButton("확인", null)
-                    val alertDialog: AlertDialog = builder.create()
-                    alertDialog.show()
+                    dialogMessage("${response.body()!!.message}")
                 }
             }
         })
@@ -188,7 +200,7 @@ class IdPwInputFragment: Fragment() {
 
         if (safetyView.getText().toString() == "안전" && pwMismatchView.getText().toString() == "일치" && idCheckBoolean){
             nextBtn.setBackgroundResource(R.drawable.login_btn)
-            nextBtn.setEnabled(true)
+            nextBtn.isEnabled = true
             nextBtn.setOnClickListener{
                 var signupActivity = activity as SignupActivity
                 signupActivity.idPwInform(idValue,pwValue)
@@ -197,5 +209,13 @@ class IdPwInputFragment: Fragment() {
             nextBtn.setBackgroundResource(R.drawable.disabled_button)
             nextBtn.setEnabled(false)
         }
+    }
+
+    fun dialogMessage(message:String) {
+        var builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setMessage(message)
+        builder.setPositiveButton("확인", null)
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
     }
 }

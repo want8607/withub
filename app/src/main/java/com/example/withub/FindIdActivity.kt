@@ -55,12 +55,9 @@ class FindIdActivity : AppCompatActivity() {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(this,R.color.thick_gray))
                 certificationBtn.isEnabled = false
-                dialogMessage("인증번호가 발송되었습니다.")
-                sendMailApi()  //api로 메일 보내기
-                if (running) {
-                    count.cancel()
-                }
-                timerStart(timerTime)
+                certiNumText.isEnabled = true
+                sendMailApi(timerTime)  //api로 메일 보내기
+
             }
         }
 
@@ -72,6 +69,7 @@ class FindIdActivity : AppCompatActivity() {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(this,R.color.black))
                 certificationBtn.isEnabled = true
+                certiNumText.isEnabled = true
             } else if (certiNumText.text.isEmpty()){
                 dialogMessage("인증번호를 입력해주세요.")
             } else{
@@ -83,7 +81,7 @@ class FindIdActivity : AppCompatActivity() {
         emailRegEx(emailText,certificationBtn)
     }
 
-    fun sendMailApi() {
+    fun sendMailApi(timerTime: TextView) {
         var inform = FindIdEmailValue(userEmail)
         val requestFindIdSendEmailApi = retrofit.create(FindIdSendEmailApi::class.java)
         requestFindIdSendEmailApi.emailCheck(inform).enqueue(object : retrofit2.Callback<IdFindEmailCheckData> {
@@ -95,8 +93,16 @@ class FindIdActivity : AppCompatActivity() {
             override fun onResponse(call: Call<IdFindEmailCheckData>, response: Response<IdFindEmailCheckData>) {
                 if (!response.body()!!.success) {
                     dialogMessage(response.body()!!.message)
+                    if (running) {
+                        count.cancel()
+                    }
                 } else {
+                    dialogMessage("인증번호가 발송되었습니다.")
                     token = response.body()!!.token
+                    if (running) {
+                        count.cancel()
+                    }
+                    timerStart(timerTime)
                 }
             }
         })
@@ -120,6 +126,7 @@ class FindIdActivity : AppCompatActivity() {
                 } else {
                     count.cancel()
                     dialogMessage("인증번호가 틀렸습니다. 다시 인증해주세요.")
+                    certiNumText.isEnabled = false
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(applicationContext,R.color.black))
                     certificationBtn.isEnabled = true

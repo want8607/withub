@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
+    android:clickable="true"
     xmlns:float="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -48,8 +49,8 @@
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:hint="이메일"
                         android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/text_color"
                         android:textSize="15sp"
                         android:theme="@style/editText" />
                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -60,7 +61,7 @@
                     android:layout_gravity="bottom"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="@"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
                 <Spinner
@@ -72,7 +73,7 @@
                     android:background="@drawable/spinner_design"
                     android:backgroundTint="@color/point_color"
                     android:dropDownWidth="150dp"
-                    android:popupBackground="@color/white"
+                    android:popupBackground="@color/gray"
                     android:spinnerMode="dropdown"
                     android:textAlignment="center"
                     tools:ignore="RtlCompat" />
@@ -87,7 +88,7 @@
                     android:enabled="false"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:text="인증하기"
-                    android:textColor="@color/thick_gray"
+                    android:textColor="@color/gray"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -139,8 +140,8 @@
                             android:hint="인증번호"
                             android:maxLength="4"
                             android:singleLine="true"
-                            android:textColor="@color/black"
-                            android:textColorHint="@color/black"
+                            android:textColor="@color/text_color"
+                            android:textColorHint="@color/text_color"
                             android:textSize="15sp"
                             android:theme="@style/editText" />
                     </com.wrapp.floatlabelededittext.FloatLabeledEditText>

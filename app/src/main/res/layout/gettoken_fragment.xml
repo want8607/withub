@@ -5,6 +5,7 @@
     android:background="@color/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     xmlns:float="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -161,7 +162,7 @@
             android:fontFamily="@font/nanum_square_round_regular"
             android:text="GitHub personal access token을 받아 와주세요."
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/text_color"
             android:textSize="15sp" />
 
         <Button
@@ -203,8 +204,8 @@
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:hint="깃허브 token 붙여넣기"
                 android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_color"
                 android:textSize="15sp"
                 android:theme="@style/editText" />
         </com.wrapp.floatlabelededittext.FloatLabeledEditText>

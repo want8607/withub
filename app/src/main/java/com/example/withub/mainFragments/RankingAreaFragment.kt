@@ -46,13 +46,9 @@ class RankingAreaFragment : Fragment() {
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.ranking_area_swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
             CoroutineScope(Dispatchers.Main).launch(handler) {
-                Log.d("실행","1")
                 getRankingData()
-                Log.d("실행","2")
                 expandableAdapter.refresh(rankingDataList.toMutableList())
-                Log.d("실행","3")
                 swipeRefreshLayout.isRefreshing = false
-                Log.d("실행","4")
                 Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
             }
         }

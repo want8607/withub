@@ -1,23 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background_color">
-
-    <ImageButton
-        android:id="@+id/friend_activity_back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="11dp"
-        android:src="@drawable/ic_white_left_arrow"
-        android:background="@android:color/transparent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintBottom_toBottomOf="@+id/friend_activity_top_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/friend_activity_top_bar"
-        app:layout_constraintTop_toTopOf="@+id/friend_activity_top_bar"/>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/friend_activity_top_bar"
@@ -29,7 +17,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
+        <ImageButton
+            android:id="@+id/friend_activity_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="11dp"
+            android:src="@drawable/ic_white_left_arrow"
+            android:background="@android:color/transparent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_top_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/friend_activity_top_bar"
+            app:layout_constraintTop_toTopOf="@+id/friend_activity_top_bar"/>
         <TextView
             android:id="@+id/friend_activity_toolbar_textview"
             android:layout_width="wrap_content"
@@ -39,7 +38,7 @@
             android:textSize="@dimen/top_bar_text_size"
             android:textStyle="bold"
             android:textColor="@color/toolbar_text_color"
-            app:layout_constraintBottom_toTopOf="@id/friend_activity_rolling_commit_view"
+            app:layout_constraintBottom_toTopOf="@id/friend_activity_friend_today_commit"
             app:layout_constraintEnd_toEndOf="@+id/my_info_nickname"
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
@@ -54,18 +53,21 @@
             android:textSize="@dimen/top_bar_text_size"
             android:textStyle="bold"
             android:textColor="@color/toolbar_text_color"
-            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_rolling_commit_view"
-            app:layout_constraintEnd_toStartOf="@+id/friend_activity_rolling_commit_view"
-            app:layout_constraintTop_toTopOf="@+id/friend_activity_rolling_commit_view" />
+            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_friend_today_commit"
+            app:layout_constraintEnd_toStartOf="@+id/friend_activity_friend_today_commit"
+            app:layout_constraintTop_toTopOf="@+id/friend_activity_friend_today_commit" />
 
-        <com.yy.mobile.rollingtextview.RollingTextView
-            android:id="@+id/friend_activity_rolling_commit_view"
+        <com.robinhood.ticker.TickerView
+            android:id="@+id/friend_activity_friend_today_commit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:text="0"
             android:textColor="@color/black"
             android:textSize="@dimen/rolling_rolling_text_size"
+            app:ticker_defaultCharacterList="number"
+            app:ticker_animationDuration="2000"
+            app:ticker_defaultPreferredScrollingDirection="down"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,24 +82,25 @@
             android:textSize="@dimen/top_bar_text_size"
             android:textStyle="bold"
             android:textColor="@color/toolbar_text_color"
-            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_rolling_commit_view"
-            app:layout_constraintStart_toEndOf="@+id/friend_activity_rolling_commit_view"
-            app:layout_constraintTop_toTopOf="@+id/friend_activity_rolling_commit_view" />
+            app:layout_constraintBottom_toBottomOf="@+id/friend_activity_friend_today_commit"
+            app:layout_constraintStart_toEndOf="@+id/friend_activity_friend_today_commit"
+            app:layout_constraintTop_toTopOf="@+id/friend_activity_friend_today_commit" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.example.withub.mainFragments.CustomSwipeToRefresh
-        android:id="@+id/swipe_refresh_layout"
+        android:id="@+id/friend_swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/friend_activity_top_bar">
 
         <ScrollView
+            android:id="@+id/friend_activity_scroll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:scrollbars="none">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -230,7 +233,7 @@
                         android:id="@+id/friend_activity_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="원해성"
                         android:textColor="@color/text_color"
                         android:textSize="15sp"
@@ -242,7 +245,7 @@
                         android:id="@+id/friend_activity_friend_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="원해성"
                         android:textColor="@color/text_color"
                         android:textSize="15sp"
@@ -255,7 +258,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="@string/commit_count"
                         android:textColor="@color/text_color"
                         android:textSize="15sp"
@@ -264,11 +267,11 @@
                         app:layout_constraintTop_toBottomOf="@+id/friend_activity_user_name" />
 
                     <TextView
-                        android:id="@+id/friend_winner_friend_month_commit_num"
+                        android:id="@+id/friend_activity_friend_month_commit_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:fontFamily="@font/nanum_square_round_regular"
+                        android:fontFamily="@font/nanum_square_round_bold"
                         android:text="@string/commit_count"
                         android:textColor="@color/text_color"
                         android:textSize="15sp"
@@ -321,7 +324,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/friend_activity_repository_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_square_round_bold"
@@ -330,26 +333,29 @@
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/view_title_text_size"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+                    app:layout_constraintStart_toStartOf="@+id/friend_activity_recycler_view"
                     app:layout_constraintTop_toBottomOf="@+id/friend_commit_grass" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView2"
+                    android:id="@+id/friend_activity_recycler_view"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="30dp"
                     android:background="@drawable/main_round_view"
                     android:elevation="10dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/friend_activity_recycler_view_item"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintDimensionRatio="1:0.5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView20"
+                    app:layout_constraintTop_toBottomOf="@+id/friend_activity_repository_title"
                     app:layout_constraintWidth_percent="0.9" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </com.example.withub.mainFragments.CustomSwipeToRefresh>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

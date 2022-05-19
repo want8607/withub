@@ -25,7 +25,7 @@ class CommitRVAdapter(val context : Context, var list : List<CommitData>) : Recy
             repositoryName?.text = list[position].repository
             commitMessage?.text = list[position].commit_message
             commitClickArea?.setOnClickListener {
-                var intent = Intent(Intent.ACTION_VIEW,
+                val intent = Intent(Intent.ACTION_VIEW,
                     Uri.parse("https://github.com/${list[position].repository}/commit/${list[position].sha}"))
                 context.startActivity(intent)
             }

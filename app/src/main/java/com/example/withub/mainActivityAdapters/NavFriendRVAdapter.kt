@@ -3,7 +3,6 @@ package com.example.withub.mainActivityAdapters
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.daimajia.swipe.adapters.RecyclerSwipeAdapter
 import com.example.withub.*
 import kotlinx.coroutines.*
 
-class NavFriendRVAdapter(val context : Context, val items : MutableList<FriendName>) : RecyclerSwipeAdapter<NavFriendRVAdapter.Holder>(){
+class NavFriendRVAdapter(val context : Context, val items : MutableList<FriendName>, val myData : MyNickNameData) : RecyclerSwipeAdapter<NavFriendRVAdapter.Holder>(){
 
     val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)
 
@@ -76,6 +75,9 @@ class NavFriendRVAdapter(val context : Context, val items : MutableList<FriendNa
             friendItem?.setOnClickListener {
                 val intent = Intent(context,FriendActivity::class.java)
                 intent.putExtra("friendNickName",items[position].nickname)
+                intent.putExtra("myNickName",myData.nickname)
+                intent.putExtra("myAvatar",myData.avatar_url)
+                intent.putExtra("friendAvatar",items[position].avatar_url)
                 context.startActivity(intent)
             }
             //삭제

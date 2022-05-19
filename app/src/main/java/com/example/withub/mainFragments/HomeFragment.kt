@@ -14,7 +14,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.*
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.widget.ViewPager2
@@ -30,29 +29,27 @@ import com.github.mikephil.charting.formatter.DefaultValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
-import com.yy.mobile.rollingtextview.CharOrder
-import com.yy.mobile.rollingtextview.RollingTextView
-import com.yy.mobile.rollingtextview.strategy.Strategy
+import com.robinhood.ticker.TickerView
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(){
 
     lateinit var mainActivity: MainActivity
-    lateinit var rollingTextView: RollingTextView //오늘 커밋 뷰
     lateinit var commitGrassImgView : ImageView //잔디
     lateinit var pagerRecyclerView: ViewPager2
     lateinit var lineChart: LineChart //라인 차트
-    lateinit var friendAvgCommitView : RollingTextView // 친구 커밋 평균 뷰
-    lateinit var areaAvgCommitView : RollingTextView // 지역 커밋 평균 뷰
+    lateinit var myTodayCommitTextView : TickerView
+    lateinit var friendAvgCommitView : TickerView
+    lateinit var areaAvgCommitView : TickerView
+    lateinit var job : Job
     var myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
     var intervalTime = 4000.toLong()
     var bannerPosition = (Int.MAX_VALUE/2)+1
     var numBanner = 4
-    var homeHandler = HomeHandler()
-
+    val handler = CoroutineExceptionHandler{_,exception->
+        Log.d("error",exception.toString())
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.home_fragment,container,false)
         mainActivity = activity as MainActivity
@@ -69,15 +66,10 @@ class HomeFragment : Fragment(){
             val intent = Intent(mainActivity, DrawerActivity::class.java)
             startActivity(intent)
             mainActivity.overridePendingTransition(R.anim.lefttoright_animation, R.anim.hold)
-
         }
 
         //topView 설정
-        rollingTextView = view.findViewById<RollingTextView>(R.id.rolling_commit)
-        rollingTextView.animationDuration = 1000L
-        rollingTextView.charStrategy = Strategy.NormalAnimation()
-        rollingTextView.addCharOrder(CharOrder.Number)
-        rollingTextView.animationInterpolator = AccelerateDecelerateInterpolator()
+        myTodayCommitTextView = view.findViewById(R.id.my_today_commit)
 
         //30일 커밋 차트
         lineChart  = view.findViewById(R.id.line_chart)
@@ -86,17 +78,9 @@ class HomeFragment : Fragment(){
 
         //친구 평균 뷰
         friendAvgCommitView = view.findViewById(R.id.home_fragment_my_friend_commit_avg)
-        friendAvgCommitView.animationDuration = 1000L
-        friendAvgCommitView.charStrategy = Strategy.NormalAnimation()
-        friendAvgCommitView.addCharOrder(CharOrder.Number)
-        friendAvgCommitView.animationInterpolator = AccelerateDecelerateInterpolator()
 
         //지역 평균 뷰
         areaAvgCommitView = view.findViewById(R.id.home_fragment_my_area_commit_avg)
-        areaAvgCommitView.animationDuration = 1000L
-        areaAvgCommitView.charStrategy = Strategy.NormalAnimation()
-        areaAvgCommitView.addCharOrder(CharOrder.Number)
-        areaAvgCommitView.animationInterpolator = AccelerateDecelerateInterpolator()
 
         //커밋 잔디
         commitGrassImgView = view.findViewById(R.id.main_commit_grass_img_view)
@@ -119,8 +103,9 @@ class HomeFragment : Fragment(){
         val totalBannerNumView = view.findViewById<TextView>(R.id.total_banner_text_view)
         totalBannerNumView.text = numBanner.toString()
         val currentBannerNumView = view.findViewById<TextView>(R.id.current_banner_text_view)
+
         pagerRecyclerView.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-            @SuppressLint("SetTextI18n")
+
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 currentBannerNumView.text = ((position%4)+1).toString()
@@ -131,23 +116,27 @@ class HomeFragment : Fragment(){
                 super.onPageScrollStateChanged(state)
                 when (state) {
                     // 뷰페이저에서 손 떼었을때 / 뷰페이저 멈춰있을 때
-                    ViewPager2.SCROLL_STATE_IDLE -> autoScrollStart(intervalTime)
+                    ViewPager2.SCROLL_STATE_IDLE -> {if (!job.isActive){scrollJobCreate()}}
                     // 뷰페이저 움직이는 중
-                    ViewPager2.SCROLL_STATE_DRAGGING -> autoScrollStop()
+                    ViewPager2.SCROLL_STATE_DRAGGING -> {job.cancel()}
                     ViewPager2.SCROLL_STATE_SETTLING -> {}
                 }
             }
         })
 
         //swipeRefreshLayout
-        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swipe_refresh_layout)
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.friend_swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
-            lifecycleScope.launch {getMainData()}
-            swipeRefreshLayout.isRefreshing = false
-            Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
+            CoroutineScope(Dispatchers.Main).launch(handler) {
+                getMainData()
+                swipeRefreshLayout.isRefreshing = false
+                Toast.makeText(mainActivity,"업데이트 완료",Toast.LENGTH_SHORT).show()
+            }
         }
 
-        lifecycleScope.launch {getMainData()}
+        CoroutineScope(Dispatchers.Main).launch(handler) {
+            getMainData()
+        }
     }
 
     fun initLineChart(dateList : List<MyThirtyCommits>){
@@ -222,13 +211,20 @@ class HomeFragment : Fragment(){
         return dataTextList
     }
 
-    fun autoScrollStart(intervalTime : Long){
-        homeHandler.removeMessages(0) //핸들러 늘어남 방지
-        homeHandler.sendEmptyMessageDelayed(0,intervalTime) // interval만큼 반복실행
-    }
+//    fun autoScrollStart(intervalTime : Long){
+//        homeHandler.removeMessages(0) //핸들러 늘어남 방지
+//        homeHandler.sendEmptyMessageDelayed(0,intervalTime) // interval만큼 반복실행
+//    }
+//
+//    fun autoScrollStop(){
+//        homeHandler.removeMessages(0)//핸들러 중지
+//    }
 
-    fun autoScrollStop(){
-        homeHandler.removeMessages(0)//핸들러 중지
+    fun scrollJobCreate(){
+        job = lifecycleScope.launchWhenResumed {
+            delay(4000)
+            pagerRecyclerView.setCurrentItemWithDuration(++bannerPosition,500)
+        }
     }
 
     fun ViewPager2.setCurrentItemWithDuration(
@@ -259,55 +255,35 @@ class HomeFragment : Fragment(){
         animator.start()
     }
 
-    inner class HomeHandler : Handler(Looper.getMainLooper()){
-        override fun handleMessage(msg: Message) {
-            super.handleMessage(msg)
-            if(msg.what == 0){
-                pagerRecyclerView.setCurrentItemWithDuration(++bannerPosition,500)
-                autoScrollStart(intervalTime)
-            }
-        }
-    }
-
     override fun onResume() {
         super.onResume()
-        autoScrollStart(intervalTime)
+        scrollJobCreate()
     }
 
     override fun onPause() {
         super.onPause()
-        autoScrollStop()
+        job.cancel()
     }
 
 
     suspend fun getMainData(){
-        var handler = CoroutineExceptionHandler{_,exception->
-            Log.d("error",exception.toString())
-        }
-        CoroutineScope(Dispatchers.Main).launch(handler){
+
+        withContext(CoroutineScope(Dispatchers.Main).coroutineContext + handler) {
             //호출
-            val callMainDataApi : Deferred<MyData> = async(Dispatchers.IO){
+            val callMainDataApi = withContext(Dispatchers.IO){
                 myDataApi.getMyData(MyApp.prefs.accountToken!!)
             }
-            //변경
-            Log.d("success",callMainDataApi.await().success.toString())
-            Log.d("message",callMainDataApi.await().message)
-            Log.d("daily",callMainDataApi.await().daily_commit.toString())
-            Log.d("area",callMainDataApi.await().area_avg.toString())
-            Log.d("friend",callMainDataApi.await().friend_avg.toString())
-            Log.d("thirty",callMainDataApi.await().thirty_commit.toString())
-            Log.d("commiter",callMainDataApi.await().committer)
-            rollingTextView.setText(callMainDataApi.await().daily_commit.toString())//오늘 커밋
-            if (callMainDataApi.await().friend_avg == -1f){
-                friendAvgCommitView.setText("친구추가하세용")
+            myTodayCommitTextView.text = callMainDataApi.daily_commit.toString()//오늘 커밋
+            if (callMainDataApi.friend_avg == -1f){
+                friendAvgCommitView.text = "친구추가해주세요"
             }else{
-                friendAvgCommitView.setText(callMainDataApi.await().friend_avg.toString())
+                friendAvgCommitView.text = callMainDataApi.friend_avg.toString()
             }
             //친구 커밋
-            areaAvgCommitView.setText(callMainDataApi.await().area_avg.toString())//지역 커밋
-            initLineChart(callMainDataApi.await().thirty_commit)//차트 x축
-            setDataToLineChart(callMainDataApi.await().thirty_commit)//차트 커밋수 조절
-            getGrassImg(callMainDataApi.await().committer) //잔디 불러오기
+            areaAvgCommitView.text = callMainDataApi.area_avg.toString()//지역 커밋
+            initLineChart(callMainDataApi.thirty_commit)//차트 x축
+            setDataToLineChart(callMainDataApi.thirty_commit)//차트 커밋수 조절
+            getGrassImg(callMainDataApi.committer) //잔디 불러오기
         }
     }
     

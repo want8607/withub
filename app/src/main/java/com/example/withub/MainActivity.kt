@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var bottomNavigationView : BottomNavigationView
     var myDatas: Deferred<MyData>? = null
+    var backKeyPressedTime : Long= 0
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
@@ -69,8 +71,17 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-            super.onBackPressed()
-        }
+//            super.onBackPressed()
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis()
+                Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            if (System.currentTimeMillis() <= backKeyPressedTime + 2000){
+                finish()
+            }
+            }
     }
 
     fun setFragment(fragment: Fragment,tag: String){

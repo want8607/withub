@@ -40,12 +40,12 @@
             android:text="오늘"
             android:textSize="@dimen/fragment_title_text_size"
             android:textColor="@color/toolbar_text_color"
-            app:layout_constraintBottom_toBottomOf="@+id/rolling_commit"
-            app:layout_constraintEnd_toStartOf="@+id/rolling_commit"
-            app:layout_constraintTop_toTopOf="@+id/rolling_commit" />
+            app:layout_constraintBottom_toBottomOf="@+id/my_today_commit"
+            app:layout_constraintEnd_toStartOf="@+id/my_today_commit"
+            app:layout_constraintTop_toTopOf="@+id/my_today_commit" />
 
-        <com.yy.mobile.rollingtextview.RollingTextView
-            android:id="@+id/rolling_commit"
+        <com.robinhood.ticker.TickerView
+            android:id="@+id/my_today_commit"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -53,6 +53,9 @@
             android:text="0"
             android:textColor="@color/black"
             android:textSize="@dimen/rolling_rolling_text_size"
+            app:ticker_defaultCharacterList="number"
+            app:ticker_animationDuration="2000"
+            app:ticker_defaultPreferredScrollingDirection="down"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,13 +70,13 @@
             android:textSize="@dimen/fragment_title_text_size"
             android:textColor="@color/toolbar_text_color"
             android:fontFamily="@font/nanum_square_round_bold"
-            app:layout_constraintBottom_toBottomOf="@+id/rolling_commit"
-            app:layout_constraintStart_toEndOf="@+id/rolling_commit"
-            app:layout_constraintTop_toTopOf="@+id/rolling_commit" />
+            app:layout_constraintBottom_toBottomOf="@+id/my_today_commit"
+            app:layout_constraintStart_toEndOf="@+id/my_today_commit"
+            app:layout_constraintTop_toTopOf="@+id/my_today_commit" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.example.withub.mainFragments.CustomSwipeToRefresh
-        android:id="@+id/swipe_refresh_layout"
+        android:id="@+id/friend_swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,26 +168,21 @@
                     app:layout_constraintTop_toBottomOf="@id/friend_commit_text"
                     app:layout_constraintWidth_percent="0.40">
 
-                    <com.yy.mobile.rollingtextview.RollingTextView
+                    <com.robinhood.ticker.TickerView
                         android:id="@+id/home_fragment_my_friend_commit_avg"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:gravity="center"
                         android:text="3.4"
+                        app:ticker_defaultCharacterList="number"
+                        app:ticker_animationDuration="2000"
+                        app:ticker_defaultPreferredScrollingDirection="down"
                         android:ellipsize = "marquee"
                         android:textColor="@color/text_color"
                         android:textSize="45sp" />
 
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/count"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/text_color"
-                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <TextView
@@ -214,23 +212,21 @@
                     app:layout_constraintTop_toBottomOf="@id/textView2"
                     app:layout_constraintWidth_percent="0.40">
 
-                    <com.yy.mobile.rollingtextview.RollingTextView
-                        android:id="@+id/home_fragment_my_area_commit_avg"                        android:layout_width="wrap_content"
+                    <com.robinhood.ticker.TickerView
+                        android:id="@+id/home_fragment_my_area_commit_avg"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:text="5.1"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        app:ticker_defaultCharacterList="number"
+                        app:ticker_animationDuration="2000"
+                        app:ticker_defaultPreferredScrollingDirection="down"
                         android:textColor="@color/text_color"
                         android:textSize="45sp" />
 
-                    <TextView
-                        android:id="@+id/textView8"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_round_regular"
-                        android:text="@string/count"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/text_color"
-                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <TextView

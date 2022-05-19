@@ -18,7 +18,6 @@ import kotlinx.coroutines.*
 class DrawerActivity : AppCompatActivity() {
 
     lateinit var navFriendRVAdapter: NavFriendRVAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
@@ -29,7 +28,9 @@ class DrawerActivity : AppCompatActivity() {
         //헤더 설정
         val headerImgView = findViewById<ImageView>(R.id.drawer_header_img)
         val headerNicknameView = findViewById<TextView>(R.id.drawer_header_nickname)
-        CoroutineScope(Dispatchers.Main).launch {
+        
+        CoroutineScope(Dispatchers.Main).launch() {
+            //내이름 가져오기
             val job = async(Dispatchers.IO){myDataApi.getMyNickname(MyApp.prefs.accountToken!!)}
             headerNicknameView.text = job.await().nickname
             Glide.with(this@DrawerActivity)
@@ -38,17 +39,15 @@ class DrawerActivity : AppCompatActivity() {
                 .fallback(R.mipmap.ic_launcher)
                 .circleCrop()
                 .into(headerImgView)
-        }
-
-        //리사이클러뷰 설정
-        lifecycleScope.launch(Dispatchers.Main) {
+            
+            //리사이클러뷰 설정
             val getFriendList = async(Dispatchers.IO) {
                 friendApi.getFriendList(MyApp.prefs.accountToken!!).friends
             }
             val decoration = DividerItemDecoration(applicationContext, RecyclerView.VERTICAL)
             val recyclerView = findViewById<RecyclerView>(R.id.drawer_friend_recycler_View)
             recyclerView.addItemDecoration(decoration)
-            navFriendRVAdapter  = NavFriendRVAdapter(this@DrawerActivity, getFriendList.await().toMutableList())
+            navFriendRVAdapter  = NavFriendRVAdapter(this@DrawerActivity, getFriendList.await().toMutableList(), job.await())
             recyclerView.adapter = navFriendRVAdapter
 
             //네비게이션 드로어 친구추가 AlterDialog

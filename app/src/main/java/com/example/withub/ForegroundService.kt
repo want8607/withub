@@ -81,7 +81,7 @@ class ForegroundService : Service() {
                 val infoData = InfoData(MyApp.prefs.accountToken!!,commitsInAllRepo)
                 val resultMessage = infoApi.sendGithubDataToServer(infoData).message
                 Log.d("서버결과",resultMessage)
-                delay(600000)
+                delay(300000)
             }
         }
         return START_STICKY

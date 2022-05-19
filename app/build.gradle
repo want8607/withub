@@ -65,7 +65,7 @@ dependencies {
     implementation 'com.tbuonomo:dotsindicator:4.2'
 
     //RollingText
-    implementation 'com.github.YvesCheung:RollingText:1.2.0'
+    implementation 'com.robinhood.ticker:ticker:2.0.4'
 
     //SwipeLayout
     implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
@@ -86,7 +86,7 @@ dependencies {
     implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
 
     //coroutine
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
 
     //okhttp interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"

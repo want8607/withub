@@ -47,7 +47,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@mipmap/ic_launcher"
-            app:layout_constraintBottom_toTopOf="@+id/drawer_header_nickname"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,10 +62,10 @@
             android:text="땅땅이"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_marginBottom="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/drawer_header_img" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -116,6 +115,6 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/main_activity_nav_recycler_view_item" />
+            tools:listitem="@layout/drawer_activity_recycler_view_item" />
     </LinearLayout>
 </LinearLayout>

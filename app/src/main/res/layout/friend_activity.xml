@@ -40,7 +40,7 @@
             android:textStyle="bold"
             android:textColor="@color/toolbar_text_color"
             app:layout_constraintBottom_toTopOf="@id/friend_activity_rolling_commit_view"
-            app:layout_constraintEnd_toEndOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="@+id/my_info_nickname"
             app:layout_constraintStart_toStartOf="@+id/textView12"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,7 +72,7 @@
             app:layout_constraintTop_toBottomOf="@+id/friend_activity_toolbar_textview" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/my_info_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"

@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.withub.CommitData
 import com.example.withub.R
 
-class CommitRVAdapter(val context : Context, var list : ArrayList<CommitData>) : RecyclerView.Adapter<CommitRVAdapter.Holder>(){
+class CommitRVAdapter(val context : Context, var list : List<CommitData>) : RecyclerView.Adapter<CommitRVAdapter.Holder>(){
 
     inner class Holder(itemView: View?):RecyclerView.ViewHolder(itemView!!){
 
@@ -20,12 +21,12 @@ class CommitRVAdapter(val context : Context, var list : ArrayList<CommitData>) :
         var commitMessage = itemView?.findViewById<TextView>(R.id.commit_message_text_view)
         var commitClickArea = itemView?.findViewById<ConstraintLayout>(R.id.commit_constraint_layout)
         fun bind(position: Int){
-            dateTextview?.text = list[position].date
+            dateTextview?.text = list[position].date +" "+ list[position].time
             repositoryName?.text = list[position].repository
-            commitMessage?.text = list[position].commitMessage
+            commitMessage?.text = list[position].commit_message
             commitClickArea?.setOnClickListener {
                 var intent = Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://github.com/want8607/stageus_withub_2/commit/00b8a6d4020e02844b528c2f29b250a507c30739"))
+                    Uri.parse("https://github.com/${list[position].repository}/commit/${list[position].sha}"))
                 context.startActivity(intent)
             }
         }

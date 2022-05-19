@@ -40,25 +40,29 @@
 
             <TextView
                 android:id="@+id/commit_repository_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:text="want8607/ediya_kiosk"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/commit_text_size"
+                app:layout_constraintEnd_toStartOf="@+id/commit_arrow_image_view"
                 app:layout_constraintStart_toStartOf="@+id/commit_date_text_view"
                 app:layout_constraintTop_toBottomOf="@+id/commit_date_text_view" />
 
             <TextView
                 android:id="@+id/commit_message_text_view"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/nanum_square_round_regular"
                 android:text="UPADATE\n -다했다."
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/commit_message_text_size"
+                app:layout_constraintEnd_toStartOf="@+id/commit_arrow_image_view"
                 app:layout_constraintStart_toStartOf="@+id/commit_repository_name"
                 app:layout_constraintTop_toBottomOf="@+id/commit_repository_name" />
 

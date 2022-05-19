@@ -233,9 +233,18 @@ data class MyThirtyCommits(
     val commit : Int
 )
 
+data class MyNickNameData(
+    val success: Boolean,
+    val message: String,
+    val avatar_url: String,
+    val nickname: String
+)
 interface MyDataApi{
     @GET("/account")
     suspend fun getMyData(@Query("token") token: String) : MyData
+
+    @GET("/account/info")
+    suspend fun getMyNickname(@Query("token") token: String) : MyNickNameData
 }
 //---------------------내 레포 반환 API---------------------------
 
@@ -305,7 +314,7 @@ interface FriendApi{
     @POST("/friend")
     suspend fun addFriend(@Body addedFriendData: FriendNameData) : ResultData
 
-    @DELETE("/friend")
+    @HTTP(method = "DELETE", hasBody = true, path = "/friend" )
     suspend fun deleteFriend(@Body deleteFriendData : FriendNameData) : ResultData
 
     @GET("/friend/info")
@@ -332,36 +341,21 @@ data class CommitData(
 data class FriendRankData(
     val success: Boolean,
     val message: String,
-    val daily_rank : List<DailyRankData>,
-    val weekly_rank : List<WeeklyRankData>,
-    val monthly_rank : List<MonthlyRankData>,
-    val continuous_rank : List<ContinuousRankData>
+    val daily_rank : List<RankData>,
+    val weekly_rank : List<RankData>,
+    val monthly_rank : List<RankData>,
+    val continuous_rank : List<RankData>
 )
 
 data class AreaRankData(
     val success: Boolean,
     val message: String,
-    val daily_rank : List<DailyRankData>,
-    val weekly_rank : List<WeeklyRankData>,
-    val monthly_rank : List<MonthlyRankData>,
-    val continuous_rank : List<ContinuousRankData>
+    val daily_rank : List<RankData>,
+    val weekly_rank : List<RankData>,
+    val monthly_rank : List<RankData>,
+    val continuous_rank : List<RankData>
 )
-data class DailyRankData(
-    val nickname: String,
-    val count : Int
-)
-
-data class WeeklyRankData(
-    val nickname: String,
-    val count : Int
-)
-
-data class MonthlyRankData(
-    val nickname: String,
-    val count : Int
-)
-
-data class ContinuousRankData(
+data class RankData(
     val nickname: String,
     val count : Int
 )

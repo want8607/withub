@@ -2,28 +2,41 @@ package com.example.withub
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.WindowInsetsControllerCompat
 import retrofit2.Call
 import retrofit2.Response
+
 
 class LoginActivity: AppCompatActivity() {
     val retrofit = RetrofitClient.initRetrofit()
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_WITHUB)
+        window.statusBarColor = getColor(R.color.background_color)
         if(MyApp.prefs.accountToken!=null){
-            Log.d("message","${MyApp.prefs.accountToken}")
             tokenApi()
         }
+//        if (Build.VERSION.SDK_INT >= 23) {
+////            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+//            window.addFlags(WindowManager.LayoutParams.Fl)
+//        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
+        val default =AppCompatDelegate.getDefaultNightMode()
+//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO) {
+//            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =
+            AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES
 
         val signupBtn = findViewById<TextView>(R.id.signup_btn)
         val idFindingBtn = findViewById<TextView>(R.id.id_finding_btn)
@@ -132,6 +145,11 @@ class LoginActivity: AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("message","darkmode")
     }
 
 

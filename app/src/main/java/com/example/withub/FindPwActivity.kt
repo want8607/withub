@@ -14,6 +14,8 @@ class FindPwActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.findpw_activity)
+        window.statusBarColor = getColor(R.color.background_color)
+
         if (savedInstanceState == null) {
             fragmentManager.commit {
                 setReorderingAllowed(true)

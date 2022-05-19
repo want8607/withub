@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:background="@color/background_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
@@ -54,12 +55,13 @@
                         android:layout_weight="0.05" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/all_check_textview"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.849"
+                        android:layout_weight="0.3"
                         android:fontFamily="@font/nanum_square_round_bold"
                         android:text="전체 동의"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="20sp"
                         app:layout_constraintHorizontal_weight="19" />
 
@@ -94,12 +96,13 @@
 
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/terms_of_use_1_textview"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.849"
+                        android:layout_weight="0.3"
                         android:fontFamily="@font/nanum_square_round_bold"
                         android:text="이용약관"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text_color"
                         android:textSize="20sp" />
 
 
@@ -162,12 +165,13 @@
 
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/terms_of_use_2_textview"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.849"
+                    android:layout_weight="0.3"
                     android:fontFamily="@font/nanum_square_round_bold"
                     android:text="이용약관"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="20sp" />
 
 

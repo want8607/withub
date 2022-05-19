@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:background="@color/background_color"
     xmlns:float="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -56,8 +57,8 @@
                                 android:hint="WITHUB에서 사용할 닉네임"
                                 android:maxLength="10"
                                 android:singleLine="true"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/black"
+                                android:textColor="@color/text_color"
+                                android:textColorHint="@color/text_color"
                                 android:textSize="15sp"
                                 android:theme="@style/editText" />
                         </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -91,7 +92,6 @@
                         android:id="@+id/nickname_check_textview_signup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="2~10자 한글, 영어, 숫자만 사용하세요."
                         android:textColor="@color/timer"
                         android:textSize="12sp" />
 
@@ -114,26 +114,29 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3" />
+                    android:layout_weight="0.1" />
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/nanum_square_round_regular"
                     android:gravity="center"
                     android:text="지역선택"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.4" />
+                    android:layout_weight="0.15" />
 
                 <Spinner
                     android:id="@+id/area_spinner_signup"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.35"
                     android:layout_height="30dp"
+                    android:textAlignment="center"
                     android:backgroundTint="@color/point_color"
                     android:dropDownWidth="150dp"
                     android:popupBackground="@color/white"
@@ -144,7 +147,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3" />
+                    android:layout_weight="0.1" />
 
             </LinearLayout>
 
@@ -167,7 +170,7 @@
                     android:fontFamily="@font/nanum_square_round_bold"
                     android:text="커밋 랭킹을 표시할 지역을 선택해 주세요."
                     android:textAlignment="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text_color"
                     android:textSize="15sp" />
 
                 <TextView

@@ -17,6 +17,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class EmailCertifyFragment:Fragment() {
+
     lateinit var userEmail: String
     lateinit var count: CountDownTimer
     lateinit var select: String
@@ -26,6 +27,7 @@ class EmailCertifyFragment:Fragment() {
     private var emailInfoExist = false
     lateinit var id :String
     val retrofit = RetrofitClient.initRetrofit()
+    private var realUserEmail = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +44,6 @@ class EmailCertifyFragment:Fragment() {
         val signupActivity = activity as SignupActivity
         val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
         val nextBtn = view.findViewById<Button>(R.id.next_btn_emailcertify)
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
         val signupText = signupActivity.findViewById<TextView>(R.id.signup_text)
         val warningInform1 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_1)
         val warningInform2 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_2)
@@ -60,22 +61,16 @@ class EmailCertifyFragment:Fragment() {
         }
 
         signupBackBtn.setOnClickListener {
-            builder.setMessage("이전으로 돌아갈시 아이디와 비밀번호 정보를 다시 입력해야 합니다.")
-            builder.setPositiveButton("확인") { p0, p1 ->
-                if (running == true) {
+                if (running) {
                     count.cancel()
                 }
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragmentArea, IdPwInputFragment())
                     .commit()
-            }
-            builder.setNegativeButton("취소", null)
-            val alertDialog: AlertDialog = builder.create()
-            alertDialog.show()
         }
 
         nextBtn.setOnClickListener{
-            signupActivity.emailInform(userEmail)
+            signupActivity.emailInform(realUserEmail)
         }
 
         certificationBtn.setOnClickListener {
@@ -86,6 +81,8 @@ class EmailCertifyFragment:Fragment() {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.thick_gray))
                 certificationBtn.isEnabled = false
+                certiNumText.isEnabled = true
+                dialogMessage("인증번호가 발송되었습니다.")
                 sendMailApi()  //api로 메일 보내기
                 if (!emailInfoExist) {
                     if (running) {
@@ -107,7 +104,7 @@ class EmailCertifyFragment:Fragment() {
             } else if (certiNumText.text.isEmpty()){
                dialogMessage("인증번호를 입력해주세요.")
            } else{
-               emailCertifyApi(certiNumText,nextBtn,certificationBtn)
+               emailCertifyApi(emailText,certiNumText,nextBtn,certificationBtn)
             }
         }
 
@@ -189,6 +186,7 @@ class EmailCertifyFragment:Fragment() {
     }
 
     fun sendMailApi() {
+        var realEmail = userEmail
         var inform = EmailValue(id,userEmail)
         val requestSendEmailApi = retrofit.create(SendEmailApi::class.java)
         requestSendEmailApi.emailCheck(inform).enqueue(object : retrofit2.Callback<EmailCheckData> {
@@ -202,13 +200,14 @@ class EmailCertifyFragment:Fragment() {
                     dialogMessage("${response.body()!!.message}")
                     emailInfoExist = true
                 } else {
+                    realUserEmail = realEmail
                     token = response.body()!!.token
                 }
             }
         })
     }
 
-    fun emailCertifyApi(certiNumText:EditText,nextBtn:Button,certificationBtn: Button) {
+    fun emailCertifyApi(emailText:EditText,certiNumText:EditText,nextBtn:Button,certificationBtn: Button) {
         var inform = tokenAuthEmailValue(token,certiNumText.text.toString(),id)
         val requestCertiNumConfirmApi = retrofit.create(CertiNumConfirmApi::class.java)
         requestCertiNumConfirmApi.certiNumCheck(inform).enqueue(object : retrofit2.Callback<CertiNumCheckData> {
@@ -221,14 +220,17 @@ class EmailCertifyFragment:Fragment() {
                 if (response.body()!!.success) {
                     count.cancel()
                     dialogMessage("인증번호가 확인되었습니다.")
+                    emailText.isEnabled = false
+                    certiNumText.isEnabled = false
                     nextBtn.setBackgroundResource(R.drawable.login_btn)
-                    nextBtn.setEnabled(true)
+                    nextBtn.isEnabled = true
                 } else {
                     count.cancel()
                     dialogMessage("인증번호가 틀렸습니다. 다시 인증해주세요.")
+                    certiNumText.isEnabled = false
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
-                    certificationBtn.setEnabled(true)
+                    certificationBtn.isEnabled = true
                 }
             }
         })

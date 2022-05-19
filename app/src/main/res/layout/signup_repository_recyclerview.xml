@@ -29,7 +29,7 @@
                 android:layout_marginLeft="3dp"
                 android:gravity="center_vertical"
                 android:layout_gravity="start"
-                android:textColor="@color/black" />
+                android:textColor="@color/text_color" />
 
             <EditText
                 android:layout_width="match_parent"

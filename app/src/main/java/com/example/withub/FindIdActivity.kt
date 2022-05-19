@@ -27,6 +27,7 @@ class FindIdActivity : AppCompatActivity() {
         setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.findid_activity)
+        window.statusBarColor = getColor(R.color.background_color)
 
         val spinner: Spinner = findViewById(R.id.email_spinner_find_id)
         val emailText = findViewById<EditText>(R.id.email_edittext_find_id)
@@ -53,23 +54,22 @@ class FindIdActivity : AppCompatActivity() {
             } else {
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(this,R.color.thick_gray))
-                certificationBtn.setEnabled(false)
-                sendMailApi()  //api로 메일 보내기
-                if (running) {
-                    count.cancel()
-                }
-                timerStart(timerTime)
+                certificationBtn.isEnabled = false
+                certiNumText.isEnabled = true
+                sendMailApi(timerTime)  //api로 메일 보내기
+
             }
         }
 
         confirmBtn.setOnClickListener{
-            if(confirmBtnBoolean == false)  {
+            if(!confirmBtnBoolean)  {
                 dialogMessage("이메일 인증을 해주세요.")
             } else if (running == false) {
                 dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
                 certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(this,R.color.black))
                 certificationBtn.isEnabled = true
+                certiNumText.isEnabled = true
             } else if (certiNumText.text.isEmpty()){
                 dialogMessage("인증번호를 입력해주세요.")
             } else{
@@ -81,7 +81,7 @@ class FindIdActivity : AppCompatActivity() {
         emailRegEx(emailText,certificationBtn)
     }
 
-    fun sendMailApi() {
+    fun sendMailApi(timerTime: TextView) {
         var inform = FindIdEmailValue(userEmail)
         val requestFindIdSendEmailApi = retrofit.create(FindIdSendEmailApi::class.java)
         requestFindIdSendEmailApi.emailCheck(inform).enqueue(object : retrofit2.Callback<IdFindEmailCheckData> {
@@ -93,8 +93,16 @@ class FindIdActivity : AppCompatActivity() {
             override fun onResponse(call: Call<IdFindEmailCheckData>, response: Response<IdFindEmailCheckData>) {
                 if (!response.body()!!.success) {
                     dialogMessage(response.body()!!.message)
+                    if (running) {
+                        count.cancel()
+                    }
                 } else {
+                    dialogMessage("인증번호가 발송되었습니다.")
                     token = response.body()!!.token
+                    if (running) {
+                        count.cancel()
+                    }
+                    timerStart(timerTime)
                 }
             }
         })
@@ -113,10 +121,12 @@ class FindIdActivity : AppCompatActivity() {
                 if (response.body()!!.success) {
                     count.cancel()
                     dialogMessage("인증번호가 확인되었습니다.")
+                    certiNumText.isEnabled = false
                     appearId(yourIdTextView,idText,response.body()!!.id)
                 } else {
                     count.cancel()
                     dialogMessage("인증번호가 틀렸습니다. 다시 인증해주세요.")
+                    certiNumText.isEnabled = false
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(applicationContext,R.color.black))
                     certificationBtn.isEnabled = true

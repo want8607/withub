@@ -49,7 +49,8 @@ class NickNameAreaSelectFragment: Fragment() {
         warningInform4.visibility = GONE
 
         signupBackBtn.setOnClickListener {
-            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, EmailCertifyFragment()).commit()
+            signupActivity.nicknameAreaSelectToEmailCerti()
+//            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, EmailCertifyFragment()).commit()
         }
 
         nickNameChangeBtn.setOnClickListener{

@@ -25,6 +25,7 @@ class PwCertifyFragment:Fragment() {
     lateinit var id: String
     private var running = false
     private var confirmBtnBoolean = false
+    private var realUserEmail = ""
     val retrofit = RetrofitClient.initRetrofit()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +59,7 @@ class PwCertifyFragment:Fragment() {
                 id = idText.text.toString()
                 certificationBtn.setBackgroundResource(R.drawable.stroke_disabled_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.thick_gray))
-                certificationBtn.setEnabled(false)
+                certificationBtn.isEnabled = false
                 sendMailApi(idText.text.toString(),timerTime)  //api로 메일 보내기
             }
         }
@@ -68,9 +69,9 @@ class PwCertifyFragment:Fragment() {
         }
 
         confirmBtn.setOnClickListener{
-            if(confirmBtnBoolean == false)  {
+            if(!confirmBtnBoolean)  {
                 dialogMessage("이메일 인증을 해주세요.")
-            } else if (running == false) {
+            } else if (!running) {
                 dialogMessage("시간이 초과되었습니다. 이메일을 다시 인증해주세요.")
                 certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                 certificationBtn.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
@@ -78,7 +79,7 @@ class PwCertifyFragment:Fragment() {
             } else if (certiNumText.text.isEmpty()){
                 dialogMessage("인증번호를 입력해주세요.")
             } else{
-                EmailCertifyApi(certiNumText,nextBtn,certificationBtn)
+                EmailCertifyApi(idText,certiNumText,emailText,nextBtn,certificationBtn)
             }
         }
 
@@ -142,7 +143,7 @@ class PwCertifyFragment:Fragment() {
     fun idRegEx(idText: EditText,emailText: EditText,certificationBtn: Button) {
         idText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
-                if (emailText.getText().toString().length >= 1) {
+                if (emailText.text.toString().isNotEmpty()) {
                     certificationBtn.setBackgroundResource(R.drawable.stroke_btn)
                     certificationBtn.setTextColor(ContextCompat.getColor(context!!, R.color.black))
                     certificationBtn.setEnabled(true)
@@ -165,6 +166,7 @@ class PwCertifyFragment:Fragment() {
     }
 
     fun sendMailApi(idText: String,timerTime: TextView) {
+        var realEmail = userEmail
         var inform = FindPwIdEmailValue(idText,userEmail)
         val requestSendEmailApi = retrofit.create(FindPwSendEmailApi::class.java)
 
@@ -177,11 +179,16 @@ class PwCertifyFragment:Fragment() {
             override fun onResponse(call: Call<FindPwIdEmailCheckData>, response: Response<FindPwIdEmailCheckData>) {
                 if (!response.body()!!.success) {
                     dialogMessage(response.body()!!.message)
+                    if (running) {
+                        count.cancel()
+                    }
                 } else {
+                    dialogMessage("인증번호가 발송되었습니다.")
                     if (running) {
                         count.cancel()
                     }
                     timerStart(timerTime)
+                    realUserEmail = realEmail
                     token = response.body()!!.token
                 }
 
@@ -189,8 +196,8 @@ class PwCertifyFragment:Fragment() {
         })
     }
 
-    fun EmailCertifyApi(certiNumText:EditText,nextBtn:Button,certificationBtn: Button) {
-        var inform = FindPwTokenAuthEmailIdValue(id, userEmail, certiNumText.text.toString(),token)
+    fun EmailCertifyApi(idText:EditText,certiNumText:EditText,emailText: EditText,nextBtn:Button,certificationBtn: Button) {
+        var inform = FindPwTokenAuthEmailIdValue(id, realUserEmail, certiNumText.text.toString(),token)
         val requestCertiNumConfirmApi = retrofit.create(FindPwCertiNumConfirmApi::class.java)
         requestCertiNumConfirmApi.certiNumCheck(inform).enqueue(object : retrofit2.Callback<FindPwCertiNumCheckData> {
             override fun onFailure(
@@ -202,6 +209,9 @@ class PwCertifyFragment:Fragment() {
                 if (response.body()!!.success == true) {
                     count.cancel()
                     dialogMessage("인증번호가 확인되었습니다.")
+                    certiNumText.isEnabled = false
+                    idText.isEnabled = false
+                    emailText.isEnabled = false
                     nextBtn.setBackgroundResource(R.drawable.login_btn)
                     nextBtn.setEnabled(true)
                 } else {

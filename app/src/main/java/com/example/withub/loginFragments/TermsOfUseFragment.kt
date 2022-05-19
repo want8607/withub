@@ -41,6 +41,10 @@ class TermsOfUseFragment: Fragment() {
         warningInform3.visibility = View.GONE
         warningInform4.visibility = View.GONE
 
+        val allCheckText = view.findViewById<TextView>(R.id.all_check_textview)
+        val termsOfUseText1 = view.findViewById<TextView>(R.id.terms_of_use_1_textview)
+        val termsOfUseText2 = view.findViewById<TextView>(R.id.terms_of_use_2_textview)
+
         signupBackBtn.setOnClickListener{
             signupActivity.finish()
         }
@@ -52,9 +56,11 @@ class TermsOfUseFragment: Fragment() {
                     add(R.id.fragmentArea, IdPwInputFragment(), "idPwInputFragment")
                     addToBackStack(null)
                 }
-//                parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, IdPwInputFragment()).commit()
             }
         }
+        allCheckText.setOnClickListener { checkBoxAllCheck.performClick()}
+        termsOfUseText1.setOnClickListener { checkBox1.performClick() }
+        termsOfUseText2.setOnClickListener { checkBox2.performClick() }
 
         checkBoxAllCheck.setOnClickListener { onCheckChanged(checkBoxAllCheck,checkBoxAllCheck,checkBox1,checkBox2,nextBtn) }
         checkBox1.setOnClickListener { onCheckChanged(checkBox1,checkBoxAllCheck,checkBox1,checkBox2,nextBtn) }

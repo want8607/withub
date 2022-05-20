@@ -47,8 +47,8 @@ class MyInfoFragment: Fragment() {
         val changeAccountView = view.findViewById<ConstraintLayout>(R.id.my_info_account)
         //깃허브 정보 변경
         changeGitHubInfoView.setOnClickListener {
-//            val intent = Intent(mainActivity, SettingActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(mainActivity, GitHubInfoChangeActivity::class.java)
+            startActivity(intent)
         }
 
         //계정 정보 변경

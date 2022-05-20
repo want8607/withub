@@ -212,7 +212,6 @@ class FindIdActivity : AppCompatActivity() {
         count.start()
     }
 
-
     fun dialogMessage(message:String) {
         var builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setMessage(message)

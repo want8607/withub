@@ -265,7 +265,10 @@ interface MyRepoDataApi{
     suspend fun getMyRepoData(@Query("token") token: String) : MyRepoData
 }
 
-
+interface GetRepoDataApi{
+    @GET("/account/repo")
+    fun getMyRepoData(@Query("token") token: String) : Call<MyRepoData>
+}
 
 //------------------------토큰 자동로그인-------------------------------
 
@@ -425,4 +428,20 @@ data class TokenNickNameCheckData(val message: String, val success: Boolean)
 interface ChangeNicknameApi{
     @PATCH("/account/nickname")
     fun tokenCheck(@Body requestData: TokenNickNameValue) : Call<TokenNickNameCheckData>
+}
+
+//------------------------------레포지토리 수정-------------------------------
+
+data class TokenRepositoryValue(
+    @SerializedName("token") val token : String,
+    @SerializedName("repository") val repository : ArrayList<Repositories>
+)
+
+
+data class TokenRepositoryCheckData(val message: String, val success: Boolean)
+
+//레포지토리 변경 API
+interface ChangeRepositoryApi{
+    @PUT("/account/repo")
+    fun tokenRepoCheck(@Body requestData: TokenRepositoryValue) : Call<TokenRepositoryCheckData>
 }

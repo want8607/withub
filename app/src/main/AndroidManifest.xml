@@ -58,6 +58,9 @@
         <activity android:name=".MainActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait" />
+        <activity android:name=".GitHubInfoChangeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
 
     </application>
 

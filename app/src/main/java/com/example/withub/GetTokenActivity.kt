@@ -37,7 +37,7 @@ class GetTokenActivity : AppCompatActivity() {
         }
 
         confirmBtn.setOnClickListener{
-            MyApp.prefs.githubToken = githubTokenText.text.toString()
+            MyApp.prefs.githubToken = "token "+githubTokenText.text.toString()
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
         }
@@ -66,6 +66,7 @@ class GetTokenActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val intent = Intent(applicationContext, LoginActivity::class.java)
+        MyApp.prefs.accountToken = null
         startActivity(intent)
     }
 }

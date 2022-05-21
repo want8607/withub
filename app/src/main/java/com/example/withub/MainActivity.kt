@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -29,13 +30,9 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.main_activity)
 
-        if (MyApp.prefs.githubToken == null) {
-            val intent = Intent(applicationContext, GetTokenActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
+            Log.d("tlwkr","ttt")
             if (!isMyServiceRunning(ForegroundService::class.java)){
                 val serviceIntent = Intent(this,ForegroundService::class.java)
                 applicationContext.startForegroundService(serviceIntent)

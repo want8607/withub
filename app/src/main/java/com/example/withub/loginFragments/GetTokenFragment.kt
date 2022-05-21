@@ -44,7 +44,7 @@ class GetTokenFragment:Fragment() {
         }
 
         nextBtn.setOnClickListener{
-            MyApp.prefs.githubToken = githubTokenText.text.toString()
+            MyApp.prefs.githubToken = "token "+githubTokenText.text.toString()
             val fragmentManager = parentFragmentManager
             fragmentManager.commit {
                 add(R.id.fragmentArea, GitHubRepositoryAddFragment(), "gitHubRepositoryAddFragment")

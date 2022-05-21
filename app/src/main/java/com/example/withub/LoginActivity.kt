@@ -99,8 +99,6 @@ class LoginActivity: AppCompatActivity() {
     }
 
     fun loginApi(idText: EditText,pwText: EditText) {
-        Log.d("message",idText.text.toString())
-        Log.d("message",pwText.text.toString())
         val inform = LoginIdPwValue(idText.text.toString(),pwText.text.toString())
         val requestLoginApi = retrofit.create(LoginApi::class.java)
         requestLoginApi.loginCheck(inform).enqueue(object : retrofit2.Callback<LoginCheckData> {
@@ -113,9 +111,15 @@ class LoginActivity: AppCompatActivity() {
             override fun onResponse(call: Call<LoginCheckData>, response: Response<LoginCheckData>) {
                 if (response.body()!!.success) {
                     MyApp.prefs.accountToken = response.body()!!.token
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    if (MyApp.prefs.githubToken == null) {
+                        val intent = Intent(applicationContext, GetTokenActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }else{
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 } else {
                     var builder: AlertDialog.Builder = AlertDialog.Builder(this@LoginActivity)
                     builder.setMessage("아이디 혹은 비밀번호를 확인해주세요.")

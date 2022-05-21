@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.withub.*
@@ -20,7 +19,9 @@ class CommitFragment : Fragment() {
     var commitApi = RetrofitClient.initRetrofit().create(CommitApi::class.java)
     lateinit var mainActivity : MainActivity
     lateinit var adapter : CommitRVAdapter
-
+    val handler = CoroutineExceptionHandler{_,exception->
+        Log.d("error",exception.toString())
+    }
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.commit_fragment,container,false)
         mainActivity = activity as MainActivity
@@ -33,11 +34,11 @@ class CommitFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var list: List<CommitData>
         //커밋 리사이클러뷰 생성
-        CoroutineScope(Dispatchers.Main).launch{
+        CoroutineScope(Dispatchers.Main).launch(handler){
             val recyclerView = view.findViewById<RecyclerView>(R.id.commit_recycler_view)
-            list = async(Dispatchers.IO){
+            list = withContext(Dispatchers.IO) {
                 commitApi.getMyCommitList(MyApp.prefs.accountToken!!).commits
-            }.await()
+            }
             adapter  = CommitRVAdapter(mainActivity,list)
             recyclerView.adapter = adapter
             recyclerView.setHasFixedSize(true)
@@ -45,11 +46,11 @@ class CommitFragment : Fragment() {
         //리프레시 구현
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.commit_swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener {
-            lifecycleScope.launch(Dispatchers.Main) {
-                list = async(Dispatchers.IO){
+            CoroutineScope(Dispatchers.Main).launch(handler) {
+                list = withContext(Dispatchers.IO) {
                     commitApi.getMyCommitList(MyApp.prefs.accountToken!!).commits
-                }.await()
-                adapter.notifyDataSetChanged()
+                }
+                adapter.updateDataset(list)
                 Log.d("eee",list.toString())
             }
             swipeRefreshLayout.isRefreshing = false

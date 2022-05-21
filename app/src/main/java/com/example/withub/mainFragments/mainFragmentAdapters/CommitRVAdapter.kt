@@ -1,5 +1,6 @@
 package com.example.withub.mainFragments.mainFragmentAdapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -43,5 +44,11 @@ class CommitRVAdapter(val context : Context, var list : List<CommitData>) : Recy
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateDataset(newList : List<CommitData>){
+        list = newList
+        notifyDataSetChanged()
     }
 }

@@ -3,7 +3,6 @@ package com.example.withub.mainFragments
 import android.animation.Animator
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.*
 import android.util.Log
@@ -43,8 +42,7 @@ class HomeFragment : Fragment(){
     lateinit var friendAvgCommitView : TickerView
     lateinit var areaAvgCommitView : TickerView
     lateinit var job : Job
-    var myDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
-    var intervalTime = 4000.toLong()
+    var myDataApi: MyDataApi = RetrofitClient.initRetrofit().create(MyDataApi::class.java)
     var bannerPosition = (Int.MAX_VALUE/2)+1
     var numBanner = 4
     val handler = CoroutineExceptionHandler{_,exception->
@@ -87,16 +85,16 @@ class HomeFragment : Fragment(){
 
         //팁 뷰페이저
         //이미지 넣기
-        val imgList = arrayListOf<Int>(R.drawable.view_pager1,R.drawable.view_pager2,R.drawable.view_pager3,R.drawable.view_pager4)
+        val imgList = arrayListOf(R.drawable.view_pager1,R.drawable.view_pager2,R.drawable.view_pager3,R.drawable.view_pager4)
         //url 넣기
-        val urlList = arrayListOf<String>(
+        val urlList = arrayListOf(
             "https://www.youtube.com/watch?v=NOVDVW5dask",
             "https://www.youtube.com/watch?v=shZtNaSV5Tk",
             "https://www.youtube.com/watch?v=kp5CEADyTFs",
             "https://www.youtube.com/watch?v=Ru_bHWAqdSM")
 
         val homePagerRecyclerAdapter= HomePagerRecyclerAdapter(mainActivity,Glide.with(this),imgList,urlList)
-        pagerRecyclerView = view.findViewById<ViewPager2>(R.id.main_view_pager)
+        pagerRecyclerView = view.findViewById(R.id.main_view_pager)
         pagerRecyclerView.adapter = homePagerRecyclerAdapter
         pagerRecyclerView.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pagerRecyclerView.setCurrentItem(bannerPosition,false)
@@ -210,15 +208,6 @@ class HomeFragment : Fragment(){
 
         return dataTextList
     }
-
-//    fun autoScrollStart(intervalTime : Long){
-//        homeHandler.removeMessages(0) //핸들러 늘어남 방지
-//        homeHandler.sendEmptyMessageDelayed(0,intervalTime) // interval만큼 반복실행
-//    }
-//
-//    fun autoScrollStop(){
-//        homeHandler.removeMessages(0)//핸들러 중지
-//    }
 
     fun scrollJobCreate(){
         job = lifecycleScope.launchWhenResumed {

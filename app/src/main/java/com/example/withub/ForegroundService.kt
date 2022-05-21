@@ -43,7 +43,7 @@ class ForegroundService : Service() {
         CoroutineScope(Dispatchers.IO).launch{
             while (isActive){
                 //레포지토리 호출
-                val myRepoData : MyRepoData = async {
+                val myRepoData : MyRepoData = async(Dispatchers.IO) {
                     myRepoApi.getMyRepoData(MyApp.prefs.accountToken!!)
                 }.await()
 //                깃허브 정보 호출
@@ -53,7 +53,7 @@ class ForegroundService : Service() {
                     val commitsInOneRepo = ArrayList<GitHubCommitDatasItem>()
                     var count = 1
                     while (true){
-                        val gitHubCommitDatas: Deferred<GitHubCommitDatas> = async {
+                        val gitHubCommitDatas: Deferred<GitHubCommitDatas> = async(Dispatchers.IO) {
                             requestCommitApi.getInfo(
                                 BuildConfig.GITTOKEN,
                                 myRepoData.repository[i].owner,

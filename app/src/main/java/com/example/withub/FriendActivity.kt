@@ -73,7 +73,7 @@ class FriendActivity : AppCompatActivity() {
         val friendMontCommitNumView = findViewById<TextView>(R.id.friend_activity_friend_month_commit_num)
         //커밋 잔디
         val commitGrassImgView = findViewById<ImageView>(R.id.friend_commit_grass_img_view)
-
+        val commitVsText = findViewById<TextView>(R.id.friend_activity_vs)
         val repositoryTitle = findViewById<TextView>(R.id.friend_activity_repository_title)
         repositoryTitle.text = getString(R.string.friend_repository_list,friendNickName)
         //그래프 설정
@@ -101,15 +101,18 @@ class FriendActivity : AppCompatActivity() {
                 //친구승
                 myCrown.visibility = View.INVISIBLE
                 friendCrown.visibility = View.VISIBLE
+                commitVsText.text = "<"
 
             }else if(callFriendDataApi.friend_month_total<callFriendDataApi.my_month_total){
                 //나 승
                 myCrown.visibility = View.VISIBLE
                 friendCrown.visibility = View.INVISIBLE
+                commitVsText.text = ">"
             }else if(callFriendDataApi.friend_month_total==callFriendDataApi.my_month_total){
                 //같을 때
-                myCrown.visibility = View.INVISIBLE
-                friendCrown.visibility = View.INVISIBLE
+                myCrown.visibility = View.GONE
+                friendCrown.visibility = View.GONE
+                commitVsText.text = "="
             }
 
             //레포 설정
@@ -145,8 +148,8 @@ class FriendActivity : AppCompatActivity() {
                     friendCrown.visibility = View.INVISIBLE
                 }else if(callFriendDataApi.friend_month_total==callFriendDataApi.my_month_total){
                     //같을 때
-                    myCrown.visibility = View.INVISIBLE
-                    friendCrown.visibility = View.INVISIBLE
+                    myCrown.visibility = View.GONE
+                    friendCrown.visibility = View.GONE
                 }
 
                 //레포 설정

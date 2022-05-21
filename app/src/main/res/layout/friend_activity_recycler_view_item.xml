@@ -3,7 +3,7 @@
     android:id="@+id/friend_activity_repository_linear_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/main_round_view"
+    android:background="@drawable/main_view_ripple_effect"
     android:orientation="horizontal"
     android:weightSum="1">
     <TextView

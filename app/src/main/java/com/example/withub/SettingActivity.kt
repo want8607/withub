@@ -2,6 +2,7 @@ package com.example.withub
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 
 class SettingActivity : AppCompatActivity() {
@@ -10,7 +11,7 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.setting_activity)
-        val backBtn = findViewById<Button>(R.id.back_btn_setting)
+        val backBtn = findViewById<ImageButton>(R.id.back_btn_setting)
 
         backBtn.setOnClickListener{
             finish()

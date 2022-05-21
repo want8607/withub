@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
@@ -62,7 +63,7 @@ class NavFriendRVAdapter(val context : Context, val items : MutableList<FriendNa
         val deleteBtn = itemView?.findViewById<TextView>(R.id.swipe_delete_button)
         val friendNameTextView = itemView?.findViewById<TextView>(R.id.nav_friend_name)
         val swipeView = itemView?.findViewById<SwipeLayout>(R.id.swipe_view)
-        val friendItem = itemView?.findViewById<ConstraintLayout>(R.id.nav_friend_recycler_item)
+        val friendItem = itemView?.findViewById<LinearLayout>(R.id.nav_friend_recycler_item)
         val friendImg = itemView?.findViewById<ImageView>(R.id.nav_friend_img)
         fun bind(position: Int){
             //닉네임

@@ -49,4 +49,6 @@
     <string name="user_info_rule">개인정보 처리방침</string>
 
     <string name="area_select">지역선택</string>
+
+    <string name="version">1.0.0</string>
 </resources>

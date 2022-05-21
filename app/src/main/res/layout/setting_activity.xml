@@ -14,13 +14,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/back_btn_setting"
-            android:layout_width="12dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="start|center"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/ic_white_left_arrow" />
+            android:padding="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/point_background_ripple_effect"
+            android:src="@drawable/ic_white_left_arrow" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,264 +36,178 @@
     </FrameLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout13"
+        android:id="@+id/option_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
-        android:orientation="vertical"
+        android:background="@drawable/background_ripple_effect"
+        android:orientation="horizontal"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.71"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center_vertical"
+            android:text="@string/help"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.71"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="start|center_vertical"
-                android:text="@string/help"
-                android:textColor="@color/text_color"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:gravity="end|center_vertical">
-
-                <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_nav_right_arrow" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.02" />
-
-        </LinearLayout>
-
+            android:background="@drawable/ic_nav_right_arrow" />
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/option_app_rule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
-        android:orientation="vertical"
+        android:background="@drawable/background_ripple_effect"
+        android:orientation="horizontal"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout13">
+        app:layout_constraintTop_toBottomOf="@+id/option_help">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.71"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center_vertical"
+            android:text="@string/app_rule"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_nav_right_arrow" />
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.71"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="start|center_vertical"
-                android:text="@string/app_rule"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+    <LinearLayout
+        android:id="@+id/option_user_info_rule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_ripple_effect"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_app_rule">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:gravity="end|center_vertical">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.71"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center_vertical"
+            android:text="@string/user_info_rule"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
 
-                <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_nav_right_arrow" />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_nav_right_arrow" />
+    </LinearLayout>
 
-            </LinearLayout>
+    <LinearLayout
+        android:id="@+id/option_app_version"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_ripple_effect"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_user_info_rule">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.02" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.71"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center_vertical"
+            android:text="@string/app_version"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
 
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="@string/version"
+            android:textColor="@color/text_color"
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/nanum_square_round_regular"/>
+    </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
+    <LinearLayout
+        android:id="@+id/option_develop_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_ripple_effect"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_app_version">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.71"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center_vertical"
+            android:text="@string/develop_info"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.71"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="start|center_vertical"
-                android:text="@string/user_info_rule"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_nav_right_arrow" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:gravity="end|center_vertical">
+    <LinearLayout
+        android:id="@+id/option_opensource_licenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_ripple_effect"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/option_develop_info">
 
-                <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_nav_right_arrow" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_weight="0.71"
+            android:fontFamily="@font/nanum_square_round_regular"
+            android:gravity="start|center_vertical"
+            android:text="@string/opensource_licenses"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
 
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.02" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="start|center_vertical"
-                android:text="@string/app_version"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.23"
-                android:gravity="center"
-                android:text="0.0.1"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.71"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="start|center_vertical"
-                android:text="@string/develop_info"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:gravity="end|center_vertical">
-
-                <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_nav_right_arrow" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.02" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.71"
-                android:fontFamily="@font/nanum_square_round_regular"
-                android:gravity="start|center_vertical"
-                android:text="@string/opensource_licenses"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.2"
-                android:gravity="end|center_vertical">
-
-                <Button
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/ic_nav_right_arrow" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.02" />
-
-        </LinearLayout>
-
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_nav_right_arrow" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -20,8 +20,9 @@
             android:id="@+id/drawer_exit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@drawable/point_background_ripple_effect"
             android:src="@drawable/ic_nav_close_btn"
+            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.95"
@@ -33,8 +34,9 @@
             android:id="@+id/drawer_option_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+            android:background="@drawable/point_background_ripple_effect"
             android:src="@drawable/ic_nav_setting"
+            android:padding="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.05"
@@ -73,8 +75,7 @@
         android:id="@+id/drawer_body_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7"
-        android:background="@color/main_view_color">
+        android:layout_weight="0.7">
 
         <LinearLayout
             android:id="@+id/drawer_friend_list_constraint_layout"
@@ -103,6 +104,7 @@
                 android:id="@+id/drawer_add_friend_button"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:padding="5dp"
                 android:background="@drawable/nav_round_btn"
                 android:src="@drawable/ic_nav_plus_button" />
 

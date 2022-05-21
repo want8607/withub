@@ -29,5 +29,6 @@
     <color name="bottom_nav_color">#fefefe</color>
     <color name="bottom_nav_unselected_color">#dedede</color>
     <color name="bottom_nav_selected_color">@color/point_color</color>
+    <color name="commit_text_color">#f71735</color>
     <color name="red">#D20000</color>
 </resources>

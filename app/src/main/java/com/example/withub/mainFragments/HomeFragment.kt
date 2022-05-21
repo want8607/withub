@@ -108,6 +108,7 @@ class HomeFragment : Fragment(){
                 super.onPageSelected(position)
                 currentBannerNumView.text = ((position%4)+1).toString()
                 bannerPosition = position
+                Log.d("position",position.toString())
             }
 
             override fun onPageScrollStateChanged(state: Int) {

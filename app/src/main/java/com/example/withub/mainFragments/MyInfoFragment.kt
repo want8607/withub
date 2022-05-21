@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
@@ -43,8 +44,8 @@ class MyInfoFragment: Fragment() {
                 .into(myImg)
         }
 
-        val changeGitHubInfoView = view.findViewById<ConstraintLayout>(R.id.my_info_change_github_info)
-        val changeAccountView = view.findViewById<ConstraintLayout>(R.id.my_info_account)
+        val changeGitHubInfoView = view.findViewById<LinearLayout>(R.id.my_info_change_github_info)
+        val changeAccountView = view.findViewById<LinearLayout>(R.id.my_info_account)
         //깃허브 정보 변경
         changeGitHubInfoView.setOnClickListener {
             val intent = Intent(mainActivity, GitHubInfoChangeActivity::class.java)

@@ -1,6 +1,7 @@
 package com.example.withub
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,10 +12,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.withub.mainFragments.mainFragmentAdapters.GithubInfoChangeRVAdapter
+import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.githubinfo_change_activity.*
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Response
 import java.lang.NullPointerException
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 class GitHubInfoChangeActivity: AppCompatActivity() {
     lateinit var adapter : GithubInfoChangeRVAdapter
@@ -22,6 +27,7 @@ class GitHubInfoChangeActivity: AppCompatActivity() {
     lateinit var committer : String
     val retrofit = RetrofitClient.initRetrofit()
     val githubRetrofit = GithubClient.getApi()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.githubinfo_change_activity)
@@ -43,8 +49,6 @@ class GitHubInfoChangeActivity: AppCompatActivity() {
             changeGithubRepositoryApi()
             finish()
         }
-
-
         getRepositoryApi()
         githubOwnerRepoRegEx(githubOwnerText,githubRepositoryText,repositoryAddBtn)
     }
@@ -80,6 +84,7 @@ class GitHubInfoChangeActivity: AppCompatActivity() {
             }
             override fun onResponse(call: Call<TokenRepositoryCheckData>, response: Response<TokenRepositoryCheckData>) {
                 if (response.body()!!.success) {
+                    forceUpdate()
                     Toast.makeText(this@GitHubInfoChangeActivity, "레포지토리가 수정되었습니다.", Toast.LENGTH_SHORT).show()
                 } else {
                     dialogMessage("레포지토리 데이터 수정에 실패하였습니다.")
@@ -168,5 +173,60 @@ class GitHubInfoChangeActivity: AppCompatActivity() {
         builder.setPositiveButton("확인", null)
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
+    }
+
+    fun forceUpdate(){
+        val handler = CoroutineExceptionHandler{_,exception->
+            Log.d("error",exception.toString())
+        }
+        val requestCommitApi= GithubClient.getApi().create(GitHubInfoApi::class.java)
+        val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
+        val myRepoApi= RetrofitClient.initRetrofit().create(MyRepoDataApi::class.java)
+        val infoApi =  RetrofitClient.initRetrofit().create(InfoApi::class.java)
+        CoroutineScope(Dispatchers.IO).launch(handler) {
+            // 시간포멧
+            val nowDateTime = LocalDateTime.now(ZoneId.of("Asia/Seoul"))
+            val sinceTime =
+                nowDateTime.minusDays(30L).withHour(0).withMinute(0).withSecond(0).withNano(0).toString()
+
+            val myRepoData : MyRepoData = withContext(Dispatchers.IO) {
+                myRepoApi.getMyRepoData(MyApp.prefs.accountToken!!)
+            }
+            //                깃허브 정보 호출
+            val committer = myRepoData.committer
+            val commitsInAllRepo = arrayListOf<GitHubCommitDatasItem>()
+            for (i in myRepoData.repository.indices) {
+                val commitsInOneRepo = ArrayList<GitHubCommitDatasItem>()
+                var count = 1
+                while (true){
+                    val gitHubCommitDatas: Deferred<GitHubCommitDatas> = async(Dispatchers.IO) {
+                        requestCommitApi.getInfo(
+                            MyApp.prefs.githubToken!!,
+                            myRepoData.repository[i].owner,
+                            myRepoData.repository[i].name,
+                            committer,
+                            sinceTime,
+                            nowDateTime.toString(),
+                            100,
+                            count
+                        )
+                    }
+                    val a = gitHubCommitDatas.await()
+                    if(a.isEmpty()){
+                        break
+                    }else{
+                        commitsInOneRepo.addAll(a)
+                        count++
+                    }
+                }
+                commitsInAllRepo.addAll(commitsInOneRepo)
+            }
+
+            val result = gsonBuilder.toJson(commitsInAllRepo)
+            Log.d("결과",result)
+            val infoData = InfoData(MyApp.prefs.accountToken!!,commitsInAllRepo)
+            val resultMessage = infoApi.sendGithubDataToServer(infoData).message
+            Log.d("강제결과",resultMessage)
+        }
     }
 }

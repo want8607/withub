@@ -4,13 +4,14 @@ import android.animation.Animator
 import android.animation.TimeInterpolator
 import android.animation.ValueAnimator
 import android.content.Intent
-import android.os.*
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -30,7 +31,6 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
 import com.robinhood.ticker.TickerView
 import kotlinx.coroutines.*
-import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment(){
 
@@ -51,13 +51,15 @@ class HomeFragment : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.home_fragment,container,false)
         mainActivity = activity as MainActivity
-        
+        if (savedInstanceState !=null){
+            bannerPosition = savedInstanceState.getInt("bannerPosition")
+        }
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        testGitHubConnection()
         //nav버튼
         val navButton = view.findViewById<ImageButton>(R.id.nav_button)
         navButton.setOnClickListener {
@@ -282,10 +284,47 @@ class HomeFragment : Fragment(){
             .with(mainActivity)
             .withListener(object : GlideToVectorYouListener{
                 override fun onLoadFailed() {
+                    Log.d("ff","fail")
                 }
                 override fun onResourceReady() {
                 }
             })
             .load("https://ghchart.rshah.org/219138/$url".toUri(),commitGrassImgView)
+    }
+
+    fun testGitHubConnection(){
+        val errorHandler = CoroutineExceptionHandler{_,exception->
+            Log.d("error",exception.toString())
+            Log.d("error","문제발생 로그아웃")
+            CoroutineScope(Dispatchers.Main).launch(handler) {
+                MyApp.prefs.accountToken = null
+                MyApp.prefs.githubToken = null
+                val dialog : AlertDialog.Builder = AlertDialog.Builder(mainActivity)
+                dialog.setTitle("토큰에러")
+                    .setMessage("깃허브 토큰에 문제가 있어 로그인 화면으로 돌아갑니다. 다시로그인 해주세요.")
+                    .setPositiveButton("확인"){_,_->
+                        //로그인 창으로 이동
+                        val intent = Intent(mainActivity,LoginActivity::class.java)
+                        mainActivity.startActivity(intent)
+                        mainActivity.finish()
+                    }.show()
+            }
+        }
+        val requestCommitApi= GithubClient.getApi().create(GithubConnectionCheck::class.java)
+
+        CoroutineScope(Dispatchers.IO).launch(errorHandler) {
+            val gitHubCommitDatas= withContext(Dispatchers.IO) {
+                requestCommitApi.checkGithubConnection(
+                    MyApp.prefs.githubToken!!,
+                    "want8607"
+                )
+            }
+            Log.d("성공",gitHubCommitDatas.toString())
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("bannerPosition",bannerPosition)
     }
 }

@@ -1,7 +1,10 @@
 package com.example.withub
 
-import android.app.*
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -13,13 +16,17 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.*
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.*
-import kotlin.collections.ArrayList
 
 class ForegroundService : Service() {
 
-    var isRunning = false
+    val handler = CoroutineExceptionHandler{_,exception->
+        Log.d("error",exception.toString())
+        stopForeground(true)
+    }
+    val requestCommitApi= GithubClient.getApi().create(GitHubInfoApi::class.java)
+    val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
+    val myRepoApi= RetrofitClient.initRetrofit().create(MyRepoDataApi::class.java)
+    val infoApi =  RetrofitClient.initRetrofit().create(InfoApi::class.java)
 
     override fun onBind(p0: Intent?): IBinder? {
         return null
@@ -31,21 +38,17 @@ class ForegroundService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        val requestCommitApi= GithubClient.getApi().create(GitHubInfoApi::class.java)
-        val gsonBuilder = GsonBuilder().setPrettyPrinting().create()
-        val myRepoApi= RetrofitClient.initRetrofit().create(MyRepoDataApi::class.java)
-        val infoApi =  RetrofitClient.initRetrofit().create(InfoApi::class.java)
         // 시간포멧
         val nowDateTime = LocalDateTime.now(ZoneId.of("Asia/Seoul"))
         val sinceTime =
             nowDateTime.minusDays(30L).withHour(0).withMinute(0).withSecond(0).withNano(0).toString()
 
-        CoroutineScope(Dispatchers.IO).launch{
+        CoroutineScope(Dispatchers.IO).launch(handler){
             while (isActive){
                 //레포지토리 호출
-                val myRepoData : MyRepoData = async(Dispatchers.IO) {
+                val myRepoData : MyRepoData = withContext(Dispatchers.IO) {
                     myRepoApi.getMyRepoData(MyApp.prefs.accountToken!!)
-                }.await()
+                }
 //                깃허브 정보 호출
                 val committer = myRepoData.committer
                 val commitsInAllRepo = arrayListOf<GitHubCommitDatasItem>()
@@ -55,7 +58,7 @@ class ForegroundService : Service() {
                     while (true){
                         val gitHubCommitDatas: Deferred<GitHubCommitDatas> = async(Dispatchers.IO) {
                             requestCommitApi.getInfo(
-                                BuildConfig.GITTOKEN,
+                                MyApp.prefs.githubToken!!,
                                 myRepoData.repository[i].owner,
                                 myRepoData.repository[i].name,
                                 committer,
@@ -86,6 +89,7 @@ class ForegroundService : Service() {
         }
         return START_STICKY
     }
+
 
     fun createNotification(){
         //알림설정
@@ -121,7 +125,6 @@ class ForegroundService : Service() {
         super.onDestroy()
         Log.d("dd","파괴됨")
     }
-
 
 
 }

@@ -20,6 +20,7 @@ class DrawerActivity : AppCompatActivity() {
     lateinit var navFriendRVAdapter: NavFriendRVAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.drawer_activity)
         val friendApi = RetrofitClient.initRetrofit().create(FriendApi::class.java)

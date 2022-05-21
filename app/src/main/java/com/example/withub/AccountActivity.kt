@@ -129,6 +129,8 @@ class AccountActivity : AppCompatActivity() {
     fun deleteToken() {
         MyApp.prefs.accountToken = null
         MyApp.prefs.githubToken = null
+        val stopIntent = Intent(applicationContext,ForegroundService::class.java)
+        stopService(stopIntent)
         val intent = Intent(applicationContext, LoginActivity::class.java)
         startActivity(intent)
     }

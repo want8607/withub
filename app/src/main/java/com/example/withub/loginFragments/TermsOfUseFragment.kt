@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.CompoundButton
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.withub.LoginActivity
@@ -25,7 +22,7 @@ class TermsOfUseFragment: Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.termsofuse_fragment, container, false)
         val signupActivity = activity as SignupActivity
-        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+        val signupBackBtn = signupActivity.findViewById<ImageButton>(R.id.signup_back_btn)
         val checkBoxAllCheck = view.findViewById<CheckBox>(R.id.checkbox_all_check)
         val checkBox1 = view.findViewById<CheckBox>(R.id.checkbox_terms_of_use_1)
         val checkBox2 = view.findViewById<CheckBox>(R.id.checkbox_terms_of_use_2)

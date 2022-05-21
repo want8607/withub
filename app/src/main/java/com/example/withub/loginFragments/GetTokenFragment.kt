@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.withub.MyApp
@@ -30,7 +31,7 @@ class GetTokenFragment:Fragment() {
         val nextBtn = view.findViewById<Button>(R.id.next_btn_gettoken)
 
         val signupActivity = activity as SignupActivity
-        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+        val signupBackBtn = signupActivity.findViewById<ImageButton>(R.id.signup_back_btn)
 
         signupBackBtn.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, NickNameAreaSelectFragment()).commit()
@@ -49,8 +50,6 @@ class GetTokenFragment:Fragment() {
                 add(R.id.fragmentArea, GitHubRepositoryAddFragment(), "gitHubRepositoryAddFragment")
                 addToBackStack(null)
             }
-//            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, GitHubRepositoryAddFragment())
-//                .commit()
         }
         nextBtnActivate(githubTokenText,nextBtn)
         return view

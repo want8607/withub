@@ -7,10 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import retrofit2.Call
@@ -28,7 +25,7 @@ class ChangePasswordActivity : AppCompatActivity() {
         window.statusBarColor = getColor(R.color.point_color)
         setContentView(R.layout.change_password_activity)
 
-        val backBtn = findViewById<Button>(R.id.back_btn_change_password)
+        val backBtn = findViewById<ImageButton>(R.id.back_btn_change_password)
         val confirmBtn = findViewById<Button>(R.id.confirm_btn_change_password)
         val currentPwText = findViewById<EditText>(R.id.current_pw_edittext_change_password)
         val pwText = findViewById<EditText>(R.id.pw_edittext_change_password)

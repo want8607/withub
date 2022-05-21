@@ -13,6 +13,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -47,7 +48,7 @@ class GitHubRepositoryAddFragment: Fragment() {
         val githubRepositoryText = view.findViewById<EditText>(R.id.repository_edittext_signup)
         val signupBtn = view.findViewById<Button>(R.id.signup_btn_github_repository_add)
         val signupActivity = activity as SignupActivity
-        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+        val signupBackBtn = signupActivity.findViewById<ImageButton>(R.id.signup_back_btn)
         val signupText = signupActivity.findViewById<TextView>(R.id.signup_text)
         val warningInform1 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_1)
         val warningInform2 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_2)

@@ -29,14 +29,13 @@ class NickNameAreaSelectFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.nickname_areaselect_fragment, container, false)
-        var signupActivity = activity as SignupActivity
-        var signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
-        var spinner: Spinner = view.findViewById(R.id.area_spinner_signup)
-        var nickNameText = view.findViewById<EditText>(R.id.nickname_edittext_signup)
-        var nickNameDuplicateBtn = view.findViewById<Button>(R.id.nickname_duplicate_check_btn_signup)
-        var nickNameChangeBtn = view.findViewById<Button>(R.id.nickname_change_btn_signup)
-        var nickNameCheckView = view.findViewById<TextView>(R.id.nickname_check_textview_signup)
-        var builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        val signupActivity = activity as SignupActivity
+        val signupBackBtn = signupActivity.findViewById<ImageButton>(R.id.signup_back_btn)
+        val spinner: Spinner = view.findViewById(R.id.area_spinner_signup)
+        val nickNameText = view.findViewById<EditText>(R.id.nickname_edittext_signup)
+        val nickNameDuplicateBtn = view.findViewById<Button>(R.id.nickname_duplicate_check_btn_signup)
+        val nickNameChangeBtn = view.findViewById<Button>(R.id.nickname_change_btn_signup)
+        val nickNameCheckView = view.findViewById<TextView>(R.id.nickname_check_textview_signup)
         val signupText = signupActivity.findViewById<TextView>(R.id.signup_text)
         val warningInform1 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_1)
         val warningInform2 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_2)
@@ -50,7 +49,6 @@ class NickNameAreaSelectFragment: Fragment() {
 
         signupBackBtn.setOnClickListener {
             signupActivity.nicknameAreaSelectToEmailCerti()
-//            parentFragmentManager.beginTransaction().replace(R.id.fragmentArea, EmailCertifyFragment()).commit()
         }
 
         nickNameChangeBtn.setOnClickListener{

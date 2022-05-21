@@ -8,18 +8,50 @@
     android:clickable="true"
     xmlns:float="http://schemas.android.com/apk/res-auto">
 
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/point_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/back_btn_get_token_ac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_marginStart="20dp"
+            android:padding="10dp"
+            android:background="@drawable/point_background_ripple_effect"
+            android:src="@drawable/ic_white_left_arrow" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/nanum_square_round_bold"
+            android:text="GitHub 토큰 입력"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="27sp" />
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout22"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="15dp"
         android:weightSum="1"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.1"/>
+            android:layout_weight="0.1" />
 
         <ScrollView
             android:layout_width="0dp"
@@ -133,6 +165,31 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:text="• 로그아웃 후 토큰을 다시 발행해야 합니다."
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.05" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -166,7 +223,7 @@
             android:textSize="15sp" />
 
         <Button
-            android:id="@+id/github_token_receive_btn_gettoken"
+            android:id="@+id/github_token_receive_btn_get_token_ac"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -198,7 +255,7 @@
             tools:ignore="MissingClass,MissingConstraints">
 
             <EditText
-                android:id="@+id/github_token_paste_edittext_gettoken"
+                android:id="@+id/github_token_paste_edittext_get_token_ad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_round_regular"
@@ -219,7 +276,7 @@
 
 
     <Button
-        android:id="@+id/next_btn_gettoken"
+        android:id="@+id/next_btn_get_token_ac"
         android:layout_width="300dp"
         android:layout_height="55dp"
         android:layout_gravity="center"
@@ -227,7 +284,7 @@
         android:background="@drawable/disabled_button"
         android:enabled="false"
         android:fontFamily="@font/nanum_square_round_regular"
-        android:text="다음"
+        android:text="확인"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

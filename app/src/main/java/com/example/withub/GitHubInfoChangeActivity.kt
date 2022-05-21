@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -29,11 +30,15 @@ class GitHubInfoChangeActivity: AppCompatActivity() {
         val githubOwnerText = findViewById<EditText>(R.id.owner_edittext_info_change)
         val githubRepositoryText = findViewById<EditText>(R.id.repository_edittext_info_change)
         val repositoryAddBtn = findViewById<Button>(R.id.repository_add_btn_info_change)
-        var changeBtn = findViewById<Button>(R.id.change_btn_info_change)
+        val changeBtn = findViewById<Button>(R.id.change_btn_info_change)
+        val backBtn = findViewById<ImageButton>(R.id.back_btn_info_change)
 
         adapter = GithubInfoChangeRVAdapter(repositoryList,changeBtn)
         recyclerViewGithubInfoChange.adapter = adapter
 
+        backBtn.setOnClickListener{
+            finish()
+        }
 
         repositoryAddBtn.setOnClickListener{
             githubOwnerRepoCheckApi(githubOwnerText,githubRepositoryText,repositoryList,adapter)

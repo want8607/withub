@@ -45,8 +45,8 @@
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:hint="새 비밀번호"
                         android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/text_color"
                         android:textSize="15sp"
                         android:theme="@style/editText" />
                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>
@@ -92,8 +92,8 @@
                         android:fontFamily="@font/nanum_square_round_regular"
                         android:hint="새 비밀번호 확인"
                         android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
+                        android:textColor="@color/text_color"
+                        android:textColorHint="@color/text_color"
                         android:textSize="15sp"
                         android:theme="@style/editText" />
                 </com.wrapp.floatlabelededittext.FloatLabeledEditText>

@@ -34,7 +34,7 @@ class PwCertifyFragment:Fragment() {
     ): View {
         var view: View = inflater.inflate(R.layout.pwcertify_fragment, container, false)
         val findPwActivity = activity as FindPwActivity
-        val backBtn = findPwActivity.findViewById<Button>(R.id.back_btn_find_pw)
+        val backBtn = findPwActivity.findViewById<ImageButton>(R.id.back_btn_find_pw)
         val spinner = view.findViewById<Spinner>(R.id.email_spinner_find_pw)
         val emailText = view.findViewById<EditText>(R.id.email_edittext_find_pw)
         val certificationBtn = view.findViewById<Button>(R.id.email_certification_btn_find_pw)

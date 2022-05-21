@@ -27,8 +27,13 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_WITHUB)
         super.onCreate(savedInstanceState)
         window.statusBarColor = getColor(R.color.point_color)
-
         setContentView(R.layout.main_activity)
+
+        if (MyApp.prefs.githubToken == null) {
+            val intent = Intent(applicationContext, GetTokenActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         //첫 프래그먼트 설정
         if (savedInstanceState == null) {
             if (!isMyServiceRunning(ForegroundService::class.java)){

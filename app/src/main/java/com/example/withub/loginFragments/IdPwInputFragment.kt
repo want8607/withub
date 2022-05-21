@@ -12,6 +12,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -38,7 +39,7 @@ class IdPwInputFragment: Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.idpwinput_fragment, container, false)
         val signupActivity = activity as SignupActivity
-        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+        val signupBackBtn = signupActivity.findViewById<ImageButton>(R.id.signup_back_btn)
         val idText = view.findViewById<EditText>(R.id.id_edittext_signup)
         val idCheckView = view.findViewById<TextView>(R.id.id_check_textview_signup)
         val idDuplicateBtn = view.findViewById<Button>(R.id.id_duplicate_check_btn_signup)

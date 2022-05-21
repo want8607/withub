@@ -32,7 +32,7 @@ class FindIdActivity : AppCompatActivity() {
         val spinner: Spinner = findViewById(R.id.email_spinner_find_id)
         val emailText = findViewById<EditText>(R.id.email_edittext_find_id)
         val certiNumText = findViewById<EditText>(R.id.certi_num_edittext_find_id)
-        val findIdBackBtn = findViewById<Button>(R.id.find_id_back_btn)
+        val findIdBackBtn = findViewById<ImageButton>(R.id.find_id_back_btn)
         val certificationBtn = findViewById<Button>(R.id.email_certification_btn_find_id)
         val confirmBtn = findViewById<Button>(R.id.certi_num_confirm_btn_find_id)
         val timerTime = findViewById<TextView>(R.id.timer_text_find_id)

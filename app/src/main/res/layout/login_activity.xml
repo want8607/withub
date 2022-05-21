@@ -155,7 +155,8 @@
                 <TextView
                     android:id="@+id/id_finding_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
                     android:autoSizeTextType="uniform"
                     android:autoSizePresetSizes="@array/autosize_text_sizes"
                     android:text="아이디 찾기"
@@ -170,7 +171,7 @@
 
                 <View
                     android:layout_width="0.5dp"
-                    android:layout_height="20dp"
+                    android:layout_height="match_parent"
                     android:background="@color/gray" />
 
                 <TextView
@@ -181,7 +182,8 @@
                 <TextView
                     android:id="@+id/pw_finding_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
                     android:autoSizeTextType="uniform"
                     android:autoSizePresetSizes="@array/autosize_text_sizes"
                     android:text="비밀번호 찾기"
@@ -196,7 +198,7 @@
 
                 <View
                     android:layout_width="0.5dp"
-                    android:layout_height="20dp"
+                    android:layout_height="match_parent"
                     android:background="@color/gray" />
 
                 <TextView
@@ -207,7 +209,8 @@
                 <TextView
                     android:id="@+id/signup_btn"
                     android:layout_width="wrap_content"
-                    android:layout_height="25dp"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
                     android:autoSizeTextType="uniform"
                     android:autoSizePresetSizes="@array/autosize_text_sizes"
                     android:text="회원가입"

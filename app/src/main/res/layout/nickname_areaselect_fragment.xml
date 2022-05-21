@@ -139,7 +139,8 @@
                     android:textAlignment="center"
                     android:backgroundTint="@color/point_color"
                     android:dropDownWidth="150dp"
-                    android:popupBackground="@color/white"
+                    android:textColor="@color/text_color"
+                    android:popupBackground="@color/thick_gray"
                     android:background="@drawable/spinner_design"
                     android:spinnerMode="dropdown"/>
 

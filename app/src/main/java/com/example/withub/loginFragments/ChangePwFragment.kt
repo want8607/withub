@@ -8,10 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.withub.*
@@ -39,7 +36,7 @@ class ChangePwFragment:Fragment() {
         val pwMismatchView = view.findViewById<TextView>(R.id.pw_confirm_mismatch_textview_find_pw)
         val changePwBtn = view.findViewById<Button>(R.id.change_pw_btn_find_pw)
         val findPwActivity = activity as FindPwActivity
-        val backBtn = findPwActivity.findViewById<Button>(R.id.back_btn_find_pw)
+        val backBtn = findPwActivity.findViewById<ImageButton>(R.id.back_btn_find_pw)
 
         backBtn.setOnClickListener{
             parentFragmentManager.beginTransaction().replace(R.id.fragmentArea_find_pw, PwCertifyFragment())

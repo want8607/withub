@@ -42,7 +42,7 @@ class EmailCertifyFragment:Fragment() {
         val confirmBtn = view.findViewById<Button>(R.id.certi_num_confirm_btn_signup)
         val certiNumText = view.findViewById<EditText>(R.id.certi_num_Edittext_signup)
         val signupActivity = activity as SignupActivity
-        val signupBackBtn = signupActivity.findViewById<Button>(R.id.signup_back_btn)
+        val signupBackBtn = signupActivity.findViewById<ImageButton>(R.id.signup_back_btn)
         val nextBtn = view.findViewById<Button>(R.id.next_btn_emailcertify)
         val signupText = signupActivity.findViewById<TextView>(R.id.signup_text)
         val warningInform1 = signupActivity.findViewById<TextView>(R.id.warning_inform_signup_1)

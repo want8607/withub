@@ -70,10 +70,11 @@
                     android:layout_height="30dp"
                     android:layout_gravity="bottom"
                     android:layout_weight="0.5"
+                    android:textColor="@color/text_color"
                     android:background="@drawable/spinner_design"
                     android:backgroundTint="@color/point_color"
                     android:dropDownWidth="150dp"
-                    android:popupBackground="@color/gray"
+                    android:popupBackground="@color/thick_gray"
                     android:spinnerMode="dropdown"
                     android:textAlignment="center"
                     tools:ignore="RtlCompat" />

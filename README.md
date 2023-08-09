@@ -3,7 +3,7 @@
 **내 개발자 친구, 내 지역의 개발자들과 사용할 수 있는 커밋횟수 측정 앱**  
 **친구들, 지역사람들의 커밋 횟수를 비교하면서 꾸준히 개발하는 동기 생성**
 
-### **담당분야: Front-end**  
+### **담당분야**  
 - View 시스템을 사용하여 UI생성 - 홈, 랭킹, 커밋, 내정보, 친구정보
 - 백엔드 서버와 API 통신
 - Foreground Service를 사용하여 사용자 GitHub 정보 수집 후 서버로 전송
@@ -36,4 +36,4 @@
 # License
 
 **WITHUB** is distributed under the terms of the Apache License (Version 2.0). See the
-[license](LICENSE) for more information.
+[license](LICENSE.txt) for more information.

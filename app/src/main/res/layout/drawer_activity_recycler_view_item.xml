@@ -31,8 +31,8 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/nav_friend_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center"
             android:layout_weight="0.15" />
